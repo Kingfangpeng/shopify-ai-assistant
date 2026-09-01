@@ -9,9 +9,7 @@ from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
-from app.tools.knowledge_tool import retrieve_knowledge
-from app.tools.time_tool import get_current_time
-from app.agent.mcp_client import get_mcp_client_with_retry
+from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from .state import PlanExecuteState
 
 
@@ -30,11 +28,8 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
 
     try:
         # 获取所有可用工具
-        local_tools = [retrieve_knowledge, get_current_time]
-        mcp_client = await get_mcp_client_with_retry()
-        mcp_tools = await mcp_client.get_tools()
-        all_tools = local_tools + mcp_tools
-        logger.info(f"可用工具数量: 本地 {len(local_tools)} + MCP {len(mcp_tools)}")
+        all_tools = list(DEFAULT_LOCAL_AGENT_TOOLS)
+        logger.info(f"可用只读工具数量: {len(all_tools)}")
 
         llm = llm_factory.create_chat_model(
             model=config.rag_model,
@@ -54,8 +49,7 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
 4. 用 2~3 句话总结发现，聚焦于运营决策价值
 
 **数字表述规范：**
-- ROAS 保留一位小数（如 3.2x）
-- 金额统一用 USD，保留两位小数
+                - 金额统一用 USD，保留两位小数
 - 百分比变化标注方向（↑12% / ↓8%）
 - 时间范围必须明确（如"过去 7 天"）
 
@@ -63,7 +57,11 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
 - 不要编造数据，只返回工具实际获取的信息
 - 如果工具调用失败，说明失败原因并给出推断
 - 专注于当前步骤，不要考虑其他任务"""),
-            HumanMessage(content=f"请执行以下运营分析步骤: {task}")
+            HumanMessage(content=(
+                f"请执行以下运营分析步骤: {task}\n"
+                f"用户请求上下文: {state.get('context') or {}}\n"
+                "必须优先使用上下文中明确给出的 date_from/date_to。"
+            ))
         ]
 
         # 第一步：LLM 决定是否调用工具

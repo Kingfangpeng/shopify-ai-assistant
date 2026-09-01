@@ -1,84 +1,111 @@
-"""FastAPI 应用入口 - Shopify AI Assistant"""
+"""FastAPI 应用入口。"""
 
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from contextlib import asynccontextmanager
+from __future__ import annotations
+
 import os
+import asyncio
+from contextlib import asynccontextmanager
 
-from app.config import config
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from loguru import logger
-from app.api import chat, health, file, ops, snapshot, config as config_api
+from starlette.middleware.trustedhost import TrustedHostMiddleware
+
+from app.api import auth, chat, config as config_api, file, health, ops, snapshot
+from app.auth.dependencies import get_current_user
+from app.auth.middleware import RequestSecurityMiddleware
+from app.config import config
+from app.core.errors import (
+    AppError,
+    app_error_handler,
+    http_error_handler,
+    unexpected_error_handler,
+    validation_error_handler,
+)
 from app.core.milvus_client import milvus_manager
+from app.db.engine import db_session, init_db
+from app.services.knowledge import knowledge_service
 
 static_dir = "static"
 assets_dir = os.path.join(static_dir, "assets")
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
-    logger.info("=" * 60)
-    logger.info(f"Shopify AI Assistant v{config.app_version} 启动中...")
-    logger.info(f"环境: {'开发' if config.debug else '生产'}")
-    logger.info(f"监听地址: http://{config.host}:{config.port}")
-    logger.info(f"API 文档: http://{config.host}:{config.port}/docs")
-    logger.info("正在连接 Milvus...")
-    milvus_manager.connect()
-    logger.info("Milvus 连接成功")
-    logger.info("=" * 60)
+async def lifespan(_app: FastAPI):
+    init_db()
+    with db_session() as db:
+        purged = knowledge_service.cleanup_expired(db)
+    stop_cleanup = asyncio.Event()
 
-    yield
+    async def cleanup_loop() -> None:
+        while not stop_cleanup.is_set():
+            try:
+                await asyncio.wait_for(stop_cleanup.wait(), timeout=6 * 60 * 60)
+            except TimeoutError:
+                with db_session() as cleanup_db:
+                    knowledge_service.cleanup_expired(cleanup_db)
 
-    logger.info("正在关闭 Milvus 连接...")
-    milvus_manager.close()
-    logger.info("Shopify AI Assistant 已关闭")
+    cleanup_task = asyncio.create_task(cleanup_loop())
+    logger.info(f"{config.app_name} v{config.app_version} 已启动（{config.host}:{config.port}），清理回收站 {purged} 项")
+    try:
+        yield
+    finally:
+        stop_cleanup.set()
+        await cleanup_task
+        milvus_manager.close()
 
 
 app = FastAPI(
     title=config.app_name,
     version=config.app_version,
-    description="基于 LangChain + LangGraph 的 Shopify 独立站运营 AI 助手",
-    lifespan=lifespan
+    description="本地优先的 Shopify GraphQL 运营助手",
+    lifespan=lifespan,
+    docs_url="/docs" if config.debug else None,
+    redoc_url="/redoc" if config.debug else None,
+    openapi_url="/openapi.json" if config.debug else None,
 )
+app.add_exception_handler(AppError, app_error_handler)  # type: ignore[arg-type]
+app.add_exception_handler(HTTPException, http_error_handler)  # type: ignore[arg-type]
+app.add_exception_handler(RequestValidationError, validation_error_handler)  # type: ignore[arg-type]
+app.add_exception_handler(Exception, unexpected_error_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=config.cors_origin_list,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "X-CSRF-Token", "X-Request-ID"],
 )
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=config.allowed_host_list)
+app.add_middleware(RequestSecurityMiddleware)
 
-# ── API 路由 ────────────────────────────────────────────────
+auth_required = [Depends(get_current_user)]
 app.include_router(health.router, tags=["健康检查"])
-app.include_router(chat.router, prefix="/api", tags=["知识库问答"])
-app.include_router(file.router, prefix="/api", tags=["文件管理"])
-app.include_router(ops.router, prefix="/api", tags=["运营 Agent"])
-app.include_router(snapshot.router, prefix="/api", tags=["数据快照"])
-app.include_router(config_api.router, prefix="/api", tags=["配置信息"])
+app.include_router(auth.router, prefix="/api", tags=["认证"])
+app.include_router(chat.router, prefix="/api", tags=["知识库问答"], dependencies=auth_required)
+app.include_router(file.router, prefix="/api", tags=["知识库"], dependencies=auth_required)
+app.include_router(ops.router, prefix="/api", tags=["运营 Agent"], dependencies=auth_required)
+app.include_router(snapshot.router, prefix="/api", tags=["Shopify 数据"], dependencies=auth_required)
+app.include_router(config_api.router, prefix="/api", tags=["配置信息"], dependencies=auth_required)
 
-# ── 前端静态资源挂载（必须在 catch-all 路由之前）──────────────
-# /assets/* → static/assets/
 if os.path.exists(assets_dir):
     app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
 
-# ── 前端页面路由 ────────────────────────────────────────────
 @app.get("/", include_in_schema=False)
 async def root():
     index_path = os.path.join(static_dir, "index.html")
     if os.path.exists(index_path):
         return FileResponse(index_path)
-    return {"message": f"Welcome to {config.app_name}", "docs": "/docs"}
+    return {"message": config.app_name}
 
 
-# SPA fallback：/chat /knowledge /settings 都返回 index.html 交给 React Router
 @app.get("/{full_path:path}", include_in_schema=False)
 async def spa_fallback(full_path: str):
-    # 这些路径不走 fallback
-    skip = ("api/", "docs", "openapi.json", "redoc", "assets/")
-    if any(full_path.startswith(p) for p in skip):
+    if any(full_path.startswith(prefix) for prefix in ("api/", "docs", "openapi.json", "redoc", "assets/")):
         raise HTTPException(status_code=404)
     index_path = os.path.join(static_dir, "index.html")
     if os.path.exists(index_path):
@@ -88,4 +115,5 @@ async def spa_fallback(full_path: str):
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("app.main:app", host=config.host, port=config.port, reload=config.debug)

@@ -10,8 +10,7 @@ from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
-from app.tools.knowledge_tool import retrieve_knowledge
-from app.agent.mcp_client import get_mcp_client_with_retry
+from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from .state import PlanExecuteState
 from .utils import format_tools_description
 
@@ -117,10 +116,7 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
 
     # 获取可用工具列表
     try:
-        local_tools = [retrieve_knowledge]
-        mcp_client = await get_mcp_client_with_retry()
-        mcp_tools = await mcp_client.get_tools()
-        all_tools = local_tools + mcp_tools
+        all_tools = list(DEFAULT_LOCAL_AGENT_TOOLS)
         tools_description = format_tools_description(all_tools)
     except Exception as e:
         logger.warning(f"获取工具列表失败: {e}")
@@ -166,7 +162,7 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
 
             elif action == "replan":
                 # 已执行 >= 5 步或超过最大 replan 次数，禁止 replan
-                if len(past_steps) >= 5 or replan_count >= config.max_replan_count:
+                if len(past_steps) >= 5 or replan_count + 1 >= config.max_replan_count:
                     logger.warning(f"超出限制，禁止 replan，强制生成报告")
                     return await _generate_response(state, llm)
 

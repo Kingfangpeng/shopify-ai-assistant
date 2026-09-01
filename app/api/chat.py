@@ -1,140 +1,93 @@
-"""对话接口
+"""已鉴权的聊天会话、消息持久化与 SSE 接口。"""
 
-提供基于 RAG Agent 的普通对话和流式对话接口
-"""
+from __future__ import annotations
 
 import json
-from fastapi import APIRouter, HTTPException
-from sse_starlette.sse import EventSourceResponse
-from app.models.request import ChatRequest, ClearRequest
-from app.models.response import SessionInfoResponse, ApiResponse
-from app.services.rag_agent_service import rag_agent_service
+
+from fastapi import APIRouter, Depends
 from loguru import logger
+from sse_starlette.sse import EventSourceResponse
+
+from app.auth.dependencies import AuthContext, get_auth_context
+from app.core.errors import AppError
+from app.db.engine import db_session
+from app.models.request import ChatRequest, CreateChatSessionRequest, ImportChatSessionsRequest
+from app.services.chat import chat_service
+from app.services.rag_agent_service import rag_agent_service
 
 router = APIRouter()
 
 
+@router.get("/chat/sessions")
+async def list_sessions(limit: int = 50, offset: int = 0, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        sessions = chat_service.list_sessions(db, context.user.id, limit, offset)
+        return {"items": [chat_service.serialize_session(item) for item in sessions]}
+
+
+@router.post("/chat/sessions", status_code=201)
+async def create_session(payload: CreateChatSessionRequest, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        session = chat_service.create_session(db, context.user.id, payload.title)
+        return chat_service.serialize_session(session, include_messages=True)
+
+
+@router.get("/chat/sessions/{session_id}")
+async def get_session(session_id: str, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        session = chat_service.get_session(db, context.user.id, session_id, with_messages=True)
+        return chat_service.serialize_session(session, include_messages=True)
+
+
+@router.delete("/chat/sessions/{session_id}", status_code=204)
+async def delete_session(session_id: str, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        chat_service.delete_session(db, context.user.id, session_id)
+
+
+@router.post("/chat/sessions/import")
+async def import_sessions(payload: ImportChatSessionsRequest, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        return chat_service.import_sessions(db, context.user.id, payload.sessions)
+
+
 @router.post("/chat")
-async def chat(request: ChatRequest):
-    """快速对话接口（RAG 知识库问答）"""
+async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        session = chat_service.get_session(db, context.user.id, request.session_id)
+        history = chat_service.recent_context(db, context.user.id, request.session_id)
+        chat_service.add_message(db, session, "user", request.question)
     try:
-        logger.info(f"[会话 {request.id}] 收到快速对话请求: {request.question}")
-        answer = await rag_agent_service.query(
-            request.question,
-            session_id=request.id
-        )
-        logger.info(f"[会话 {request.id}] 快速对话完成")
-        return {
-            "code": 200,
-            "message": "success",
-            "data": {
-                "success": True,
-                "answer": answer,
-                "errorMessage": None
-            }
-        }
-    except Exception as e:
-        logger.error(f"对话接口错误: {e}")
-        return {
-            "code": 500,
-            "message": "error",
-            "data": {
-                "success": False,
-                "answer": None,
-                "errorMessage": str(e)
-            }
-        }
+        answer = await rag_agent_service.query(request.question, history=history)
+    except Exception as exc:
+        logger.exception("RAG 对话失败")
+        raise AppError("chat_failed", "生成回答失败，请稍后重试", 503) from exc
+    with db_session() as db:
+        session = chat_service.get_session(db, context.user.id, request.session_id)
+        chat_service.add_message(db, session, "assistant", answer)
+    return {"answer": answer, "session_id": request.session_id, "source": "knowledge_and_model"}
 
 
 @router.post("/chat_stream")
-async def chat_stream(request: ChatRequest):
-    """流式对话接口（SSE）"""
-    logger.info(f"[会话 {request.id}] 收到流式对话请求: {request.question}")
+async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_auth_context)):
+    with db_session() as db:
+        session = chat_service.get_session(db, context.user.id, request.session_id)
+        history = chat_service.recent_context(db, context.user.id, request.session_id)
+        chat_service.add_message(db, session, "user", request.question)
 
     async def event_generator():
-        try:
-            async for chunk in rag_agent_service.query_stream(request.question, session_id=request.id):
-                chunk_type = chunk.get("type", "unknown")
-                chunk_data = chunk.get("data", None)
-
-                if chunk_type == "status":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "status", "data": chunk_data}, ensure_ascii=False)
-                    }
-                elif chunk_type == "debug":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({
-                            "type": "debug",
-                            "node": chunk.get("node", "unknown"),
-                            "message_type": chunk.get("message_type", "unknown")
-                        }, ensure_ascii=False)
-                    }
-                elif chunk_type == "tool_call":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "tool_call", "data": chunk_data}, ensure_ascii=False)
-                    }
-                elif chunk_type == "search_results":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "search_results", "data": chunk_data}, ensure_ascii=False)
-                    }
-                elif chunk_type == "content":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "content", "data": chunk_data}, ensure_ascii=False)
-                    }
-                elif chunk_type == "complete":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "done", "data": chunk_data}, ensure_ascii=False)
-                    }
-                elif chunk_type == "error":
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({"type": "error", "data": str(chunk_data)}, ensure_ascii=False)
-                    }
-
-            logger.info(f"[会话 {request.id}] 流式对话完成")
-
-        except Exception as e:
-            logger.error(f"流式对话接口错误: {e}")
-            yield {
-                "event": "message",
-                "data": json.dumps({"type": "error", "data": str(e)}, ensure_ascii=False)
-            }
+        full_answer = ""
+        failed = False
+        async for chunk in rag_agent_service.query_stream(request.question, history=history):
+            if chunk.get("type") == "content":
+                full_answer += str(chunk.get("data") or "")
+            if chunk.get("type") == "error":
+                failed = True
+                chunk = {"type": "error", "data": "生成回答失败，请稍后重试"}
+            yield {"event": "message", "data": json.dumps(chunk, ensure_ascii=False)}
+        if full_answer:
+            with db_session() as db:
+                session = chat_service.get_session(db, context.user.id, request.session_id)
+                chat_service.add_message(db, session, "assistant", full_answer, "failed" if failed else "complete")
 
     return EventSourceResponse(event_generator())
-
-
-@router.post("/chat/clear", response_model=ApiResponse)
-async def clear_session(request: ClearRequest):
-    """清空会话历史"""
-    try:
-        success = rag_agent_service.clear_session(request.session_id)
-        logger.info(f"清空会话: {request.session_id}, 结果: {success}")
-        return ApiResponse(
-            status="success" if success else "error",
-            message="会话已清空" if success else "清空会话失败",
-            data=None
-        )
-    except Exception as e:
-        logger.error(f"清空会话错误: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/chat/session/{session_id}", response_model=SessionInfoResponse)
-async def get_session_info(session_id: str) -> SessionInfoResponse:
-    """查询会话历史"""
-    try:
-        history = rag_agent_service.get_session_history(session_id)
-        return SessionInfoResponse(
-            session_id=session_id,
-            message_count=len(history),
-            history=history
-        )
-    except Exception as e:
-        logger.error(f"获取会话信息错误: {e}")
-        raise HTTPException(status_code=500, detail=str(e))

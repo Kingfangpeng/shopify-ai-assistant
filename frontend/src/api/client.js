@@ -1,144 +1,134 @@
-// API 调用封装，所有接口统一从这里调用
+const BASE = ''
+let csrfToken = ''
 
-const BASE = ''  // 同域，不需要写 host；dev 模式下 vite proxy 转发
-
-// ── 健康检查 ──────────────────────────────────────────────
-export async function fetchHealth() {
-  const res = await fetch(`${BASE}/health`)
-  return res.json()
+export class ApiError extends Error {
+  constructor(message, status, code) {
+    super(message)
+    this.status = status
+    this.code = code
+  }
 }
 
-// ── 配置信息 ──────────────────────────────────────────────
-export async function fetchConfig() {
-  const res = await fetch(`${BASE}/api/config`)
-  return res.json()
+export function setCsrfToken(value) {
+  csrfToken = value || ''
 }
 
-// ── 知识库问答（流式 SSE）────────────────────────────────
-// onChunk(text) 每次收到一段文字回调
-// onDone() 完成回调
-// onError(msg) 出错回调
-// 返回 AbortController，调用 .abort() 可中断
-function normalizeStatus(statusText) {
-  if (!statusText) return ''
-  if (statusText.includes('检索')) return 'retrieving'
-  if (statusText.includes('生成')) return 'generating'
-  if (statusText.includes('工具')) return 'tool_call'
-  return statusText
+async function parseResponse(response) {
+  if (response.status === 204) return null
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    const info = payload?.error || {}
+    throw new ApiError(info.message || `请求失败（${response.status}）`, response.status, info.code)
+  }
+  return payload
 }
 
-export function streamChat(sessionId, question, { onStatus, onChunk, onDone, onError }) {
+async function refreshCsrf() {
+  const response = await fetch(`${BASE}/api/auth/me`, { credentials: 'include' })
+  const payload = await parseResponse(response)
+  setCsrfToken(payload.csrf_token)
+  return payload
+}
+
+export async function apiFetch(path, options = {}, retried = false) {
+  const method = (options.method || 'GET').toUpperCase()
+  const headers = new Headers(options.headers || {})
+  if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && csrfToken) headers.set('X-CSRF-Token', csrfToken)
+  const response = await fetch(`${BASE}${path}`, { ...options, method, headers, credentials: 'include' })
+  if (response.status === 401) window.dispatchEvent(new CustomEvent('auth:unauthorized'))
+  if (response.status === 403 && !retried) {
+    const body = await response.clone().json().catch(() => ({}))
+    if (body?.error?.code === 'csrf_rejected') {
+      await refreshCsrf()
+      return apiFetch(path, options, true)
+    }
+  }
+  return parseResponse(response)
+}
+
+export const authApi = {
+  me: refreshCsrf,
+  async login(username, password) {
+    const response = await fetch(`${BASE}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password }),
+    })
+    const payload = await parseResponse(response)
+    setCsrfToken(payload.csrf_token)
+    return payload
+  },
+  logout: () => apiFetch('/api/auth/logout', { method: 'POST' }),
+}
+
+export const fetchHealth = () => apiFetch('/health')
+export const fetchConfig = () => apiFetch('/api/config')
+export const fetchShopifyStatus = () => apiFetch('/api/shopify/status')
+
+export const chatApi = {
+  list: () => apiFetch('/api/chat/sessions'),
+  get: (id) => apiFetch(`/api/chat/sessions/${encodeURIComponent(id)}`),
+  create: (title = '新对话') => apiFetch('/api/chat/sessions', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title }),
+  }),
+  remove: (id) => apiFetch(`/api/chat/sessions/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+  importLegacy: (sessions) => apiFetch('/api/chat/sessions/import', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessions }),
+  }),
+}
+
+export function streamChat(sessionId, question, handlers = {}) {
   const controller = new AbortController()
-
-  fetch(`${BASE}/api/chat_stream`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ Id: sessionId, Question: question }),
-    signal: controller.signal,
-  })
-    .then(async (res) => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-      let buffer = ''
-
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-
-        buffer += decoder.decode(value, { stream: true })
-        const lines = buffer.split('\n')
-        buffer = lines.pop()  // 最后一行可能不完整，留到下次处理
-
-        for (const line of lines) {
-          if (!line.startsWith('data:')) continue
-          const raw = line.slice(5).trim()
-          if (!raw) continue
-          try {
-            const evt = JSON.parse(raw)
-            if (evt.type === 'status') {
-              onStatus?.(normalizeStatus(evt.data))
-            } else if (evt.type === 'content') {
-              onChunk?.(evt.data)
-            } else if (evt.type === 'done') {
-              onDone?.()
-            } else if (evt.type === 'error') {
-              onError?.(evt.data)
-            }
-          } catch {
-            // 忽略解析失败的行
-          }
-        }
+  const run = async (retried = false) => {
+    const headers = { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken }
+    const response = await fetch(`${BASE}/api/chat_stream`, {
+      method: 'POST', headers, credentials: 'include',
+      body: JSON.stringify({ session_id: sessionId, question }), signal: controller.signal,
+    })
+    if (response.status === 401) window.dispatchEvent(new CustomEvent('auth:unauthorized'))
+    if (response.status === 403 && !retried) {
+      const body = await response.clone().json().catch(() => ({}))
+      if (body?.error?.code === 'csrf_rejected') {
+        await refreshCsrf()
+        if (!controller.signal.aborted) return run(true)
       }
-    })
-    .catch((err) => {
-      if (err.name !== 'AbortError') onError?.(err.message)
-    })
-
+    }
+    if (!response.ok) return parseResponse(response)
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    let buffer = ''
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      buffer += decoder.decode(value, { stream: true })
+      const events = buffer.split(/\r?\n\r?\n/)
+      buffer = events.pop() || ''
+      for (const event of events) {
+        const line = event.split(/\r?\n/).find(item => item.startsWith('data:'))
+        if (!line) continue
+        const data = JSON.parse(line.slice(5).trim())
+        if (data.type === 'status') handlers.onStatus?.(data.data)
+        if (data.type === 'content') handlers.onChunk?.(data.data)
+        if (data.type === 'complete') handlers.onDone?.(data.data)
+        if (data.type === 'error') handlers.onError?.(data.data)
+      }
+    }
+  }
+  run().catch(error => {
+    if (error.name !== 'AbortError') handlers.onError?.(error.message)
+  })
   return controller
 }
 
-// ── 普通问答（非流式）────────────────────────────────────
-export async function sendChat(sessionId, question) {
-  const res = await fetch(`${BASE}/api/chat`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ Id: sessionId, Question: question }),
-  })
-  return res.json()
-}
-
-// ── 上传文件到知识库 ─────────────────────────────────────
-export async function uploadFile(file) {
-  const form = new FormData()
-  form.append('file', file)
-  const res = await fetch(`${BASE}/api/upload`, {
-    method: 'POST',
-    body: form,
-  })
-  return res.json()
-}
-
-// ── 重建全部索引 ─────────────────────────────────────────
-export async function rebuildIndex() {
-  const res = await fetch(`${BASE}/api/index_directory`, {
-    method: 'POST',
-  })
-  return res.json()
-}
-
-// ── 清空会话 ─────────────────────────────────────────────
-export async function clearSession(sessionId) {
-  const res = await fetch(`${BASE}/api/chat/clear`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sessionId }),
-  })
-  return res.json()
-}
-
-// ── 知识库分片查询 ───────────────────────────────────────
-export async function fetchChunks({ filename = '', filePath = '', limit = 50, offset = 0 } = {}) {
-  const params = new URLSearchParams()
-  if (filename) params.set('filename', filename)
-  if (filePath) params.set('file_path', filePath)
-  params.set('limit', String(limit))
-  params.set('offset', String(offset))
-  const url = `${BASE}/api/knowledge/chunks?${params.toString()}`
-  const res = await fetch(url)
-  return res.json()
-}
-
-// ── 知识库统计 ───────────────────────────────────────────
-export async function fetchKnowledgeStats() {
-  const res = await fetch(`${BASE}/api/knowledge/stats`)
-  return res.json()
-}
-
-export async function deleteKnowledgeFile(filePath) {
-  const params = new URLSearchParams({ file_path: filePath })
-  const res = await fetch(`${BASE}/api/knowledge/file?${params.toString()}`, {
-    method: 'DELETE',
-  })
-  return res.json()
+export const knowledgeApi = {
+  list: (status = 'active', offset = 0) => apiFetch(`/api/knowledge/documents?status=${status}&limit=50&offset=${offset}`),
+  upload: file => {
+    const form = new FormData(); form.append('file', file)
+    return apiFetch('/api/knowledge/documents', { method: 'POST', body: form })
+  },
+  chunks: (id, offset = 0) => apiFetch(`/api/knowledge/documents/${encodeURIComponent(id)}/chunks?limit=50&offset=${offset}`),
+  remove: id => apiFetch(`/api/knowledge/documents/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+  restore: id => apiFetch(`/api/knowledge/documents/${encodeURIComponent(id)}/restore`, { method: 'POST' }),
+  rebuild: () => apiFetch('/api/knowledge/rebuild', { method: 'POST' }),
 }

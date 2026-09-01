@@ -28,14 +28,14 @@ def retrieve_knowledge(query: str) -> Tuple[str, List[Document]]:
         return context, docs
     except Exception as e:
         logger.error(f"知识检索失败: {e}")
-        return f"检索失败: {str(e)}", []
+        return "知识库依赖当前不可用，无法完成检索。", []
 
 
 def format_docs(docs: List[Document]) -> str:
     parts = []
     for i, doc in enumerate(docs, 1):
         metadata = doc.metadata
-        source = metadata.get("_file_name", "未知来源")
+        source = metadata.get("file_name", metadata.get("_file_name", "未知来源"))
         headers = [metadata[k] for k in ["h1", "h2", "h3"] if metadata.get(k)]
         header_str = " > ".join(headers)
         text = f"【参考资料 {i}】"
