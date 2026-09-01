@@ -52,7 +52,7 @@ async def run_ops_analysis(request: OpsRequest):
     ```bash
     curl -X POST "http://localhost:9901/api/ops" \\
       -H "Content-Type: application/json" \\
-      -d '{"question": "最近7天ROAS为何下跌？", "date_from": "2024-10-01", "date_to": "2024-10-07"}' \\
+      -d '{"question": "最近7天退款率为何上升？", "date_from": "2026-08-01", "date_to": "2026-08-07"}' \\
       --no-buffer
     ```
     """
