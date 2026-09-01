@@ -1,154 +1,40 @@
 import { useEffect, useState } from 'react'
-import { fetchHealth, fetchConfig } from '../api/client.js'
-import StatusBadge from '../components/StatusBadge.jsx'
-import { Database, Bot, Store, Megaphone, RefreshCw, Info } from 'lucide-react'
+import { Bot, CheckCircle2, Database, RefreshCw, ShieldCheck, Store } from 'lucide-react'
+import { fetchConfig, fetchShopifyStatus } from '../api/client.js'
 
-export default function Settings({ systemOk }) {
-  const [health, setHealth]   = useState(null)
-  const [cfg, setCfg]         = useState(null)
+export default function Settings({ user, systemOk }) {
+  const [config, setConfig] = useState(null)
+  const [shopify, setShopify] = useState(null)
   const [loading, setLoading] = useState(true)
-
   const load = async () => {
     setLoading(true)
     try {
-      const [h, c] = await Promise.all([fetchHealth(), fetchConfig()])
-      setHealth(h)
-      setCfg(c)
-    } catch {
-      // ignore
-    } finally {
-      setLoading(false)
-    }
+      const [cfg, status] = await Promise.all([fetchConfig(), fetchShopifyStatus()])
+      setConfig(cfg); setShopify(status)
+    } catch { setConfig(null) } finally { setLoading(false) }
   }
-
   useEffect(() => { load() }, [])
-
-  const milvusOk = health?.data?.milvus?.status === 'connected'
-
-  return (
-    <div className="max-w-2xl mx-auto px-6 py-8">
-      {/* 页头 */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-semibold text-slate-800">设置</h1>
-        <button
-          onClick={load}
-          disabled={loading}
-          className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700 transition-colors"
-        >
-          <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
-          刷新
-        </button>
-      </div>
-
-      <div className="space-y-4">
-
-        {/* 系统状态卡 */}
-        <Card icon={<Database size={18} className="text-brand-500" />} title="系统状态">
-          <Row label="Milvus 向量库">
-            <StatusBadge ok={milvusOk} label={milvusOk ? '已连接' : '未连接'} />
-          </Row>
-          <Row label="整体状态">
-            <StatusBadge ok={systemOk} label={systemOk ? '正常运行' : '存在异常'} />
-          </Row>
-          {health?.data?.version && (
-            <Row label="版本">{health.data.version}</Row>
-          )}
-          {cfg?.milvus_collection && (
-            <Row label="Collection">{cfg.milvus_collection}</Row>
-          )}
-        </Card>
-
-        {/* AI 模型卡 */}
-        <Card icon={<Bot size={18} className="text-brand-500" />} title="AI 模型">
-          <Row label="对话模型">
-            {cfg ? (
-              <span className="font-mono text-sm bg-slate-100 px-2 py-0.5 rounded">{cfg.llm_model}</span>
-            ) : <Skeleton />}
-          </Row>
-          <Row label="Embedding 模型">
-            {cfg ? (
-              <span className="font-mono text-sm bg-slate-100 px-2 py-0.5 rounded">{cfg.embedding_model}</span>
-            ) : <Skeleton />}
-          </Row>
-          <Row label="知识库召回 Top-K">
-            {cfg ? cfg.rag_top_k : <Skeleton />}
-          </Row>
-        </Card>
-
-        {/* Shopify 卡 */}
-        <Card icon={<Store size={18} className="text-brand-500" />} title="Shopify 店铺">
-          <Row label="连接状态">
-            {cfg ? (
-              <StatusBadge ok={cfg.shopify_configured} label={cfg.shopify_configured ? '已配置' : '未配置'} />
-            ) : <Skeleton />}
-          </Row>
-          {cfg?.shopify_domain && (
-            <Row label="店铺域名">
-              <span className="text-sm text-slate-600">{cfg.shopify_domain}</span>
-            </Row>
-          )}
-        </Card>
-
-        {/* 广告平台卡 */}
-        <Card icon={<Megaphone size={18} className="text-brand-500" />} title="广告平台">
-          <Row label="Facebook Ads">
-            {cfg ? (
-              <StatusBadge ok={cfg.facebook_configured} label={cfg.facebook_configured ? '已配置' : '未配置'} />
-            ) : <Skeleton />}
-          </Row>
-          <Row label="Google Ads">
-            {cfg ? (
-              <StatusBadge ok={cfg.google_configured} label={cfg.google_configured ? '已配置' : '未配置'} />
-            ) : <Skeleton />}
-          </Row>
-        </Card>
-
-        {/* 配置说明卡 */}
-        <Card icon={<Info size={18} className="text-amber-500" />} title="如何配置">
-          <div className="text-sm text-slate-600 space-y-2 leading-relaxed">
-            <p>所有配置项通过服务器上的 <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">.env</code> 文件管理，修改后重启服务即可生效。</p>
-            <div className="bg-slate-50 rounded-lg p-3 space-y-1 font-mono text-xs text-slate-700">
-              <p className="text-slate-400"># 切换大模型</p>
-              <p>LLM_API_KEY=sk-your-key</p>
-              <p>LLM_MODEL=gpt-4o</p>
-              <div className="border-t border-slate-200 pt-1 mt-1">
-                <p className="text-slate-400"># Shopify 配置</p>
-                <p>SHOPIFY_STORE_DOMAIN=your-store.myshopify.com</p>
-                <p>SHOPIFY_ACCESS_TOKEN=shpat_xxx</p>
-              </div>
-            </div>
-            <p className="text-xs text-slate-400">API Key 不会在此页面显示，仅展示是否已配置。</p>
-          </div>
-        </Card>
-
-      </div>
+  return <div className="page settings-page">
+    <header className="page-header"><div><p className="eyebrow">LOCAL CONFIGURATION</p><h1>设置与连接</h1><p>只展示非敏感状态，令牌和密钥永不返回浏览器。</p></div><button className="secondary-button" onClick={load} disabled={loading}><RefreshCw size={15} className={loading ? 'spin' : ''} />刷新</button></header>
+    <div className="settings-grid">
+      <StatusCard icon={ShieldCheck} title="本地登录" state={!!user} stateLabel="已保护">
+        <Row label="管理员" value={user?.username} /><Row label="会话策略" value="8h / 闲置 60m" /><Row label="Cookie" value="HttpOnly · Strict" />
+      </StatusCard>
+      <StatusCard icon={Store} title="Shopify GraphQL" state={shopify?.connected} stateLabel={shopify?.connected ? '已连接' : '未连接'}>
+        <Row label="API 版本" value={shopify?.api_version || config?.shopify_api_version || '2026-07'} mono />
+        <Row label="店铺" value={shopify?.domain || '尚未配置'} /><Row label="Demo" value={shopify?.demo_mode ? '显式开启' : '关闭'} />
+      </StatusCard>
+      <StatusCard icon={Database} title="本地数据" state={config?.milvus_status === 'connected'} stateLabel={config?.milvus_status === 'connected' ? '向量库已连接' : '向量库未连接'}>
+        <Row label="SQLite" value="本机持久化" /><Row label="Collection" value={config?.milvus_collection || '—'} mono /><Row label="服务" value={systemOk ? '正常' : '待检查'} />
+      </StatusCard>
+      <StatusCard icon={Bot} title="模型与权限" state stateLabel="只读">
+        <Row label="对话模型" value={config?.llm_model || '—'} mono /><Row label="Embedding" value={config?.embedding_model || '—'} mono />
+        <div className="scope-list"><small>期望 Shopify scopes</small>{['read_orders', 'read_products', 'read_inventory', 'read_customers', 'read_discounts'].map(scope => <span key={scope}><CheckCircle2 size={12} />{scope}</span>)}</div>
+      </StatusCard>
     </div>
-  )
+    <div className="risk-note"><b>剩余本地风险</b><p>Milvus 未启用自身账号鉴权；端口仅绑定 127.0.0.1，但本机其他进程仍可能访问。SQLite、上传文件与向量依赖 Windows 用户权限及 BitLocker/全盘加密。</p></div>
+  </div>
 }
 
-function Card({ icon, title, children }) {
-  return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-slate-100">
-        {icon}
-        <h2 className="text-sm font-semibold text-slate-700">{title}</h2>
-      </div>
-      <div className="px-5 py-3 divide-y divide-slate-50">
-        {children}
-      </div>
-    </div>
-  )
-}
-
-function Row({ label, children }) {
-  return (
-    <div className="flex items-center justify-between py-2.5">
-      <span className="text-sm text-slate-500">{label}</span>
-      <span className="text-sm text-slate-800">{children}</span>
-    </div>
-  )
-}
-
-function Skeleton() {
-  return <span className="inline-block w-24 h-4 bg-slate-200 rounded animate-pulse" />
-}
+function StatusCard({ icon: Icon, title, state, stateLabel, children }) { return <section className="setting-card"><header><span><Icon size={18} /></span><div><h2>{title}</h2><small className={state ? 'ok' : ''}><i />{stateLabel}</small></div></header><div>{children}</div></section> }
+function Row({ label, value, mono }) { return <div className="setting-row"><span>{label}</span><b className={mono ? 'mono' : ''}>{value || '—'}</b></div> }

@@ -1,161 +1,103 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { chatApi, fetchHealth } from './api/client.js'
+import { AuthProvider, useAuth } from './auth/AuthContext.jsx'
+import ProtectedRoute from './auth/ProtectedRoute.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import Chat from './pages/Chat.jsx'
-import Knowledge from './pages/Knowledge.jsx'
-import Settings from './pages/Settings.jsx'
 import History from './pages/History.jsx'
-import { fetchHealth } from './api/client.js'
+import Knowledge from './pages/Knowledge.jsx'
+import Login from './pages/Login.jsx'
+import Settings from './pages/Settings.jsx'
 
-// ── 会话持久化工具 ───────────────────────────────────────
-const STORAGE_KEY = 'shopify_ai_sessions'
-const ACTIVE_KEY  = 'shopify_ai_active_session'
+const LEGACY_KEY = 'shopify_ai_sessions'
 
-function loadSessions() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : {}
-  } catch { return {} }
-}
+function Workspace() {
+  const { user, logout } = useAuth()
+  const [sessions, setSessions] = useState([])
+  const [activeId, setActiveId] = useState(null)
+  const [activeSession, setActiveSession] = useState(null)
+  const [systemOk, setSystemOk] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-function saveSessions(sessions) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions)) } catch {}
-}
+  const refreshSessions = useCallback(async () => {
+    const data = await chatApi.list()
+    setSessions(data.items || [])
+    return data.items || []
+  }, [])
 
-function genId() {
-  return typeof crypto !== 'undefined' && crypto.randomUUID
-    ? crypto.randomUUID()
-    : Math.random().toString(36).slice(2)
-}
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      try {
+        const legacy = JSON.parse(localStorage.getItem(LEGACY_KEY) || '{}')
+        if (Object.keys(legacy).length) {
+          await chatApi.importLegacy(Object.values(legacy))
+          localStorage.removeItem(LEGACY_KEY)
+          localStorage.removeItem('shopify_ai_active_session')
+        }
+        let items = await refreshSessions()
+        if (!items.length) {
+          const created = await chatApi.create()
+          items = [created]; setSessions(items)
+        }
+        if (!cancelled) setActiveId(items[0]?.id || null)
+      } finally { if (!cancelled) setLoading(false) }
+    }
+    load()
+    fetchHealth().then(() => setSystemOk(true)).catch(() => setSystemOk(false))
+    return () => { cancelled = true }
+  }, [refreshSessions])
 
-function newSession(id) {
-  return {
-    id,
-    title: '新对话',
-    createdAt: Date.now(),
-    messages: [
-      {
-        role: 'assistant',
-        content: '你好！我是 Shopify AI 助手。你可以问我关于产品卖点、广告文案、客服回复、运营策略等问题，我会结合你的知识库来回答。',
-      }
-    ],
+  useEffect(() => {
+    if (!activeId) return setActiveSession(null)
+    chatApi.get(activeId).then(setActiveSession).catch(() => setActiveSession(null))
+  }, [activeId])
+
+  const createSession = async () => {
+    const created = await chatApi.create()
+    setSessions(items => [created, ...items]); setActiveId(created.id); setActiveSession(created)
   }
+  const deleteSession = async id => {
+    if (!window.confirm('删除这个对话及其全部消息？此操作无法恢复。')) return
+    await chatApi.remove(id)
+    const remaining = sessions.filter(item => item.id !== id)
+    setSessions(remaining)
+    if (activeId === id) setActiveId(remaining[0]?.id || null)
+  }
+  const refreshActive = async () => {
+    if (!activeId) return
+    const detail = await chatApi.get(activeId)
+    setActiveSession(detail); await refreshSessions()
+  }
+
+  return (
+    <div className="app-shell">
+      <Sidebar systemOk={systemOk} sessions={sessions} activeId={activeId} onSelect={setActiveId}
+        onCreate={createSession} onDelete={deleteSession} user={user} onLogout={logout} />
+      <main className="app-main">
+        {loading ? <div className="screen-loader">正在加载运营台…</div> : (
+          <Routes>
+            <Route path="/" element={<Navigate to="/chat" replace />} />
+            <Route path="/chat" element={<Chat session={activeSession} onComplete={refreshActive} />} />
+            <Route path="/knowledge" element={<Knowledge />} />
+            <Route path="/history" element={<History sessions={sessions} onSelect={setActiveId} />} />
+            <Route path="/settings" element={<Settings user={user} systemOk={systemOk} />} />
+            <Route path="*" element={<Navigate to="/chat" replace />} />
+          </Routes>
+        )}
+      </main>
+    </div>
+  )
+}
+
+function AppRoutes() {
+  return <Routes>
+    <Route path="/login" element={<Login />} />
+    <Route path="/*" element={<ProtectedRoute><Workspace /></ProtectedRoute>} />
+  </Routes>
 }
 
 export default function App() {
-  const [systemOk, setSystemOk]     = useState(null)
-  const [sessions, setSessions]     = useState(() => loadSessions())
-  const [activeId, setActiveId]     = useState(() => {
-    const saved = localStorage.getItem(ACTIVE_KEY)
-    return saved || null
-  })
-
-  // 确保始终有一个激活的会话
-  useEffect(() => {
-    const ids = Object.keys(sessions)
-    if (!activeId || !sessions[activeId]) {
-      if (ids.length > 0) {
-        const latest = ids.sort((a, b) => (sessions[b]?.createdAt || 0) - (sessions[a]?.createdAt || 0))[0]
-        setActiveId(latest)
-      } else {
-        // 没有任何会话，新建一个
-        const id = genId()
-        const s = newSession(id)
-        setSessions({ [id]: s })
-        setActiveId(id)
-      }
-    }
-  }, []) // eslint-disable-line
-
-  // 持久化 sessions
-  useEffect(() => {
-    saveSessions(sessions)
-  }, [sessions])
-
-  // 持久化 activeId
-  useEffect(() => {
-    if (activeId) localStorage.setItem(ACTIVE_KEY, activeId)
-  }, [activeId])
-
-  // 健康检查
-  useEffect(() => {
-    fetchHealth()
-      .then(data => setSystemOk(data?.data?.status === 'healthy'))
-      .catch(() => setSystemOk(false))
-  }, [])
-
-  // 新建会话
-  const createSession = useCallback(() => {
-    const id = genId()
-    const s = newSession(id)
-    setSessions(prev => ({ ...prev, [id]: s }))
-    setActiveId(id)
-  }, [])
-
-  // 删除会话
-  const deleteSession = useCallback((id) => {
-    setSessions(prev => {
-      const next = { ...prev }
-      delete next[id]
-      return next
-    })
-    setActiveId(prev => {
-      if (prev !== id) return prev
-      const remaining = Object.keys(sessions).filter(k => k !== id)
-      return remaining.length > 0 ? remaining[0] : null
-    })
-  }, [sessions])
-
-  // 更新会话消息（由 Chat 页面调用）
-  const updateSessionMessages = useCallback((sessionId, messages) => {
-    setSessions(prev => {
-      const s = prev[sessionId]
-      if (!s) return prev
-      // 自动更新标题（取第一条用户消息前20字）
-      const firstUser = messages.find(m => m.role === 'user')
-      const title = firstUser
-        ? firstUser.content.slice(0, 20) + (firstUser.content.length > 20 ? '…' : '')
-        : s.title
-      return { ...prev, [sessionId]: { ...s, messages, title } }
-    })
-  }, [])
-
-  const activeSession = activeId ? sessions[activeId] : null
-
-  return (
-    <BrowserRouter>
-      <div className="flex min-h-screen bg-slate-50">
-        <Sidebar
-          systemOk={systemOk}
-          sessions={sessions}
-          activeId={activeId}
-          onSelect={setActiveId}
-          onCreate={createSession}
-          onDelete={deleteSession}
-        />
-
-        <div className="flex-1 flex flex-col md:pt-0 pt-14 min-w-0">
-          <main className="flex-1 overflow-auto">
-            <Routes>
-              <Route path="/" element={<Navigate to="/chat" replace />} />
-              <Route path="/chat" element={
-                activeSession
-                  ? <Chat
-                      key={activeId}
-                      session={activeSession}
-                      onUpdate={(msgs) => updateSessionMessages(activeId, msgs)}
-                    />
-                  : <div className="flex items-center justify-center h-full text-slate-400">
-                      请先新建一个对话
-                    </div>
-              } />
-              <Route path="/knowledge" element={<Knowledge />} />
-              <Route path="/settings" element={<Settings systemOk={systemOk} />} />
-              <Route path="/history" element={<History sessions={sessions} onSelect={(id) => { setActiveId(id); }} />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </BrowserRouter>
-  )
+  return <BrowserRouter><AuthProvider><AppRoutes /></AuthProvider></BrowserRouter>
 }
