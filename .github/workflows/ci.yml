@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main, feature/shopify-security-ui]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: 安装 Python 依赖
+        run: pip install uv && uv sync --group dev
+      - name: 后端测试
+        run: uv run pytest tests/backend -q
+      - name: Python 依赖审计
+        run: uv run pip-audit
+      - name: 安装前端依赖
+        working-directory: frontend
+        run: npm ci
+      - name: 前端测试、构建与审计
+        working-directory: frontend
+        run: npm test && npm run build && npm audit --audit-level=moderate
+      - name: 安装 Chromium
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: 浏览器端到端测试
+        working-directory: frontend
+        run: npm run test:e2e
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2

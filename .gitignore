@@ -28,6 +28,8 @@ test-results/
 uploads/
 volumes/
 logs/
+output/playwright/
+.playwright-cli/
 *.db
 *.sqlite
 *.sqlite3
@@ -37,4 +39,3 @@ logs/
 .vscode/
 .DS_Store
 Thumbs.db
-

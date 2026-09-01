@@ -1,48 +1,22 @@
-REM Shopify AI Assistant - Windows Startup Script
 @echo off
 chcp 65001 >nul
 title Shopify AI Assistant
 
-echo ================================
-echo   Shopify AI Assistant
-echo ================================
-
 if not exist .env (
-    echo Please copy .env.example to .env and fill in your API keys
+    echo 请先复制 .env.example 为 .env 并填写本地配置
     pause
     exit /b 1
 )
-
-where conda >nul 2>&1
-if errorlevel 1 (
-    echo Please install Anaconda/Miniconda and make sure conda is in PATH
+if not exist .venv\Scripts\python.exe (
+    echo 未找到项目虚拟环境，请先运行 py -m uv sync --group dev
     pause
     exit /b 1
 )
-
-echo Activating Conda environment: RAG
-call conda activate RAG
-if errorlevel 1 (
-    echo Failed to activate Conda environment RAG
-    pause
-    exit /b 1
-)
-
 if not exist logs mkdir logs
 
-echo Starting Shopify MCP Server on port 8003...
-start "Shopify MCP" /min cmd /c "call conda activate RAG && python mcp_servers/shopify_server.py"
-
-echo Starting Ads MCP Server on port 8004...
-start "Ads MCP" /min cmd /c "call conda activate RAG && python mcp_servers/ads_server.py"
-
-timeout /t 3 /nobreak >nul
-
-echo.
-echo Main app: http://localhost:9901
-echo API docs: http://localhost:9901/docs
-echo.
-
-python -m uvicorn app.main:app --host 0.0.0.0 --port 9901 --reload
-
+echo 主应用：http://127.0.0.1:9901
+echo 默认不启动 Shopify/Ads MCP；Agent 使用进程内只读 Shopify 工具。
+.venv\Scripts\alembic.exe upgrade head
+if errorlevel 1 exit /b 1
+.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 9901
 pause
