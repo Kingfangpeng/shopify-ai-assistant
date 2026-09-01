@@ -88,10 +88,12 @@ class MilvusClientManager:
                 if vector_field and hasattr(vector_field, 'params') and 'dim' in vector_field.params:
                     existing_dim = vector_field.params['dim']
                     if existing_dim != self.VECTOR_DIM:
-                        logger.warning(f"向量维度不匹配！现有: {existing_dim}, 配置: {self.VECTOR_DIM}，重建 collection...")
-                        _ = utility.drop_collection(self.COLLECTION_NAME)
-                        self._create_collection()
-                        logger.info(f"成功重新创建 collection，维度: {self.VECTOR_DIM}")
+                        raise RuntimeError(
+                            "Milvus 向量维度不匹配："
+                            f"Collection={self.COLLECTION_NAME}，现有={existing_dim}，配置={self.VECTOR_DIM}。"
+                            "为避免误删知识库，服务已拒绝启动；请先运行 "
+                            "python -m app.cli knowledge-rebuild --confirm-dimension-change。"
+                        )
                     else:
                         logger.info(f"向量维度匹配: {self.VECTOR_DIM}")
 
