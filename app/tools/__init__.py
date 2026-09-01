@@ -12,17 +12,6 @@ from app.tools.shopify_tool import (
     get_discount_performance,
     get_order_list,
 )
-from app.tools.ads_tool import (
-    get_facebook_account_overview,
-    get_facebook_campaign_breakdown,
-    get_facebook_adset_performance,
-    get_facebook_creative_stats,
-    get_google_campaign_overview,
-    get_google_keyword_performance,
-    get_roas_trend,
-    compare_platform_performance,
-)
-
 DEFAULT_LOCAL_AGENT_TOOLS = (
     retrieve_knowledge,
     get_current_time,
@@ -34,14 +23,6 @@ DEFAULT_LOCAL_AGENT_TOOLS = (
     get_refund_stats,
     get_discount_performance,
     get_order_list,
-    get_facebook_account_overview,
-    get_facebook_campaign_breakdown,
-    get_facebook_adset_performance,
-    get_facebook_creative_stats,
-    get_google_campaign_overview,
-    get_google_keyword_performance,
-    get_roas_trend,
-    compare_platform_performance,
 )
 
 __all__ = [

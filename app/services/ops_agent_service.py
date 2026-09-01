@@ -18,9 +18,7 @@ def _should_end(state: PlanExecuteState) -> str:
     """路由函数：决定下一步去 executor 还是结束"""
     if state.get("response"):
         return "respond"
-    replan_count = state.get("replan_count", 0)
-    if replan_count >= config.max_replan_count:
-        return "respond"
+    # 只能在已有最终报告时结束；次数熔断由 replanner 负责先生成报告。
     return "execute"
 
 
@@ -148,7 +146,7 @@ class OpsAgentService:
             yield {
                 "type": "error",
                 "stage": "error",
-                "message": f"运营分析失败: {str(e)}",
+                "message": "运营分析暂时失败，请稍后重试",
             }
 
 
