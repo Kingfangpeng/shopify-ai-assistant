@@ -65,6 +65,7 @@ export const authApi = {
 export const fetchHealth = () => apiFetch('/health')
 export const fetchConfig = () => apiFetch('/api/config')
 export const fetchShopifyStatus = () => apiFetch('/api/shopify/status')
+export const fetchModels = (refresh = false) => apiFetch(`/api/models${refresh ? '?refresh=true' : ''}`)
 
 export const chatApi = {
   list: () => apiFetch('/api/chat/sessions'),
@@ -78,13 +79,25 @@ export const chatApi = {
   }),
 }
 
-export function streamChat(sessionId, question, handlers = {}) {
+export const streamChat = (sessionId, question, handlers = {}) =>
+  streamRequest('/api/chat_stream', { session_id: sessionId, question, model: handlers.model || undefined }, handlers)
+
+export const streamOps = (sessionId, question, handlers = {}) =>
+  streamRequest('/api/ops', { session_id: sessionId, question, model: handlers.model || undefined }, handlers, true)
+
+function streamRequest(path, payload, handlers, deep = false) {
   const controller = new AbortController()
+  let terminal = false
+  const fail = error => {
+    if (terminal || controller.signal.aborted) return
+    terminal = true
+    handlers.onError?.(error)
+  }
   const run = async (retried = false) => {
     const headers = { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken }
-    const response = await fetch(`${BASE}/api/chat_stream`, {
+    const response = await fetch(`${BASE}${path}`, {
       method: 'POST', headers, credentials: 'include',
-      body: JSON.stringify({ session_id: sessionId, question }), signal: controller.signal,
+      body: JSON.stringify(payload), signal: controller.signal,
     })
     if (response.status === 401) window.dispatchEvent(new CustomEvent('auth:unauthorized'))
     if (response.status === 403 && !retried) {
@@ -92,31 +105,57 @@ export function streamChat(sessionId, question, handlers = {}) {
       if (body?.error?.code === 'csrf_rejected') {
         await refreshCsrf()
         if (!controller.signal.aborted) return run(true)
+        return
       }
     }
     if (!response.ok) return parseResponse(response)
+    if (!response.body) throw new Error('服务未返回可读数据流')
     const reader = response.body.getReader()
     const decoder = new TextDecoder()
     let buffer = ''
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      buffer += decoder.decode(value, { stream: true })
-      const events = buffer.split(/\r?\n\r?\n/)
-      buffer = events.pop() || ''
-      for (const event of events) {
-        const line = event.split(/\r?\n/).find(item => item.startsWith('data:'))
-        if (!line) continue
-        const data = JSON.parse(line.slice(5).trim())
+    const dispatchEvent = event => {
+      if (terminal || controller.signal.aborted) return
+      const lines = event.split(/\r?\n/).filter(line => line.startsWith('data:'))
+      if (!lines.length) return
+      const data = JSON.parse(lines.map(line => line.slice(5).trimStart()).join('\n'))
+      if (deep) {
+        if (['plan', 'replan', 'step_start', 'step_complete', 'status'].includes(data.type)) {
+          handlers.onTrace?.(data)
+          handlers.onStatus?.(data.message || '')
+        }
+        if (data.type === 'report') handlers.onReport?.(data.report)
+      } else {
         if (data.type === 'status') handlers.onStatus?.(data.data)
+        if (data.type === 'tool') handlers.onTool?.(data.data)
+        if (data.type === 'warning') handlers.onWarning?.(data.data)
         if (data.type === 'content') handlers.onChunk?.(data.data)
-        if (data.type === 'complete') handlers.onDone?.(data.data)
-        if (data.type === 'error') handlers.onError?.(data.data)
       }
+      if (data.type === 'error') fail(deep ? data : data.data)
+      if (data.type === 'complete') {
+        terminal = true
+        handlers.onDone?.(deep ? data : data.data)
+      }
+    }
+    try {
+      while (!terminal && !controller.signal.aborted) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+        const events = buffer.split(/\r?\n\r?\n/)
+        buffer = events.pop() || ''
+        for (const event of events) dispatchEvent(event)
+        if (buffer.length > 2_000_000) throw new Error('响应超出安全大小限制')
+      }
+      buffer += decoder.decode()
+      if (buffer.trim()) dispatchEvent(buffer)
+      if (!terminal && !controller.signal.aborted) fail('连接提前中断，未收到完成结果，请重试')
+    } finally {
+      await reader.cancel().catch(() => {})
+      reader.releaseLock()
     }
   }
   run().catch(error => {
-    if (error.name !== 'AbortError') handlers.onError?.(error.message)
+    if (error.name !== 'AbortError') fail(error.message)
   })
   return controller
 }

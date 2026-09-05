@@ -1,6 +1,6 @@
-"""运营 Agent 服务 - 接通 LangGraph Plan-Execute-Replan 图"""
+"""运行现有 LangGraph 循环，输出可回看的计划、步骤、重规划与报告。"""
 
-import json
+import asyncio
 from typing import AsyncGenerator, Dict, Any
 
 from langgraph.graph import StateGraph, END
@@ -11,143 +11,108 @@ from app.agent.ops.planner import planner
 from app.agent.ops.executor import executor
 from app.agent.ops.replanner import replanner
 from app.config import config
+from app.integrations.shopify.service import shopify_service
 from app.models.ops import OpsRequest
+from app.services.output_safety import sanitize_model_output
 
 
 def _should_end(state: PlanExecuteState) -> str:
-    """路由函数：决定下一步去 executor 还是结束"""
-    if state.get("response"):
-        return "respond"
-    # 只能在已有最终报告时结束；次数熔断由 replanner 负责先生成报告。
-    return "execute"
+    return "respond" if state.get("response") else "execute"
 
 
 def _build_ops_graph():
-    """构建并编译 Plan-Execute-Replan 图"""
     graph = StateGraph(PlanExecuteState)
-
     graph.add_node("planner", planner)
     graph.add_node("executor", executor)
     graph.add_node("replanner", replanner)
-
     graph.set_entry_point("planner")
     graph.add_edge("planner", "executor")
     graph.add_edge("executor", "replanner")
-    graph.add_conditional_edges(
-        "replanner",
-        _should_end,
-        {
-            "execute": "executor",
-            "respond": END,
-        }
-    )
-
+    graph.add_conditional_edges("replanner", _should_end, {"execute": "executor", "respond": END})
     return graph.compile()
 
 
-# 全局编译好的图（启动时初始化一次）
 ops_graph = _build_ops_graph()
 
 
 class OpsAgentService:
-    """运营 Agent 服务"""
+    timeout_seconds = 300
 
-    async def diagnose(
-        self,
-        request: OpsRequest,
-    ) -> AsyncGenerator[Dict[str, Any], None]:
-        """
-        运行 Plan-Execute-Replan Agent，流式输出分析过程和结果。
-
-        SSE 事件类型：
-        - status: 状态更新
-        - plan: 计划制定完成
-        - step_complete: 单步执行完成
-        - report: 最终报告
-        - complete: 分析完成
-        - error: 错误
-        """
-        logger.info(f"[{request.session_id}] 开始运营分析: {request.question}")
-
+    async def diagnose(self, request: OpsRequest, *, history=None) -> AsyncGenerator[Dict[str, Any], None]:
+        model = request.model or config.rag_model
+        yield {"type": "status", "stage": "starting", "message": "正在解析日期并准备深度分析…", "model": model}
         try:
-            yield {
-                "type": "status",
-                "stage": "starting",
-                "message": "正在启动运营分析 Agent...",
-            }
-
-            initial_state: PlanExecuteState = {
-                "input": request.question,
-                "plan": [],
-                "past_steps": [],
-                "response": "",
-                "context": {
-                    "date_from": request.date_from,
-                    "date_to": request.date_to,
-                    "session_id": request.session_id,
-                    **(request.extra_context or {}),
-                },
-                "replan_count": 0,
-            }
-
-            # 追踪已发送的步骤数，避免重复发送
-            sent_steps = 0
-            final_response = ""
-
-            async for event in ops_graph.astream(initial_state):
-                # event 是 {node_name: state_update} 格式
-                for node_name, state_update in event.items():
-
-                    if node_name == "planner":
-                        plan = state_update.get("plan", [])
-                        if plan:
-                            logger.info(f"计划制定完成，共 {len(plan)} 步")
-                            yield {
-                                "type": "plan",
-                                "stage": "plan_created",
-                                "message": f"分析计划已制定，共 {len(plan)} 个步骤",
-                                "plan": plan,
-                            }
-
-                    elif node_name == "executor":
-                        past_steps = state_update.get("past_steps", [])
-                        new_steps = past_steps[sent_steps:]
-                        for step, result in new_steps:
-                            sent_steps += 1
-                            yield {
-                                "type": "step_complete",
-                                "stage": "step_executed",
-                                "message": f"步骤执行完成 ({sent_steps})",
-                                "current_step": step,
-                                "result_preview": result[:200] + "..." if len(result) > 200 else result,
-                            }
-
-                    elif node_name == "replanner":
-                        response = state_update.get("response", "")
-                        if response and response != final_response:
-                            final_response = response
-                            yield {
-                                "type": "report",
-                                "stage": "final_report",
-                                "message": "运营分析报告已生成",
-                                "report": response,
-                            }
-
-            yield {
-                "type": "complete",
-                "stage": "analysis_complete",
-                "message": "运营分析完成",
-                "response": final_response,
-            }
-            logger.info(f"[{request.session_id}] 运营分析完成")
-
-        except Exception as e:
-            logger.error(f"[{request.session_id}] 运营分析失败: {e}", exc_info=True)
-            yield {
-                "type": "error",
-                "stage": "error",
-                "message": "运营分析暂时失败，请稍后重试",
-            }
+            async with asyncio.timeout(self.timeout_seconds):
+                period = await shopify_service.resolve_date_range(
+                    request.question, date_from=request.date_from, date_to=request.date_to,
+                )
+                initial_state: PlanExecuteState = {
+                    "input": request.question, "plan": [], "past_steps": [], "response": "",
+                    "context": {
+                        **(request.extra_context or {}),
+                        "date_from": period.date_from, "date_to": period.date_to,
+                        "timezone": period.timezone, "period_label": period.label,
+                        "session_id": request.session_id, "model": model,
+                        "history": history or [],
+                    },
+                    "replan_count": 0, "step_status": "",
+                }
+                yield {"type": "status", "stage": "planning", "message": "正在制定分析计划…",
+                       "model": model, "period": {"from": period.date_from, "to": period.date_to},
+                       "timezone": period.timezone}
+                sent_steps = 0
+                remaining = []
+                final_response = ""
+                stream = ops_graph.astream(initial_state, config={"recursion_limit": 2 * config.max_plan_steps + 6})
+                try:
+                    async for event in stream:
+                        for node, update in event.items():
+                            # LangGraph 会把“继续原计划”的空更新表示为 None。
+                            update = update or {}
+                            if node == "planner":
+                                remaining = update.get("plan", [])
+                                if not remaining:
+                                    raise ValueError("empty_plan")
+                                yield {"type": "plan", "stage": "plan_created", "plan": remaining,
+                                       "message": f"分析计划已制定，共 {len(remaining)} 步", "model": model}
+                            elif node == "executor":
+                                remaining = update.get("plan", remaining)
+                                for step, result in update.get("past_steps", []):
+                                    sent_steps += 1
+                                    yield {"type": "step_complete", "stage": "step_executed",
+                                           "step": sent_steps, "current_step": step,
+                                           "status": update.get("step_status", "complete"),
+                                           "result_preview": sanitize_model_output(str(result))[:500],
+                                           "message": f"步骤 {sent_steps} 已执行，正在检查结果"}
+                                yield {"type": "status", "stage": "evaluating",
+                                       "message": "正在检查已取得的信息，决定继续、重规划或生成报告…"}
+                            elif node == "replanner":
+                                if update.get("response"):
+                                    final_response = sanitize_model_output(str(update["response"]))[:20_000]
+                                    if not final_response.strip():
+                                        raise ValueError("empty_report")
+                                    yield {"type": "report", "stage": "final_report", "report": final_response,
+                                           "message": "运营分析报告已生成", "model": model}
+                                elif "plan" in update:
+                                    remaining = update["plan"]
+                                    yield {"type": "replan", "stage": "plan_revised", "plan": remaining,
+                                           "revision": update.get("replan_count", 0),
+                                           "message": "根据执行结果调整剩余计划"}
+                            if node in {"planner", "replanner"} and not final_response and remaining:
+                                yield {"type": "step_start", "stage": "executing", "step": sent_steps + 1,
+                                       "current_step": remaining[0], "message": f"正在执行第 {sent_steps + 1} 步"}
+                finally:
+                    await stream.aclose()
+                if not final_response:
+                    raise ValueError("missing_report")
+                yield {"type": "complete", "stage": "analysis_complete", "response": final_response,
+                       "message": "深度分析完成", "model": model, "source": "ops",
+                       "session_id": request.session_id}
+        except TimeoutError:
+            yield {"type": "error", "code": "ops_timeout", "message": "分析超过时间上限，已停止；可查看已有步骤后缩小问题范围重试"}
+        except Exception as exc:
+            logger.warning("运营分析失败: {}", type(exc).__name__)
+            yield {"type": "error", "code": "ops_failed", "message": "深度分析暂时失败，已保留执行过程，请稍后重试"}
 
 
 ops_agent_service = OpsAgentService()

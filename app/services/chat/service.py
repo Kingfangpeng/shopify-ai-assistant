@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+import json
 from typing import Iterable
 
 from sqlalchemy import func, select
@@ -37,20 +38,32 @@ class ChatService:
     def delete_session(self, db: Session, user_id: str, session_id: str) -> None:
         db.delete(self.get_session(db, user_id, session_id))
 
-    def add_message(self, db: Session, session: ChatSession, role: str, content: str, status: str = "complete") -> ChatMessage:
+    def add_message(self, db: Session, session: ChatSession, role: str, content: str, status: str = "complete", metadata: dict | None = None) -> ChatMessage:
         if role not in {"user", "assistant"}:
             raise ValueError("不支持的消息角色")
         cleaned = self._clean_content(content)
         next_sequence = int(db.scalar(
             select(func.coalesce(func.max(ChatMessage.sequence), 0)).where(ChatMessage.session_id == session.id)
         ) or 0) + 1
-        message = ChatMessage(session_id=session.id, sequence=next_sequence, role=role, content=cleaned, status=status[:20])
+        message = ChatMessage(session_id=session.id, sequence=next_sequence, role=role, content=cleaned, status=status[:20],
+                              details_json=json.dumps(metadata or {}, ensure_ascii=False))
         db.add(message)
         if role == "user" and session.title == "新对话":
             session.title = self._clean_title(cleaned)
         session.updated_at = utcnow()
         db.flush()
         return message
+
+    def update_analysis(self, db: Session, user_id: str, session_id: str, message_id: int,
+                        content: str, status: str, metadata: dict) -> None:
+        session = self.get_session(db, user_id, session_id)
+        message = db.scalar(select(ChatMessage).where(ChatMessage.id == message_id, ChatMessage.session_id == session.id))
+        if message is None:
+            raise AppError("chat_message_not_found", "消息不存在", 404)
+        message.content = self._clean_content(content[:20_000])
+        message.status = status
+        message.details_json = json.dumps(metadata, ensure_ascii=False)
+        session.updated_at = utcnow()
 
     def recent_context(self, db: Session, user_id: str, session_id: str, count: int = 12, char_limit: int = 8000) -> list[dict[str, str]]:
         self.get_session(db, user_id, session_id)
@@ -104,7 +117,7 @@ class ChatService:
         if include_messages:
             payload["messages"] = [
                 {"id": message.id, "role": message.role, "content": message.content, "status": message.status,
-                 "created_at": message.created_at.isoformat() + "Z"}
+                 "created_at": message.created_at.isoformat() + "Z", "metadata": json.loads(message.details_json or "{}")}
                 for message in session.messages
             ]
         return payload

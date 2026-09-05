@@ -19,6 +19,7 @@ class LLMFactory:
         streaming: bool = True,
         base_url: str | None = None,
         api_key: str | None = None,
+        extra_body: dict | None = None,
     ) -> ChatOpenAI:
         model = model or config.llm_model
         base_url = base_url or config.llm_api_base
@@ -30,6 +31,7 @@ class LLMFactory:
             streaming=streaming,
             base_url=base_url,
             api_key=api_key,
+            extra_body=extra_body,
         )
 
         logger.debug(f"创建 LLM: model={model}, base_url={base_url}")

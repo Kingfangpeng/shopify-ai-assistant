@@ -17,10 +17,10 @@ async def shopify_snapshot(days: int = Query(default=7, ge=1, le=90, description
     """
     try:
         from app.integrations.shopify.service import shopify_service
-        from datetime import datetime, timedelta
 
-        date_to = datetime.now().strftime("%Y-%m-%d")
-        date_from = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
+        period = await shopify_service.resolve_date_range(f"最近 {days} 天")
+        date_from = period.date_from
+        date_to = period.date_to
 
         # 获取订单汇总
         orders_data = await shopify_service.orders_summary(date_from, date_to)
@@ -39,7 +39,12 @@ async def shopify_snapshot(days: int = Query(default=7, ge=1, le=90, description
             "code": 200,
             "message": "success",
             "data": {
-                "period": {"date_from": date_from, "date_to": date_to, "days": days},
+                "period": {
+                    "date_from": date_from,
+                    "date_to": date_to,
+                    "days": days,
+                    "timezone": period.timezone,
+                },
                 "orders": orders_data,
                 "abandoned_checkouts": abandoned_data,
                 "inventory_alerts": low_stock_count,

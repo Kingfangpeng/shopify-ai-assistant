@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { chatApi, fetchHealth } from './api/client.js'
 import { AuthProvider, useAuth } from './auth/AuthContext.jsx'
@@ -16,6 +16,8 @@ function Workspace() {
   const { user, logout } = useAuth()
   const [sessions, setSessions] = useState([])
   const [activeId, setActiveId] = useState(null)
+  const activeIdRef = useRef(activeId)
+  activeIdRef.current = activeId
   const [activeSession, setActiveSession] = useState(null)
   const [systemOk, setSystemOk] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -51,7 +53,10 @@ function Workspace() {
 
   useEffect(() => {
     if (!activeId) return setActiveSession(null)
-    chatApi.get(activeId).then(setActiveSession).catch(() => setActiveSession(null))
+    let cancelled = false
+    setActiveSession(null)
+    chatApi.get(activeId).then(value => { if (!cancelled) setActiveSession(value) }).catch(() => { if (!cancelled) setActiveSession(null) })
+    return () => { cancelled = true }
   }, [activeId])
 
   const createSession = async () => {
@@ -65,10 +70,11 @@ function Workspace() {
     setSessions(remaining)
     if (activeId === id) setActiveId(remaining[0]?.id || null)
   }
-  const refreshActive = async () => {
-    if (!activeId) return
-    const detail = await chatApi.get(activeId)
-    setActiveSession(detail); await refreshSessions()
+  const refreshActive = async (sessionId = activeId) => {
+    if (!sessionId) return
+    const detail = await chatApi.get(sessionId)
+    if (activeIdRef.current === sessionId) setActiveSession(detail)
+    await refreshSessions()
   }
 
   return (
@@ -79,7 +85,7 @@ function Workspace() {
         {loading ? <div className="screen-loader">正在加载运营台…</div> : (
           <Routes>
             <Route path="/" element={<Navigate to="/chat" replace />} />
-            <Route path="/chat" element={<Chat session={activeSession} onComplete={refreshActive} />} />
+            <Route path="/chat" element={<Chat key={activeSession?.id || 'loading'} session={activeSession} onComplete={refreshActive} />} />
             <Route path="/knowledge" element={<Knowledge />} />
             <Route path="/history" element={<History sessions={sessions} onSelect={setActiveId} />} />
             <Route path="/settings" element={<Settings user={user} systemOk={systemOk} />} />

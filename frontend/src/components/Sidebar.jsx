@@ -27,7 +27,7 @@ export default function Sidebar({ systemOk, sessions, activeId, onSelect, onCrea
       <Icon size={16} />{label}
     </NavLink>)}</nav>
     <div className="sidebar-footer">
-      <div className="user-chip"><span>{(user?.username || 'K').slice(0, 1).toUpperCase()}</span><div>{user?.username}<small><i className={systemOk ? 'online' : ''} />{systemOk ? '本地服务正常' : '检查服务'}</small></div></div>
+      <div className="user-chip"><span>{(user?.username || 'K').slice(0, 1).toUpperCase()}</span><div>{user?.username}<small><i className={systemOk ? 'online' : ''} />{systemOk ? '应用服务正常' : '检查应用服务'}</small></div></div>
       <button onClick={onLogout} aria-label="退出登录"><LogOut size={16} /></button>
     </div>
   </div>
