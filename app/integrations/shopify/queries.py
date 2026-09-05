@@ -2,8 +2,27 @@
 
 SHOP_STATUS_QUERY = """
 query ShopStatus {
-  shop { name myshopifyDomain currencyCode }
+  shop {
+    name
+    myshopifyDomain
+    currencyCode
+    ianaTimezone
+    timezoneOffset
+    timezoneOffsetMinutes
+  }
   currentAppInstallation { accessScopes { handle } }
+}
+"""
+
+SHOPIFYQL_QUERY = """
+query ShopifyAnalytics($query: String!) {
+  shopifyqlQuery(query: $query) {
+    tableData {
+      columns { name dataType displayName }
+      rows
+    }
+    parseErrors
+  }
 }
 """
 

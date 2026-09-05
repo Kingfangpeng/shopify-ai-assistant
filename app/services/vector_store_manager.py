@@ -61,7 +61,22 @@ class VectorStoreManager:
 
     def similarity_search(self, query: str, k: int = 3) -> List[Document]:
         # 依赖故障必须向上传递，不能伪装成知识库为空。
-        return list(self.connect().similarity_search(query, k=max(1, min(k, 20))))
+        safe_k = max(1, min(k, 20))
+        had_connection = self.vector_store is not None
+        try:
+            return list(self.connect().similarity_search(query, k=safe_k))
+        except Exception:
+            self.reset_connection()
+            if not had_connection:
+                raise
+            logger.warning("Milvus 既有连接失效，正在重连并重试一次")
+            return list(self.connect().similarity_search(query, k=safe_k))
+
+    def reset_connection(self) -> None:
+        """丢弃失效的 LangChain/Milvus 连接；下次操作会重新建立。"""
+        with self._lock:
+            self.vector_store = None
+            milvus_manager.close()
 
     def list_chunks(self, document_id: str, limit: int = 50, offset: int = 0) -> dict:
         collection = self._collection()

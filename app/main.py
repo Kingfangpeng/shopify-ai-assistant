@@ -27,6 +27,8 @@ from app.core.errors import (
 )
 from app.core.milvus_client import milvus_manager
 from app.db.engine import db_session, init_db
+from app.db.models import ChatMessage
+from sqlalchemy import update
 from app.services.knowledge import knowledge_service
 
 static_dir = "static"
@@ -37,6 +39,9 @@ assets_dir = os.path.join(static_dir, "assets")
 async def lifespan(_app: FastAPI):
     init_db()
     with db_session() as db:
+        db.execute(update(ChatMessage).where(ChatMessage.status == "running").values(
+            status="interrupted", content="服务已重启，之前的分析已中断；可查看已保存过程后重试。",
+        ))
         purged = knowledge_service.cleanup_expired(db)
     stop_cleanup = asyncio.Event()
 

@@ -14,6 +14,16 @@ async def get_orders_summary(date_from: str, date_to: str) -> dict:
 
 
 @tool
+async def compare_order_periods(
+    date_from: str,
+    date_to: str,
+    comparison: str = "previous_period",
+) -> dict:
+    """对比当前周期与上一个等长周期或去年同期的订单量、GMV 和客单价。"""
+    return await shopify_service.order_period_comparison(date_from, date_to, comparison)
+
+
+@tool
 async def get_abandoned_checkouts(date_from: str, date_to: str) -> dict:
     """查询弃购数量、金额、恢复率和高频弃购产品。日期格式为 YYYY-MM-DD。"""
     return await shopify_service.abandoned_checkouts(date_from, date_to)
@@ -53,3 +63,51 @@ async def get_discount_performance(date_from: str, date_to: str) -> list:
 async def get_order_list(date_from: str, date_to: str, status: str = "any", limit: int = 50) -> list:
     """查询订单列表，状态支持 any/open/closed/cancelled，最多返回 250 条。"""
     return await shopify_service.order_list(date_from, date_to, status, limit)
+
+
+@tool
+async def get_traffic_overview(date_from: str, date_to: str) -> dict:
+    """查询在线商店访客、会话、浏览量、跳出率和加购到成交漏斗。"""
+    return await shopify_service.traffic_overview(date_from, date_to)
+
+
+@tool
+async def get_traffic_timeseries(date_from: str, date_to: str) -> list:
+    """查询按天统计的在线商店访客、会话、浏览量和转化率趋势。"""
+    return await shopify_service.traffic_timeseries(date_from, date_to)
+
+
+@tool
+async def get_traffic_sources(date_from: str, date_to: str, limit: int = 20) -> dict:
+    """查询在线商店流量来源及各来源的访问和转化表现。"""
+    return await shopify_service.traffic_breakdown(date_from, date_to, "referrer_source", limit)
+
+
+@tool
+async def get_landing_page_performance(date_from: str, date_to: str, limit: int = 20) -> dict:
+    """查询在线商店落地页的访问量和转化表现。"""
+    return await shopify_service.traffic_breakdown(date_from, date_to, "landing_page_path", limit)
+
+
+@tool
+async def get_device_traffic(date_from: str, date_to: str, limit: int = 20) -> dict:
+    """查询桌面、手机、平板等设备的访问和转化表现。"""
+    return await shopify_service.traffic_breakdown(date_from, date_to, "session_device_type", limit)
+
+
+@tool
+async def get_traffic_geography(date_from: str, date_to: str, limit: int = 20) -> dict:
+    """查询访客国家的访问和转化分布。"""
+    return await shopify_service.traffic_breakdown(date_from, date_to, "session_country", limit)
+
+
+@tool
+async def get_search_performance(date_from: str, date_to: str) -> dict:
+    """查询站内搜索会话、点击、加购和成交转化漏斗。"""
+    return await shopify_service.search_performance(date_from, date_to)
+
+
+@tool
+async def get_web_performance(date_from: str, date_to: str) -> dict:
+    """查询在线商店 Core Web Vitals：FCP、LCP、INP 和 CLS。"""
+    return await shopify_service.web_performance(date_from, date_to)

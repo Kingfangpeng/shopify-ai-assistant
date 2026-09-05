@@ -49,6 +49,7 @@ class MilvusClientManager:
     def __init__(self) -> None:
         self._client: MilvusClient | None = None
         self._collection: Collection | None = None
+        self._orm_connected = False
 
     def connect(self) -> MilvusClient:
         if self._collection is not None and self._client is not None:
@@ -65,6 +66,7 @@ class MilvusClientManager:
                 port=str(config.milvus_port),
                 timeout=config.milvus_timeout / 1000,
             )
+            self._orm_connected = True
 
             uri = f"http://{config.milvus_host}:{config.milvus_port}"
             self._client = MilvusClient(uri=uri)
@@ -162,29 +164,51 @@ class MilvusClientManager:
         return self._collection
 
     def health_check(self) -> bool:
+        temporary_client: MilvusClient | None = None
         try:
-            if self._client is None:
-                return False
-            _ = connections.list_connections()
+            client = self._client
+            if client is None:
+                temporary_client = MilvusClient(
+                    uri=f"http://{config.milvus_host}:{config.milvus_port}",
+                    timeout=config.milvus_timeout / 1000,
+                )
+                client = temporary_client
+            _ = client.get_server_version(timeout=config.milvus_timeout / 1000)
             return True
         except Exception as e:
             logger.error(f"Milvus 健康检查失败: {e}")
             return False
+        finally:
+            if temporary_client is not None:
+                try:
+                    temporary_client.close()
+                except Exception as close_error:
+                    logger.debug(f"关闭 Milvus 健康检查临时连接失败: {close_error}")
 
     def close(self) -> None:
         errors = []
+        client_closed = False
+        collection = self._collection
+        self._collection = None
         try:
-            if self._collection is not None:
-                self._collection.release()
-                self._collection = None
+            if collection is not None:
+                collection.release()
         except Exception as e:
             errors.append(f"释放 collection 失败: {e}")
         try:
-            if connections.has_connection("default"):
-                connections.disconnect("default")
+            if self._client is not None:
+                self._client.close()
+                client_closed = True
         except Exception as e:
-            errors.append(f"断开连接失败: {e}")
+            errors.append(f"关闭 MilvusClient 失败: {e}")
+        if self._orm_connected and not client_closed:
+            try:
+                # 只在新客户端尚未创建的连接失败路径清理 ORM 临时连接。
+                connections.disconnect("default")
+            except Exception as e:
+                errors.append(f"断开 ORM 连接失败: {e}")
         self._client = None
+        self._orm_connected = False
         if errors:
             logger.error(f"关闭 Milvus 连接时出现错误: {'; '.join(errors)}")
         else:

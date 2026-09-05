@@ -26,3 +26,4 @@ class PlanExecuteState(TypedDict):
 
     # Replan 次数计数（用于熔断）
     replan_count: int
+    step_status: str

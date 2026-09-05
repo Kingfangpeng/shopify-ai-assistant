@@ -13,7 +13,7 @@ from app.core.llm_factory import llm_factory
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from app.tools.knowledge_tool import retrieve_knowledge
 from .state import PlanExecuteState
-from .utils import format_tools_description
+from .utils import format_tools_description, create_ops_model
 
 
 class Plan(BaseModel):
@@ -99,13 +99,9 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
             experience_context = ""
 
         # 步骤4: 创建 LLM 并生成计划
-        llm = llm_factory.create_chat_model(
-            model=config.rag_model,
-            temperature=0,
-            streaming=False,
-        )
+        llm = create_ops_model(state)
 
-        planner_chain = planner_prompt | llm.with_structured_output(Plan)
+        planner_chain = planner_prompt | llm.with_structured_output(Plan, method="function_calling")
 
         plan_result = await planner_chain.ainvoke({
             "messages": [
@@ -125,10 +121,10 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
         for i, step in enumerate(plan_steps, 1):
             logger.info(f"  步骤{i}: {step}")
 
-        return {"plan": plan_steps}
+        return {"plan": [str(step)[:1000] for step in plan_steps[:config.max_plan_steps]]}
 
     except Exception as e:
-        logger.error(f"生成计划失败: {e}", exc_info=True)
+        logger.error("生成计划失败: {}", type(e).__name__)
         return {
             "plan": [
                 "使用 retrieve_knowledge 工具查询知识库，获取相关运营策略",

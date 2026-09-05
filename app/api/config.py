@@ -1,11 +1,14 @@
 """配置信息接口 - 返回非敏感配置，供前端设置页展示"""
 
+import asyncio
+
 from fastapi import APIRouter
 from loguru import logger
 from app.config import config
 from app.core.milvus_client import milvus_manager
 from app.integrations.shopify.client import ShopifyError
 from app.integrations.shopify.service import shopify_service
+from app.services.model_catalog_service import model_catalog_service
 
 router = APIRouter()
 
@@ -25,10 +28,14 @@ def _shopify_configured() -> bool:
 @router.get("/config")
 async def get_config():
     """返回非敏感配置信息（不暴露任何 API Key）"""
+    # PyMilvus 是同步客户端。向量库离线时连接超时不能阻塞 FastAPI 事件循环，
+    # 否则同一进程内的登出、聊天和健康检查都会被设置页拖住。
+    milvus_connected = await asyncio.to_thread(milvus_manager.health_check)
     return {
         "app_name": config.app_name,
         "app_version": config.app_version,
         "llm_model": config.llm_model,
+        "rag_model": config.rag_model,
         "embedding_model": config.ollama_embedding_model,
         "milvus_collection": config.milvus_collection,
         "shopify_configured": _shopify_configured(),
@@ -36,7 +43,7 @@ async def get_config():
         "ads_enabled": False,
         "shopify_api_version": config.shopify_api_version,
         "shopify_demo_mode": config.shopify_demo_mode,
-        "milvus_status": "connected" if milvus_manager.health_check() else "disconnected",
+        "milvus_status": "connected" if milvus_connected else "disconnected",
         "rag_top_k": config.rag_top_k,
     }
 
@@ -57,3 +64,9 @@ async def shopify_status():
             "warning": "无法连接 Shopify，请检查令牌、权限或网络",
             "error_code": exc.code,
         }
+
+
+@router.get("/models")
+async def list_models(refresh: bool = False):
+    """返回服务商允许的模型 ID；凭据与完整请求地址不会下发。"""
+    return await model_catalog_service.list_models(force=refresh)

@@ -14,6 +14,8 @@ export default function Settings({ user, systemOk }) {
     } catch { setConfig(null) } finally { setLoading(false) }
   }
   useEffect(() => { load() }, [])
+  const scopes = shopify?.scopes || []
+  const hasWriteScopes = scopes.some(scope => scope.startsWith('write_') || scope.startsWith('customer_write_'))
   return <div className="page settings-page">
     <header className="page-header"><div><p className="eyebrow">LOCAL CONFIGURATION</p><h1>设置与连接</h1><p>只展示非敏感状态，令牌和密钥永不返回浏览器。</p></div><button className="secondary-button" onClick={load} disabled={loading}><RefreshCw size={15} className={loading ? 'spin' : ''} />刷新</button></header>
     <div className="settings-grid">
@@ -22,14 +24,18 @@ export default function Settings({ user, systemOk }) {
       </StatusCard>
       <StatusCard icon={Store} title="Shopify GraphQL" state={shopify?.connected} stateLabel={shopify?.connected ? '已连接' : '未连接'}>
         <Row label="API 版本" value={shopify?.api_version || config?.shopify_api_version || '2026-07'} mono />
-        <Row label="店铺" value={shopify?.domain || '尚未配置'} /><Row label="Demo" value={shopify?.demo_mode ? '显式开启' : '关闭'} />
+        <Row label="店铺" value={shopify?.domain || '尚未配置'} /><Row label="店铺时区" value={shopify?.timezone || '—'} mono />
+        <Row label="Demo" value={shopify?.demo_mode ? '显式开启' : '关闭'} /><Row label="已授权 scopes" value={`${scopes.length} 项`} />
+        <Row label="Shopify Analytics" value={shopify?.analytics_scope_granted ? 'read_reports 已授权' : '缺少 read_reports'} />
+        {hasWriteScopes && <p className="setting-hint warning">当前 Token 含写权限；应用不会注册写工具，但建议在 Shopify 后台改为最小只读权限。</p>}
       </StatusCard>
       <StatusCard icon={Database} title="本地数据" state={config?.milvus_status === 'connected'} stateLabel={config?.milvus_status === 'connected' ? '向量库已连接' : '向量库未连接'}>
         <Row label="SQLite" value="本机持久化" /><Row label="Collection" value={config?.milvus_collection || '—'} mono /><Row label="服务" value={systemOk ? '正常' : '待检查'} />
       </StatusCard>
       <StatusCard icon={Bot} title="模型与权限" state stateLabel="只读">
-        <Row label="对话模型" value={config?.llm_model || '—'} mono /><Row label="Embedding" value={config?.embedding_model || '—'} mono />
-        <div className="scope-list"><small>期望 Shopify scopes</small>{['read_orders', 'read_products', 'read_inventory', 'read_customers', 'read_discounts'].map(scope => <span key={scope}><CheckCircle2 size={12} />{scope}</span>)}</div>
+        <Row label="默认对话模型" value={config?.rag_model || config?.llm_model || '—'} mono /><Row label="Embedding" value={config?.embedding_model || '—'} mono />
+        <p className="setting-hint">对话模型可在聊天页右上角切换；API Key 仅保留在本机服务端。</p>
+        <div className="scope-list"><small>期望 Shopify scopes</small>{['read_orders', 'read_products', 'read_inventory', 'read_customers', 'read_discounts', 'read_reports'].map(scope => <span key={scope}><CheckCircle2 size={12} />{scope}</span>)}</div>
       </StatusCard>
     </div>
     <div className="risk-note"><b>剩余本地风险</b><p>Milvus 未启用自身账号鉴权；端口仅绑定 127.0.0.1，但本机其他进程仍可能访问。SQLite、上传文件与向量依赖 Windows 用户权限及 BitLocker/全盘加密。</p></div>

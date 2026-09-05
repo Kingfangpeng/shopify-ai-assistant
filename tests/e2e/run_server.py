@@ -34,4 +34,4 @@ def ensure_admin() -> None:
 
 if __name__ == "__main__":
     ensure_admin()
-    uvicorn.run("tests.e2e.server:app", host="127.0.0.1", port=9901, log_level="warning")
+    uvicorn.run("tests.e2e.server:app", host="127.0.0.1", port=9902, log_level="warning")
