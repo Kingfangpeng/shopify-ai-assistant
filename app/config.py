@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     llm_api_base: str = "https://api.openai.com/v1"
     llm_model: str = "gpt-4o"
     rag_model: str = "gpt-4o"
+    local_llm_only: bool = False
 
     # ── Ollama 本地 Embedding ──────────────────────────────────────
     ollama_base_url: str = "http://localhost:11434"
@@ -41,11 +42,28 @@ class Settings(BaseSettings):
     milvus_port: int = 19530
     milvus_timeout: int = 10000
     milvus_collection: str = "shopify_kb"
+    milvus_collection_alias: str = "shopify_kb_active"
 
     # ── RAG 配置 ───────────────────────────────────────────────────
-    rag_top_k: int = 3
+    rag_top_k: int = 5
+    rag_dense_top_k: int = 20
+    rag_sparse_top_k: int = 20
+    rag_fusion_top_k: int = 12
+    reranker_enabled: bool = True
+    reranker_model: str = "ms-marco-MultiBERT-L-12"
+    reranker_cache_dir: str = "./volumes/models/flashrank"
+    reranker_max_length: int = 512
     chunk_max_size: int = 800
     chunk_overlap: int = 100
+
+    # ── 会话摘要与长期记忆 ───────────────────────────────────────
+    memory_enabled: bool = True
+    memory_candidate_days: int = 30
+    memory_context_limit: int = 12
+    memory_context_chars: int = 3000
+    conversation_summary_message_threshold: int = 12
+    conversation_summary_char_threshold: int = 8000
+    conversation_summary_max_chars: int = 2000
 
     # ── Shopify Admin API ──────────────────────────────────────────
     shopify_store_domain: str = ""
@@ -71,12 +89,18 @@ class Settings(BaseSettings):
     # ── MCP Server 地址 ────────────────────────────────────────────
     mcp_shopify_transport: str = "streamable-http"
     mcp_shopify_url: str = "http://localhost:8003/mcp"
+    mcp_service_token: str = ""
+    mcp_connect_timeout_seconds: float = 3.0
+    mcp_tool_timeout_seconds: float = 30.0
+    mcp_circuit_breaker_failures: int = 3
+    mcp_circuit_breaker_seconds: int = 30
     mcp_ads_transport: str = "streamable-http"
     mcp_ads_url: str = "http://localhost:8004/mcp"
 
     # ── Agent 行为控制 ─────────────────────────────────────────────
     max_plan_steps: int = 8
     max_replan_count: int = 3
+    agent_tool_transport: str = "local"
 
     # ── 本地数据库与认证 ───────────────────────────────────────────
     database_url: str = "sqlite:///./volumes/app/shopify_ai.db"
@@ -108,6 +132,14 @@ class Settings(BaseSettings):
         if value != "2026-07":
             raise ValueError("Shopify Admin API 必须固定为 2026-07")
         return value
+
+    @field_validator("agent_tool_transport")
+    @classmethod
+    def _supported_tool_transport(cls, value: str) -> str:
+        normalized = value.strip().lower()
+        if normalized not in {"local", "mcp"}:
+            raise ValueError("AGENT_TOOL_TRANSPORT 只支持 local 或 mcp")
+        return normalized
 
     @property
     def mcp_servers(self) -> Dict[str, Dict[str, Any]]:

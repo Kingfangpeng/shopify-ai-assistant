@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { BookOpen, Clock3, LogOut, Menu, MessageSquare, Plus, Settings, ShoppingBag, Trash2, X } from 'lucide-react'
+import { BookOpen, Brain, Clock3, LogOut, Menu, MessageSquare, Plus, Settings, ShoppingBag, Trash2, X } from 'lucide-react'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 const nav = [
-  ['/knowledge', BookOpen, '知识库'], ['/history', Clock3, '历史'], ['/settings', Settings, '设置'],
+  ['/knowledge', BookOpen, '知识库'], ['/memory', Brain, '记忆'], ['/history', Clock3, '历史'], ['/settings', Settings, '设置'],
 ]
 
 export default function Sidebar({ systemOk, sessions, activeId, onSelect, onCreate, onDelete, user, onLogout }) {

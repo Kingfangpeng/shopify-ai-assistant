@@ -113,6 +113,11 @@ class ChatService:
             "title": session.title,
             "created_at": session.created_at.isoformat() + "Z",
             "updated_at": session.updated_at.isoformat() + "Z",
+            "summary_version": session.summary_version,
+            "summary_updated_at": (
+                session.summary_updated_at.isoformat() + "Z"
+                if session.summary_updated_at else None
+            ),
         }
         if include_messages:
             payload["messages"] = [

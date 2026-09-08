@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar.jsx'
 import Chat from './pages/Chat.jsx'
 import History from './pages/History.jsx'
 import Knowledge from './pages/Knowledge.jsx'
+import Memory from './pages/Memory.jsx'
 import Login from './pages/Login.jsx'
 import Settings from './pages/Settings.jsx'
 
@@ -87,6 +88,7 @@ function Workspace() {
             <Route path="/" element={<Navigate to="/chat" replace />} />
             <Route path="/chat" element={<Chat key={activeSession?.id || 'loading'} session={activeSession} onComplete={refreshActive} />} />
             <Route path="/knowledge" element={<Knowledge />} />
+            <Route path="/memory" element={<Memory />} />
             <Route path="/history" element={<History sessions={sessions} onSelect={setActiveId} />} />
             <Route path="/settings" element={<Settings user={user} systemOk={systemOk} />} />
             <Route path="*" element={<Navigate to="/chat" replace />} />

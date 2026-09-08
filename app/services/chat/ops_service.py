@@ -5,12 +5,14 @@ from dataclasses import dataclass
 
 from loguru import logger
 
+from app.config import config
 from app.core.errors import AppError
 from app.db.engine import db_session
 from app.models.ops import OpsRequest
 from app.services.chat.service import chat_service
 from app.services.ops_agent_service import ops_agent_service
 from app.services.output_safety import sanitize_model_output
+from app.services.memory import memory_service
 
 
 @dataclass
@@ -26,7 +28,8 @@ class ChatOpsService:
         with db_session() as db:
             session = (chat_service.get_session(db, user_id, request.session_id) if request.session_id
                        else chat_service.create_session(db, user_id))
-            history = chat_service.recent_context(db, user_id, session.id)
+            recent = chat_service.recent_context(db, user_id, session.id)
+            history = memory_service.context_history(db, user_id, session.id, recent)
             metadata = {"mode": "deep", "model": model, "trace": []}
             chat_service.add_message(db, session, "user", request.question, metadata=metadata)
             message = chat_service.add_message(db, session, "assistant", "正在准备深度分析…", "running", metadata)
@@ -77,6 +80,19 @@ class ChatOpsService:
                         event.update(response=content, source="ops", session_id=run.request.session_id,
                                      model=run.request.model, message_id=run.message_id)
                         save("complete")
+                        event["memory_candidates"] = await memory_service.capture_candidates(
+                            run.user_id,
+                            run.request.session_id,
+                            run.message_id,
+                            run.request.question,
+                            content,
+                            run.request.model or config.rag_model,
+                        )
+                        await memory_service.maybe_refresh_summary(
+                            run.user_id,
+                            run.request.session_id,
+                            run.request.model or config.rag_model,
+                        )
                         terminal = True
                     elif kind == "error":
                         content = event.get("message") or "深度分析失败，请重试"
