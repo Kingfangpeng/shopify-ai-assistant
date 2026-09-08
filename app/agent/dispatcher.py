@@ -3,56 +3,18 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
-from typing import Any
+from dataclasses import dataclass, field
+from typing import Any, Mapping
 
 from loguru import logger
 
 from app.tools.knowledge_tool import retrieve_knowledge
-from app.tools.shopify_tool import (
-    compare_order_periods,
-    get_abandoned_checkouts,
-    get_customer_segments,
-    get_discount_performance,
-    get_device_traffic,
-    get_inventory_levels,
-    get_landing_page_performance,
-    get_order_list,
-    get_orders_summary,
-    get_product_performance,
-    get_refund_stats,
-    get_search_performance,
-    get_traffic_geography,
-    get_traffic_overview,
-    get_traffic_sources,
-    get_traffic_timeseries,
-    get_web_performance,
-)
+from app.agent.tool_registry import TOOL_SPEC_REGISTRY
+from app.agent.tool_provider import get_tool_provider
 from app.tools.time_tool import get_current_time
 
 
-SHOPIFY_TOOL_REGISTRY = {
-    tool.name: tool
-    for tool in (
-        compare_order_periods,
-        get_orders_summary,
-        get_abandoned_checkouts,
-        get_inventory_levels,
-        get_product_performance,
-        get_customer_segments,
-        get_refund_stats,
-        get_discount_performance,
-        get_order_list,
-        get_traffic_overview,
-        get_traffic_timeseries,
-        get_traffic_sources,
-        get_landing_page_performance,
-        get_device_traffic,
-        get_traffic_geography,
-        get_search_performance,
-        get_web_performance,
-    )
-}
+SHOPIFY_TOOL_REGISTRY = {name: spec.implementation for name, spec in TOOL_SPEC_REGISTRY.items()}
 LOCAL_TOOL_REGISTRY = {
     **SHOPIFY_TOOL_REGISTRY,
     retrieve_knowledge.name: retrieve_knowledge,
@@ -68,6 +30,7 @@ class DispatchPlan:
     planner: str = "deterministic"
     route: str = "shopify"
     message: str = ""
+    candidate_arguments: Mapping[str, dict[str, Any]] = field(default_factory=dict)
 
     @property
     def uses_shopify(self) -> bool:
@@ -236,15 +199,35 @@ class ReadOnlyToolDispatcher:
             tool = LOCAL_TOOL_REGISTRY.get(name)
             if tool is None:
                 raise RuntimeError(f"工具不在只读允许列表中: {name}")
-            arguments = self._arguments(name, question, date_from, date_to, timezone)
+            candidates = dict(plan.candidate_arguments.get(name) or {})
+            arguments = self._arguments(name, question, date_from, date_to, timezone, candidates)
             logger.info("Agent 调用只读工具: {} args={}", name, self._safe_arguments(arguments))
-            result = await tool.ainvoke(arguments)
+            provider = get_tool_provider()
+            if name in TOOL_SPEC_REGISTRY and provider.name == "mcp":
+                result = await provider.execute(name, arguments)
+            else:
+                safe_arguments = (
+                    TOOL_SPEC_REGISTRY[name].validate_execution(arguments)
+                    if name in TOOL_SPEC_REGISTRY else arguments
+                )
+                result = await tool.ainvoke(safe_arguments)
             executions.append(ToolExecution(name=name, result=result))
             logger.info("Agent 工具调用完成: {}", name)
         return executions
 
     @staticmethod
-    def _arguments(name: str, question: str, date_from: str, date_to: str, timezone: str) -> dict[str, Any]:
+    def _arguments(
+        name: str,
+        question: str,
+        date_from: str,
+        date_to: str,
+        timezone: str,
+        candidates: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        candidate_values = (
+            TOOL_SPEC_REGISTRY[name].validate_candidates(candidates)
+            if name in TOOL_SPEC_REGISTRY else {}
+        )
         if name in {
             "get_orders_summary",
             "get_abandoned_checkouts",
@@ -264,6 +247,7 @@ class ReadOnlyToolDispatcher:
                 re.I,
             ))
             comparison = "previous_year" if re.search(r"同比|去年同期", question, re.I) and not previous_period_hint else "previous_period"
+            comparison = candidate_values.get("comparison", comparison)
             return {"date_from": date_from, "date_to": date_to, "comparison": comparison}
         if name in {
             "get_traffic_sources",
@@ -271,13 +255,18 @@ class ReadOnlyToolDispatcher:
             "get_device_traffic",
             "get_traffic_geography",
         }:
-            return {"date_from": date_from, "date_to": date_to, "limit": 20}
+            return {"date_from": date_from, "date_to": date_to, "limit": candidate_values.get("limit", 20)}
         if name == "get_product_performance":
-            return {"date_from": date_from, "date_to": date_to, "top_n": 10}
+            return {"date_from": date_from, "date_to": date_to, "top_n": candidate_values.get("top_n", 10)}
         if name == "get_order_list":
-            return {"date_from": date_from, "date_to": date_to, "status": "any", "limit": 20}
+            return {
+                "date_from": date_from,
+                "date_to": date_to,
+                "status": candidate_values.get("status", "any"),
+                "limit": candidate_values.get("limit", 20),
+            }
         if name == "get_inventory_levels":
-            return {"product_ids": None}
+            return {"product_ids": candidate_values.get("product_ids")}
         if name == "retrieve_knowledge":
             return {"query": question}
         if name == "get_current_time":

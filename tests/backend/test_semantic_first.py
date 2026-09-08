@@ -129,9 +129,10 @@ async def test_clarify_and_unsupported_return_without_queries(monkeypatch, route
 @pytest.mark.asyncio
 async def test_plain_chat_does_not_depend_on_milvus(monkeypatch):
     monkeypatch.setattr(vector_store_manager, "similarity_search", lambda *_a, **_k: pytest.fail("普通问答不检索"))
-    messages, source, warnings = await rag_agent_service._prepare_messages("你好", [], use_knowledge=False)
+    messages, source, warnings, citations = await rag_agent_service._prepare_messages("你好", [], use_knowledge=False)
     assert source == "model"
     assert warnings == ()
+    assert citations == ()
     assert messages
 
 
