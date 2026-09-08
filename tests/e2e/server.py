@@ -40,7 +40,7 @@ def list_chunks(document_id, limit=50, offset=0):
     return {"items": items, "limit": limit, "offset": offset, "has_more": False}
 
 
-async def query_stream(question, history, model=None, use_knowledge=True):
+async def query_stream(question, history, model=None, use_knowledge=True, user_id=None):
     yield {"type": "status", "data": "正在检索知识库…"}
     answer = f"已结合本地产品资料回答：{question}。当前会话包含 {len(history)} 条历史消息。"
     yield {"type": "content", "data": answer}
@@ -61,7 +61,7 @@ async def list_models(force=False):
 vector_store_manager.add_documents = add_documents
 vector_store_manager.delete_document_version = delete_document_version
 vector_store_manager.list_chunks = list_chunks
-vector_store_manager.similarity_search = lambda _query, k=3: stored_documents[:k]
+vector_store_manager.similarity_search = lambda _query, k=3, user_id=None: stored_documents[:k]
 rag_agent_service.query_stream = query_stream
 model_catalog_service.list_models = list_models
 

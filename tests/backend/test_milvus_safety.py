@@ -7,6 +7,7 @@ from app.core.milvus_client import MilvusClientManager
 from app.core.llm_factory import llm_factory
 from app.services.rag_agent_service import rag_agent_service
 from app.services.vector_store_manager import VectorStoreManager, vector_store_manager
+from app.services.reranker_service import reranker_service
 
 
 def test_dimension_mismatch_never_drops_collection(monkeypatch):
@@ -97,6 +98,41 @@ def test_stale_vector_connection_reconnects_and_retries_once(monkeypatch):
     result = manager.similarity_search("query", k=3)
     assert result[0].page_content == "recovered"
     assert calls == [("failed", 3), ("healthy", 3)]
+
+
+def test_hybrid_search_uses_rrf_and_enforces_user_filter(monkeypatch):
+    calls = []
+
+    class Store:
+        def similarity_search_with_score(self, query, **kwargs):
+            calls.append((query, kwargs))
+            return [(Document(page_content="SKU-A100", metadata={"user_id": "u-1"}), 0.8)]
+
+    manager = VectorStoreManager()
+    manager.vector_store = Store()
+    monkeypatch.setattr(reranker_service, "rerank", lambda _q, docs, _k: (docs, "ready"))
+    result = manager.search("A100 库存", k=5, user_id="u-1")
+
+    assert result.strategy == "rrf+flashrank"
+    assert calls[0][1]["fetch_k"] == 20
+    assert calls[0][1]["ranker_type"] == "rrf"
+    assert 'metadata["user_id"] == "u-1"' == calls[0][1]["expr"]
+
+
+def test_reranker_failure_is_visible_in_document_metadata(monkeypatch):
+    manager = VectorStoreManager()
+
+    class Store:
+        def similarity_search_with_score(self, _query, **_kwargs):
+            return [(Document(page_content="候选", metadata={}), 0.5)]
+
+    manager.vector_store = Store()
+    monkeypatch.setattr(reranker_service, "_load", lambda: (_ for _ in ()).throw(RuntimeError("missing")))
+    result = manager.search("问题", k=1)
+
+    assert result.strategy == "rrf"
+    assert result.reranker_status == "unavailable"
+    assert result.documents[0].metadata["reranker_status"] == "unavailable"
 
 
 @pytest.mark.asyncio

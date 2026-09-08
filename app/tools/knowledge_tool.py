@@ -6,6 +6,7 @@ from langchain_core.tools import tool
 from loguru import logger
 
 from app.config import config
+from app.core.agent_context import current_agent_user_id
 from app.services.vector_store_manager import vector_store_manager
 
 
@@ -18,9 +19,11 @@ def retrieve_knowledge(query: str) -> Tuple[str, List[Document]]:
     """
     try:
         logger.info(f"知识检索: query='{query}'")
-        vector_store = vector_store_manager.get_vector_store()
-        retriever = vector_store.as_retriever(search_kwargs={"k": config.rag_top_k})
-        docs = retriever.invoke(query)
+        docs = vector_store_manager.similarity_search(
+            query,
+            k=config.rag_top_k,
+            user_id=current_agent_user_id.get(),
+        )
         if not docs:
             return "没有找到相关信息。", []
         context = format_docs(docs)
@@ -36,11 +39,17 @@ def format_docs(docs: List[Document]) -> str:
     for i, doc in enumerate(docs, 1):
         metadata = doc.metadata
         source = metadata.get("file_name", metadata.get("_file_name", "未知来源"))
+        version = metadata.get("version", "?")
+        chunk_id = metadata.get("chunk_id", "未知分片")
+        document_id = metadata.get("document_id", "未知文档")
         headers = [metadata[k] for k in ["h1", "h2", "h3"] if metadata.get(k)]
         header_str = " > ".join(headers)
         text = f"【参考资料 {i}】"
         if header_str:
             text += f"\n标题: {header_str}"
-        text += f"\n来源: {source}\n内容:\n{doc.page_content}\n"
+        text += (
+            f"\n来源: {source}（版本 {version}，文档 {document_id}，chunk {chunk_id}）"
+            f"\n内容:\n{doc.page_content}\n"
+        )
         parts.append(text)
     return "\n".join(parts)

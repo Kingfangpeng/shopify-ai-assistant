@@ -79,7 +79,7 @@ class KnowledgeService:
                 db.add(document)
                 db.flush()
             new_version = (old_version or 0) + 1 if old_version else 1
-            documents = self._split(content, original_name, document.id, new_version)
+            documents = self._split(content, original_name, document.id, new_version, user_id)
             vector_store_manager.add_documents(documents)
             destination = config.upload_path / document.storage_name
             backup: Path | None = None
@@ -167,7 +167,7 @@ class KnowledgeService:
             raise AppError("trashed_file_missing", "回收站源文件丢失，无法恢复", 409)
         new_version = document.version + 1
         content = source.read_text(encoding="utf-8")
-        documents = self._split(content, document.original_name, document.id, new_version)
+        documents = self._split(content, document.original_name, document.id, new_version, user_id)
         vector_store_manager.add_documents(documents)
         try:
             os.replace(source, target)
@@ -184,21 +184,34 @@ class KnowledgeService:
         return document
 
     def rebuild(self, db: Session, user_id: str) -> dict:
+        # 别名是全局入口，因此影子集合必须包含所有用户的数据；检索时再按 user_id 强制过滤。
         documents = list(db.scalars(select(KnowledgeDocument).where(
-            KnowledgeDocument.user_id == user_id,
             KnowledgeDocument.status == "active",
         )))
-        rebuilt = 0
+        chunks = []
         failures: list[dict[str, str]] = []
         for document in documents:
             try:
-                self._index_file(config.upload_path / document.storage_name, document)
-                rebuilt += 1
+                content = (config.upload_path / document.storage_name).read_text(encoding="utf-8")
+                chunks.extend(self._split(
+                    content,
+                    document.original_name,
+                    document.id,
+                    document.version,
+                    document.user_id,
+                ))
             except Exception:
                 failures.append({"document_id": document.id, "message": "重建失败，旧版本已保留"})
+        if failures:
+            auth_service.audit(db, user_id, "knowledge_rebuild_failed", "knowledge_document", None,
+                               {"failed": len(failures)})
+            return {"rebuilt": 0, "failed": failures, "alias_switched": False}
+        if not chunks:
+            return {"rebuilt": 0, "failed": [], "alias_switched": False}
+        result = vector_store_manager.rebuild_shadow(chunks, chunks[0].page_content[:80])
         auth_service.audit(db, user_id, "knowledge_rebuilt", "knowledge_document", None,
-                           {"rebuilt": rebuilt, "failed": len(failures)})
-        return {"rebuilt": rebuilt, "failed": failures}
+                           {"rebuilt": len(documents), "chunks": len(chunks), "collection": result["collection"]})
+        return {"rebuilt": len(documents), "failed": [], "alias_switched": True, **result}
 
     def cleanup_expired(self, db: Session) -> int:
         expired = list(db.scalars(select(KnowledgeDocument).where(
@@ -213,7 +226,7 @@ class KnowledgeService:
     def _index_file(self, path: Path, document: KnowledgeDocument) -> None:
         content = path.read_text(encoding="utf-8")
         new_version = document.version + 1
-        chunks = self._split(content, document.original_name, document.id, new_version)
+        chunks = self._split(content, document.original_name, document.id, new_version, document.user_id)
         vector_store_manager.add_documents(chunks)
         try:
             vector_store_manager.delete_document_version(document.id, document.version)
@@ -225,16 +238,20 @@ class KnowledgeService:
         document.updated_at = utcnow()
 
     @staticmethod
-    def _split(content: str, name: str, document_id: str, version: int):
+    def _split(content: str, name: str, document_id: str, version: int, user_id: str):
         documents = document_splitter_service.split_document(content, name)
         if not documents:
             raise AppError("document_has_no_chunks", "文件没有可索引内容", 422)
-        for chunk in documents:
+        for index, chunk in enumerate(documents):
             chunk.page_content = "".join(char for char in chunk.page_content if char in "\n\t" or ord(char) >= 32)
             chunk.metadata.pop("_source", None)
+            chunk.metadata["user_id"] = user_id
             chunk.metadata["document_id"] = document_id
             chunk.metadata["version"] = version
+            chunk.metadata["chunk_id"] = f"{document_id}:v{version}:c{index}"
             chunk.metadata["file_name"] = name
+            chunk.metadata["title"] = chunk.metadata.get("h2") or chunk.metadata.get("h1") or name
+            chunk.metadata["summary"] = " ".join(chunk.page_content.split())[:180]
         return documents
 
     @staticmethod

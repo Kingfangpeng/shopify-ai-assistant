@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     milvus_host: str = "localhost"
     milvus_port: int = 19530
     milvus_timeout: int = 10000
-    milvus_collection: str = "shopify_kb"
+    milvus_collection: str = "shopify_kb_hybrid_v1"
     milvus_collection_alias: str = "shopify_kb_active"
 
     # ── RAG 配置 ───────────────────────────────────────────────────
@@ -143,8 +143,9 @@ class Settings(BaseSettings):
 
     @property
     def mcp_servers(self) -> Dict[str, Dict[str, Any]]:
+        headers = {"Authorization": f"Bearer {self.mcp_service_token}"} if self.mcp_service_token else {}
         servers: Dict[str, Dict[str, Any]] = {
-            "shopify": {"transport": self.mcp_shopify_transport, "url": self.mcp_shopify_url},
+            "shopify": {"transport": self.mcp_shopify_transport, "url": self.mcp_shopify_url, "headers": headers},
         }
         if self.ads_enabled:
             servers["ads"] = {"transport": self.mcp_ads_transport, "url": self.mcp_ads_url}

@@ -38,6 +38,19 @@ def knowledge_rebuild(confirm_dimension_change: bool) -> None:
     print("维护入口已确认。请先备份 Milvus 数据，再从应用的知识库页面执行受控重建。")
 
 
+def prefetch_reranker() -> None:
+    from flashrank import Ranker
+    from app.config import config
+
+    Ranker(
+        model_name=config.reranker_model,
+        cache_dir=config.reranker_cache_dir,
+        max_length=config.reranker_max_length,
+        log_level="WARNING",
+    )
+    print(f"FlashRank 模型 {config.reranker_model} 已缓存到 {config.reranker_cache_dir}。")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Shopify AI Assistant 本地管理工具")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -50,6 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     rebuild = subparsers.add_parser("knowledge-rebuild", help="确认向量维度变更维护")
     rebuild.add_argument("--confirm-dimension-change", action="store_true")
+    subparsers.add_parser("prefetch-reranker", help="下载并缓存本地 FlashRank 精排模型")
     return parser
 
 
@@ -62,6 +76,8 @@ def main() -> int:
             reset_password(args.username)
         elif args.command == "knowledge-rebuild":
             knowledge_rebuild(args.confirm_dimension_change)
+        elif args.command == "prefetch-reranker":
+            prefetch_reranker()
         return 0
     except (ValueError, RuntimeError) as exc:
         print(f"错误：{exc}", file=sys.stderr)
