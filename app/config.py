@@ -101,6 +101,7 @@ class Settings(BaseSettings):
     max_plan_steps: int = 8
     max_replan_count: int = 3
     agent_tool_transport: str = "local"
+    semantic_planner_timeout_seconds: float = 45.0
 
     # ── 本地数据库与认证 ───────────────────────────────────────────
     database_url: str = "sqlite:///./volumes/app/shopify_ai.db"

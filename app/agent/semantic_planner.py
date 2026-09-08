@@ -67,7 +67,7 @@ class SemanticToolPlan:
 class SemanticToolPlanner:
     """使用单个计划提交工具，兼容原生 function calling 与严格 JSON 降级。"""
 
-    timeout_seconds = 20.0
+    timeout_seconds = config.semantic_planner_timeout_seconds
     planning_tool_name = "submit_read_only_plan"
 
     async def plan(
