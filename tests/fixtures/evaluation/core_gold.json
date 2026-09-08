@@ -1,0 +1,2686 @@
+[
+  {
+    "id": "core_compare_order_periods_01",
+    "category": "订单对比",
+    "question": "今天和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_02",
+    "category": "订单对比",
+    "question": "今天订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_03",
+    "category": "订单对比",
+    "question": "昨天和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_04",
+    "category": "订单对比",
+    "question": "昨天订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_05",
+    "category": "订单对比",
+    "question": "最近 7 天和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_06",
+    "category": "订单对比",
+    "question": "最近 7 天订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_07",
+    "category": "订单对比",
+    "question": "本周和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_08",
+    "category": "订单对比",
+    "question": "本周订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_09",
+    "category": "订单对比",
+    "question": "本月和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_10",
+    "category": "订单对比",
+    "question": "本月订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_11",
+    "category": "订单对比",
+    "question": "2026 年 8 月和前一个等长周期的订单量与 GMV 对比？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_compare_order_periods_12",
+    "category": "订单对比",
+    "question": "2026 年 8 月订单表现同比去年同期如何？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_01",
+    "category": "订单汇总",
+    "question": "今天的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_02",
+    "category": "订单汇总",
+    "question": "今天一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_03",
+    "category": "订单汇总",
+    "question": "昨天的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_04",
+    "category": "订单汇总",
+    "question": "昨天一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_05",
+    "category": "订单汇总",
+    "question": "最近 7 天的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_06",
+    "category": "订单汇总",
+    "question": "最近 7 天一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_07",
+    "category": "订单汇总",
+    "question": "本周的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_08",
+    "category": "订单汇总",
+    "question": "本周一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_09",
+    "category": "订单汇总",
+    "question": "本月的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_10",
+    "category": "订单汇总",
+    "question": "本月一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_11",
+    "category": "订单汇总",
+    "question": "2026 年 8 月的订单量、GMV 和客单价是多少？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_orders_summary_12",
+    "category": "订单汇总",
+    "question": "2026 年 8 月一共出了多少单，营业额怎么样？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_01",
+    "category": "弃购",
+    "question": "今天有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_02",
+    "category": "弃购",
+    "question": "今天哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_03",
+    "category": "弃购",
+    "question": "昨天有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_04",
+    "category": "弃购",
+    "question": "昨天哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_05",
+    "category": "弃购",
+    "question": "最近 7 天有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_06",
+    "category": "弃购",
+    "question": "最近 7 天哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_07",
+    "category": "弃购",
+    "question": "本周有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_08",
+    "category": "弃购",
+    "question": "本周哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_09",
+    "category": "弃购",
+    "question": "本月有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_10",
+    "category": "弃购",
+    "question": "本月哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_11",
+    "category": "弃购",
+    "question": "2026 年 8 月有多少未完成结账的弃购？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_abandoned_checkouts_12",
+    "category": "弃购",
+    "question": "2026 年 8 月哪些商品经常被加入购物车后放弃？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_01",
+    "category": "库存",
+    "question": "当前哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_02",
+    "category": "库存",
+    "question": "当前哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_03",
+    "category": "库存",
+    "question": "现在哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_04",
+    "category": "库存",
+    "question": "现在哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_05",
+    "category": "库存",
+    "question": "全部 SKU 中哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_06",
+    "category": "库存",
+    "question": "全部 SKU 中哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_07",
+    "category": "库存",
+    "question": "热销商品里哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_08",
+    "category": "库存",
+    "question": "热销商品里哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_09",
+    "category": "库存",
+    "question": "补货清单里哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_10",
+    "category": "库存",
+    "question": "补货清单里哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_11",
+    "category": "库存",
+    "question": "仓库商品中哪些商品已经低库存？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_inventory_levels_12",
+    "category": "库存",
+    "question": "仓库商品中哪些 SKU 快卖完了？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_01",
+    "category": "商品表现",
+    "question": "今天商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_02",
+    "category": "商品表现",
+    "question": "今天哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_03",
+    "category": "商品表现",
+    "question": "昨天商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_04",
+    "category": "商品表现",
+    "question": "昨天哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_05",
+    "category": "商品表现",
+    "question": "最近 7 天商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_06",
+    "category": "商品表现",
+    "question": "最近 7 天哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_07",
+    "category": "商品表现",
+    "question": "本周商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_08",
+    "category": "商品表现",
+    "question": "本周哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_09",
+    "category": "商品表现",
+    "question": "本月商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_10",
+    "category": "商品表现",
+    "question": "本月哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_11",
+    "category": "商品表现",
+    "question": "2026 年 8 月商品销量排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_product_performance_12",
+    "category": "商品表现",
+    "question": "2026 年 8 月哪些产品卖得最多？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_01",
+    "category": "客户",
+    "question": "今天新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_02",
+    "category": "客户",
+    "question": "今天客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_03",
+    "category": "客户",
+    "question": "昨天新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_04",
+    "category": "客户",
+    "question": "昨天客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_05",
+    "category": "客户",
+    "question": "最近 7 天新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_06",
+    "category": "客户",
+    "question": "最近 7 天客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_07",
+    "category": "客户",
+    "question": "本周新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_08",
+    "category": "客户",
+    "question": "本周客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_09",
+    "category": "客户",
+    "question": "本月新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_10",
+    "category": "客户",
+    "question": "本月客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_11",
+    "category": "客户",
+    "question": "2026 年 8 月新客和回头客占比是多少？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_customer_segments_12",
+    "category": "客户",
+    "question": "2026 年 8 月客户分层和复购率如何？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_01",
+    "category": "退款",
+    "question": "今天退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_02",
+    "category": "退款",
+    "question": "今天有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_03",
+    "category": "退款",
+    "question": "昨天退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_04",
+    "category": "退款",
+    "question": "昨天有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_05",
+    "category": "退款",
+    "question": "最近 7 天退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_06",
+    "category": "退款",
+    "question": "最近 7 天有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_07",
+    "category": "退款",
+    "question": "本周退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_08",
+    "category": "退款",
+    "question": "本周有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_09",
+    "category": "退款",
+    "question": "本月退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_10",
+    "category": "退款",
+    "question": "本月有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_11",
+    "category": "退款",
+    "question": "2026 年 8 月退款笔数、金额和退款率是多少？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_refund_stats_12",
+    "category": "退款",
+    "question": "2026 年 8 月有多少订单发生了退款？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_01",
+    "category": "折扣",
+    "question": "今天优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_02",
+    "category": "折扣",
+    "question": "今天哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_03",
+    "category": "折扣",
+    "question": "昨天优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_04",
+    "category": "折扣",
+    "question": "昨天哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_05",
+    "category": "折扣",
+    "question": "最近 7 天优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_06",
+    "category": "折扣",
+    "question": "最近 7 天哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_07",
+    "category": "折扣",
+    "question": "本周优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_08",
+    "category": "折扣",
+    "question": "本周哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_09",
+    "category": "折扣",
+    "question": "本月优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_10",
+    "category": "折扣",
+    "question": "本月哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_11",
+    "category": "折扣",
+    "question": "2026 年 8 月优惠码使用次数和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_discount_performance_12",
+    "category": "折扣",
+    "question": "2026 年 8 月哪个折扣活动表现最好？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_01",
+    "category": "订单明细",
+    "question": "列出今天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_02",
+    "category": "订单明细",
+    "question": "给我今天最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_03",
+    "category": "订单明细",
+    "question": "列出昨天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_04",
+    "category": "订单明细",
+    "question": "给我昨天最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_05",
+    "category": "订单明细",
+    "question": "列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_06",
+    "category": "订单明细",
+    "question": "给我最近 7 天最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_07",
+    "category": "订单明细",
+    "question": "列出本周的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_08",
+    "category": "订单明细",
+    "question": "给我本周最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_09",
+    "category": "订单明细",
+    "question": "列出本月的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_10",
+    "category": "订单明细",
+    "question": "给我本月最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_11",
+    "category": "订单明细",
+    "question": "列出2026 年 8 月的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_order_list_12",
+    "category": "订单明细",
+    "question": "给我2026 年 8 月最新订单列表和订单号？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_01",
+    "category": "流量概览",
+    "question": "今天网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_02",
+    "category": "流量概览",
+    "question": "今天网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_03",
+    "category": "流量概览",
+    "question": "昨天网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_04",
+    "category": "流量概览",
+    "question": "昨天网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_05",
+    "category": "流量概览",
+    "question": "最近 7 天网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_06",
+    "category": "流量概览",
+    "question": "最近 7 天网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_07",
+    "category": "流量概览",
+    "question": "本周网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_08",
+    "category": "流量概览",
+    "question": "本周网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_09",
+    "category": "流量概览",
+    "question": "本月网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_10",
+    "category": "流量概览",
+    "question": "本月网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_11",
+    "category": "流量概览",
+    "question": "2026 年 8 月网站会话数和转化率是多少？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_overview_12",
+    "category": "流量概览",
+    "question": "2026 年 8 月网站访问量和跳出率如何？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_01",
+    "category": "流量趋势",
+    "question": "按天展示今天的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_02",
+    "category": "流量趋势",
+    "question": "画出今天网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_03",
+    "category": "流量趋势",
+    "question": "按天展示昨天的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_04",
+    "category": "流量趋势",
+    "question": "画出昨天网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_05",
+    "category": "流量趋势",
+    "question": "按天展示最近 7 天的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_06",
+    "category": "流量趋势",
+    "question": "画出最近 7 天网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_07",
+    "category": "流量趋势",
+    "question": "按天展示本周的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_08",
+    "category": "流量趋势",
+    "question": "画出本周网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_09",
+    "category": "流量趋势",
+    "question": "按天展示本月的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_10",
+    "category": "流量趋势",
+    "question": "画出本月网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_11",
+    "category": "流量趋势",
+    "question": "按天展示2026 年 8 月的流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_timeseries_12",
+    "category": "流量趋势",
+    "question": "画出2026 年 8 月网站访问量变化？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_01",
+    "category": "流量来源",
+    "question": "今天访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_02",
+    "category": "流量来源",
+    "question": "今天自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_03",
+    "category": "流量来源",
+    "question": "昨天访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_04",
+    "category": "流量来源",
+    "question": "昨天自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_05",
+    "category": "流量来源",
+    "question": "最近 7 天访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_06",
+    "category": "流量来源",
+    "question": "最近 7 天自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_07",
+    "category": "流量来源",
+    "question": "本周访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_08",
+    "category": "流量来源",
+    "question": "本周自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_09",
+    "category": "流量来源",
+    "question": "本月访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_10",
+    "category": "流量来源",
+    "question": "本月自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_11",
+    "category": "流量来源",
+    "question": "2026 年 8 月访客主要来自哪些渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_sources_12",
+    "category": "流量来源",
+    "question": "2026 年 8 月自然搜索、社媒和直接访问各占多少？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_01",
+    "category": "落地页",
+    "question": "今天哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_02",
+    "category": "落地页",
+    "question": "今天入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_03",
+    "category": "落地页",
+    "question": "昨天哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_04",
+    "category": "落地页",
+    "question": "昨天入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_05",
+    "category": "落地页",
+    "question": "最近 7 天哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_06",
+    "category": "落地页",
+    "question": "最近 7 天入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_07",
+    "category": "落地页",
+    "question": "本周哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_08",
+    "category": "落地页",
+    "question": "本周入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_09",
+    "category": "落地页",
+    "question": "本月哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_10",
+    "category": "落地页",
+    "question": "本月入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_11",
+    "category": "落地页",
+    "question": "2026 年 8 月哪些落地页带来的会话最多？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_landing_page_performance_12",
+    "category": "落地页",
+    "question": "2026 年 8 月入口页面表现排行？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_01",
+    "category": "访问设备",
+    "question": "今天手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_02",
+    "category": "访问设备",
+    "question": "今天访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_03",
+    "category": "访问设备",
+    "question": "昨天手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_04",
+    "category": "访问设备",
+    "question": "昨天访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_05",
+    "category": "访问设备",
+    "question": "最近 7 天手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_06",
+    "category": "访问设备",
+    "question": "最近 7 天访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_07",
+    "category": "访问设备",
+    "question": "本周手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_08",
+    "category": "访问设备",
+    "question": "本周访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_09",
+    "category": "访问设备",
+    "question": "本月手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_10",
+    "category": "访问设备",
+    "question": "本月访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_11",
+    "category": "访问设备",
+    "question": "2026 年 8 月手机和电脑访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_device_traffic_12",
+    "category": "访问设备",
+    "question": "2026 年 8 月访客使用哪些设备进入网站？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_01",
+    "category": "访客地域",
+    "question": "今天访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_02",
+    "category": "访客地域",
+    "question": "按国家查看今天网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_03",
+    "category": "访客地域",
+    "question": "昨天访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_04",
+    "category": "访客地域",
+    "question": "按国家查看昨天网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_05",
+    "category": "访客地域",
+    "question": "最近 7 天访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_06",
+    "category": "访客地域",
+    "question": "按国家查看最近 7 天网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_07",
+    "category": "访客地域",
+    "question": "本周访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_08",
+    "category": "访客地域",
+    "question": "按国家查看本周网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_09",
+    "category": "访客地域",
+    "question": "本月访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_10",
+    "category": "访客地域",
+    "question": "按国家查看本月网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_11",
+    "category": "访客地域",
+    "question": "2026 年 8 月访客主要来自哪些国家？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_traffic_geography_12",
+    "category": "访客地域",
+    "question": "按国家查看2026 年 8 月网站访问分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_01",
+    "category": "站内搜索",
+    "question": "今天站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_02",
+    "category": "站内搜索",
+    "question": "今天顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_03",
+    "category": "站内搜索",
+    "question": "昨天站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_04",
+    "category": "站内搜索",
+    "question": "昨天顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_05",
+    "category": "站内搜索",
+    "question": "最近 7 天站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_06",
+    "category": "站内搜索",
+    "question": "最近 7 天顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_07",
+    "category": "站内搜索",
+    "question": "本周站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_08",
+    "category": "站内搜索",
+    "question": "本周顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_09",
+    "category": "站内搜索",
+    "question": "本月站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_10",
+    "category": "站内搜索",
+    "question": "本月顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_11",
+    "category": "站内搜索",
+    "question": "2026 年 8 月站内搜索词和搜索转化表现？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_search_performance_12",
+    "category": "站内搜索",
+    "question": "2026 年 8 月顾客在站内都搜索了什么？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_01",
+    "category": "网站性能",
+    "question": "今天网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_02",
+    "category": "网站性能",
+    "question": "今天核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_03",
+    "category": "网站性能",
+    "question": "昨天网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_04",
+    "category": "网站性能",
+    "question": "昨天核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_05",
+    "category": "网站性能",
+    "question": "最近 7 天网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_06",
+    "category": "网站性能",
+    "question": "最近 7 天核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_07",
+    "category": "网站性能",
+    "question": "本周网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_08",
+    "category": "网站性能",
+    "question": "本周核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_09",
+    "category": "网站性能",
+    "question": "本月网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_10",
+    "category": "网站性能",
+    "question": "本月核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_11",
+    "category": "网站性能",
+    "question": "2026 年 8 月网站 LCP、INP 和 CLS 表现？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_get_web_performance_12",
+    "category": "网站性能",
+    "question": "2026 年 8 月核心网页指标是否达标？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_01_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_01_2",
+    "category": "多工具",
+    "question": "运营复盘需要订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_01_3",
+    "category": "多工具",
+    "question": "做一份订单、退款和流量来源联合复盘的联合分析。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_01_4",
+    "category": "多工具",
+    "question": "把订单、退款和流量来源联合复盘放在一起看。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_02_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_02_2",
+    "category": "多工具",
+    "question": "运营复盘需要热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_02_3",
+    "category": "多工具",
+    "question": "做一份热销商品与低库存风险一起看的联合分析。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_02_4",
+    "category": "多工具",
+    "question": "把热销商品与低库存风险一起看放在一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_03_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_03_2",
+    "category": "多工具",
+    "question": "运营复盘需要订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_03_3",
+    "category": "多工具",
+    "question": "做一份订单明细和退款统计一起查的联合分析。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_03_4",
+    "category": "多工具",
+    "question": "把订单明细和退款统计一起查放在一起看。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_04_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_04_2",
+    "category": "多工具",
+    "question": "运营复盘需要流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_04_3",
+    "category": "多工具",
+    "question": "做一份流量概览、渠道来源和设备占比一起分析的联合分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_04_4",
+    "category": "多工具",
+    "question": "把流量概览、渠道来源和设备占比一起分析放在一起看。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_05_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_05_2",
+    "category": "多工具",
+    "question": "运营复盘需要订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_05_3",
+    "category": "多工具",
+    "question": "做一份订单表现、商品排行和客户分层一起复盘的联合分析。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_05_4",
+    "category": "多工具",
+    "question": "把订单表现、商品排行和客户分层一起复盘放在一起看。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_06_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_06_2",
+    "category": "多工具",
+    "question": "运营复盘需要落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_06_3",
+    "category": "多工具",
+    "question": "做一份落地页、站内搜索和网页性能一起看的联合分析。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_06_4",
+    "category": "多工具",
+    "question": "把落地页、站内搜索和网页性能一起看放在一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_07_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_07_2",
+    "category": "多工具",
+    "question": "运营复盘需要弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_07_3",
+    "category": "多工具",
+    "question": "做一份弃购、折扣和订单经营数据联合分析的联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_07_4",
+    "category": "多工具",
+    "question": "把弃购、折扣和订单经营数据联合分析放在一起看。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_08_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_08_2",
+    "category": "多工具",
+    "question": "运营复盘需要流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_08_3",
+    "category": "多工具",
+    "question": "做一份流量趋势和访客国家分布一起查询的联合分析。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_08_4",
+    "category": "多工具",
+    "question": "把流量趋势和访客国家分布一起查询放在一起看。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_09_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_09_2",
+    "category": "多工具",
+    "question": "运营复盘需要订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_09_3",
+    "category": "多工具",
+    "question": "做一份订单环比与热销商品排行一起看的联合分析。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_09_4",
+    "category": "多工具",
+    "question": "把订单环比与热销商品排行一起看放在一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_10_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_10_2",
+    "category": "多工具",
+    "question": "运营复盘需要客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_10_3",
+    "category": "多工具",
+    "question": "做一份客户复购、退款和折扣表现一起分析的联合分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_10_4",
+    "category": "多工具",
+    "question": "把客户复购、退款和折扣表现一起分析放在一起看。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_11_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的流量概览、落地页和网站速度一起诊断。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_11_2",
+    "category": "多工具",
+    "question": "运营复盘需要流量概览、落地页和网站速度一起诊断。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_11_3",
+    "category": "多工具",
+    "question": "做一份流量概览、落地页和网站速度一起诊断的联合分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_11_4",
+    "category": "多工具",
+    "question": "把流量概览、落地页和网站速度一起诊断放在一起看。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_12_1",
+    "category": "多工具",
+    "question": "请同时查看最近 7 天的订单列表、库存和热销商品一起核对。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_12_2",
+    "category": "多工具",
+    "question": "运营复盘需要订单列表、库存和热销商品一起核对。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_12_3",
+    "category": "多工具",
+    "question": "做一份订单列表、库存和热销商品一起核对的联合分析。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_multi_12_4",
+    "category": "多工具",
+    "question": "把订单列表、库存和热销商品一起核对放在一起看。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "core_knowledge_01",
+    "category": "路由-knowledge",
+    "question": "根据刚上传的产品手册总结 Aurora 保温杯的规格。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_02",
+    "category": "路由-knowledge",
+    "question": "从退款政策文档里找出退货时限。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_03",
+    "category": "路由-knowledge",
+    "question": "读取补货 SOP 并整理执行步骤。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_04",
+    "category": "路由-knowledge",
+    "question": "根据品牌资料写一段产品介绍。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_05",
+    "category": "路由-knowledge",
+    "question": "从客服手册中提取破损包裹回复模板。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_06",
+    "category": "路由-knowledge",
+    "question": "上传的配送说明里有哪些国家限制。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_07",
+    "category": "路由-knowledge",
+    "question": "根据尺寸文档整理产品参数。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_08",
+    "category": "路由-knowledge",
+    "question": "保修条款规定了哪些免责情况。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_09",
+    "category": "路由-knowledge",
+    "question": "产品规格附件里提到哪些材质。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_10",
+    "category": "路由-knowledge",
+    "question": "把售后脚本改写得更礼貌。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_11",
+    "category": "路由-knowledge",
+    "question": "总结培训文档里的店铺运营流程。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_knowledge_12",
+    "category": "路由-knowledge",
+    "question": "根据上架规范检查标题写法。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "core_chat_01",
+    "category": "路由-chat",
+    "question": "解释什么是客单价，不需要读取店铺数据。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_02",
+    "category": "路由-chat",
+    "question": "用简单例子说明转化率。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_03",
+    "category": "路由-chat",
+    "question": "RAG 和微调有什么区别。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_04",
+    "category": "路由-chat",
+    "question": "写一封通用的节日营销邮件，不使用店铺资料。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_05",
+    "category": "路由-chat",
+    "question": "把这句话翻译成英文：感谢你的耐心等待。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_06",
+    "category": "路由-chat",
+    "question": "你好，简单介绍一下你能做什么。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_07",
+    "category": "路由-chat",
+    "question": "什么是 LCP 指标。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_08",
+    "category": "路由-chat",
+    "question": "说明 Precision 和 Recall 的区别。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_09",
+    "category": "路由-chat",
+    "question": "给我一个通用的客服道歉句式。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_10",
+    "category": "路由-chat",
+    "question": "如何理解复购率这个概念。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_11",
+    "category": "路由-chat",
+    "question": "用一句话解释 Shopify。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_chat_12",
+    "category": "路由-chat",
+    "question": "帮我润色这句话：我们会尽快回复。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "core_clarify_01",
+    "category": "路由-clarify",
+    "question": "帮我查一下那个数据。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_02",
+    "category": "路由-clarify",
+    "question": "看看刚才说的东西。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_03",
+    "category": "路由-clarify",
+    "question": "这个情况怎么样。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_04",
+    "category": "路由-clarify",
+    "question": "给我一份报表。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_05",
+    "category": "路由-clarify",
+    "question": "查一下最近的表现。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_06",
+    "category": "路由-clarify",
+    "question": "那个指标是多少。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_07",
+    "category": "路由-clarify",
+    "question": "帮我分析一下。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_08",
+    "category": "路由-clarify",
+    "question": "我想看店铺里的某个数字。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_09",
+    "category": "路由-clarify",
+    "question": "把相关数据找出来。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_10",
+    "category": "路由-clarify",
+    "question": "看看有没有问题。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_11",
+    "category": "路由-clarify",
+    "question": "查一下它现在的情况。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_clarify_12",
+    "category": "路由-clarify",
+    "question": "按之前的要求处理。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "core_unsupported_01",
+    "category": "路由-unsupported",
+    "question": "查询昨天 Facebook 广告花费和 ROAS。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_02",
+    "category": "路由-unsupported",
+    "question": "查询 Google Ads 的点击成本。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_03",
+    "category": "路由-unsupported",
+    "question": "把库存不足 10 件的商品全部下架。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_04",
+    "category": "路由-unsupported",
+    "question": "给所有未发货订单批量退款。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_05",
+    "category": "路由-unsupported",
+    "question": "把全店商品价格降低百分之十并保存。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_06",
+    "category": "路由-unsupported",
+    "question": "创建一个八折优惠码并发布。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_07",
+    "category": "路由-unsupported",
+    "question": "删除最近 30 天没有销量的商品。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_08",
+    "category": "路由-unsupported",
+    "question": "修改客户邮箱并同步到 Shopify。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_09",
+    "category": "路由-unsupported",
+    "question": "把订单标记为已发货。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_10",
+    "category": "路由-unsupported",
+    "question": "查询 TikTok Ads 广告归因收入。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_11",
+    "category": "路由-unsupported",
+    "question": "直接执行任意 GraphQL 写入商品标签。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "core_unsupported_12",
+    "category": "路由-unsupported",
+    "question": "导出并发送所有客户的完整个人信息。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  }
+]
