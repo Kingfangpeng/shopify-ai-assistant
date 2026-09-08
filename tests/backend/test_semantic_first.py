@@ -100,7 +100,7 @@ async def test_local_qwen_structured_routing_disables_thinking(monkeypatch):
     plan = await SemanticToolPlanner().plan("订单", "qwen3.5:27b", [get_orders_summary])
 
     assert plan is not None
-    assert options["extra_body"] == {"think": False}
+    assert options["extra_body"] == {"reasoning_effort": "none"}
 
 
 @pytest.mark.asyncio

@@ -99,7 +99,7 @@ class SemanticToolPlanner:
         # 路由是严格结构化任务。对本地 Qwen 关闭思考可降低延迟，参数仍由 Schema 把关。
         host = (urlparse(config.llm_api_base).hostname or "").lower()
         if host in {"127.0.0.1", "localhost", "::1"} and model.startswith("qwen3.5"):
-            options["extra_body"] = {"think": False}
+            options["extra_body"] = {"reasoning_effort": "none"}
         elif host == "api.deepseek.com" and model.startswith("deepseek-v4-"):
             options["extra_body"] = {"thinking": {"type": "disabled"}}
         try:

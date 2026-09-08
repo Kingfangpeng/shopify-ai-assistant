@@ -70,7 +70,15 @@ async def generate_answer(query: str, documents: list[Document]) -> str:
         )
         for doc in documents
     ) or "无可用资料"
-    model = llm_factory.create_chat_model(model=config.rag_model, temperature=0, streaming=False)
+    # 生成子集只验证受证据约束的短回答和引用，不需要长思考链。
+    # Ollama 的 OpenAI 兼容端点使用 reasoning_effort=none 关闭思考；
+    # `think=false` 属于原生 /api/chat 参数，在兼容端点会被忽略。
+    model = llm_factory.create_chat_model(
+        model=config.rag_model,
+        temperature=0,
+        streaming=False,
+        extra_body={"reasoning_effort": "none"},
+    ).bind(max_tokens=128)
     response = await model.ainvoke([
         ("system", prompt_registry.get("rag_answer").content),
         ("user", f"资料：\n{evidence}\n\n问题：{query}"),
