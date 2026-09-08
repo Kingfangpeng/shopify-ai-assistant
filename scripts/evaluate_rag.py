@@ -6,11 +6,13 @@ import argparse
 import asyncio
 import json
 import math
+import sys
 import time
 from pathlib import Path
 from statistics import mean
 
 from langchain_core.documents import Document
+from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
@@ -60,11 +62,17 @@ def citation_id(document: Document) -> str:
 
 async def generate_answer(query: str, documents: list[Document]) -> str:
     evidence = "\n".join(
-        f"[{citation_id(doc)}] {doc.page_content}" for doc in documents
+        "【{} v{} {}】 {}".format(
+            doc.metadata.get("file_name", "未知来源"),
+            doc.metadata.get("version", "?"),
+            citation_id(doc),
+            doc.page_content,
+        )
+        for doc in documents
     ) or "无可用资料"
     model = llm_factory.create_chat_model(model=config.rag_model, temperature=0, streaming=False)
     response = await model.ainvoke([
-        ("system", "只能依据资料回答。资料无答案时明确回复“资料不足，无法回答”。每个事实必须引用方括号中的 chunk_id。"),
+        ("system", prompt_registry.get("rag_answer").content),
         ("user", f"资料：\n{evidence}\n\n问题：{query}"),
     ])
     return str(getattr(response, "content", response))
@@ -92,8 +100,11 @@ async def run(args: argparse.Namespace) -> dict:
     }
     cached: dict[str, list[Document]] = {}
     for mode in ("dense", "bm25", "rrf", "rrf+flashrank"):
+        # 门槛针对预热后的在线延迟，先加载索引、Embedding 连接和 ONNX 会话。
+        for _ in range(3):
+            manager.evaluate_search(cases[0]["query"], mode, 10, cases[0]["user_id"])
         results = []
-        for case in cases:
+        for index, case in enumerate(cases, 1):
             started = time.perf_counter()
             docs = manager.evaluate_search(case["query"], mode, 10, case["user_id"])
             elapsed = (time.perf_counter() - started) * 1000
@@ -110,21 +121,39 @@ async def run(args: argparse.Namespace) -> dict:
             })
             if mode == "rrf+flashrank" and case["generation_eval"]:
                 cached[case["id"]] = docs
+            if index % 100 == 0:
+                print(f"检索评估进度: {mode} {index}/{len(cases)}", flush=True)
         report["strategies"][mode] = summarize(results)
 
     if args.include_generation:
-        generation = []
-        for case in (row for row in cases if row["generation_eval"]):
-            answer = await generate_answer(case["query"], cached[case["id"]])
-            cited = {chunk_id for chunk_id in (citation_id(doc) for doc in cached[case["id"]]) if f"[{chunk_id}]" in answer}
+        generation_cases = [row for row in cases if row["generation_eval"]]
+        semaphore = asyncio.Semaphore(max(1, min(args.generation_concurrency, 8)))
+
+        async def evaluate_generation(case: dict) -> dict:
+            async with semaphore:
+                answer = await generate_answer(case["query"], cached[case["id"]])
+            cited = {
+                chunk_id for chunk_id in (citation_id(doc) for doc in cached[case["id"]])
+                if chunk_id and chunk_id in answer
+            }
             relevant = set(case["relevant_chunk_ids"])
             refusal = "资料不足" in answer or "无法回答" in answer
-            generation.append({
+            return {
                 "id": case["id"],
                 "citation_accurate": bool(relevant and relevant.intersection(cited)) if case["answerable"] else not cited,
                 "correct_refusal": refusal if not case["answerable"] else not refusal,
-            })
-        no_answer = [row for row, case in zip(generation, (row for row in cases if row["generation_eval"])) if not case["answerable"]]
+            }
+
+        generation = []
+        for start in range(0, len(generation_cases), 12):
+            generation.extend(await asyncio.gather(*(
+                evaluate_generation(case) for case in generation_cases[start:start + 12]
+            )))
+            print(f"生成评估进度: {min(start + 12, len(generation_cases))}/{len(generation_cases)}", flush=True)
+        no_answer = [
+            row for row, case in zip(generation, generation_cases)
+            if not case["answerable"]
+        ]
         report["generation"] = {
             "citation_accuracy": mean(row["citation_accurate"] for row in generation),
             "no_answer_refusal_rate": mean(row["correct_refusal"] for row in no_answer),
@@ -139,6 +168,18 @@ async def run(args: argparse.Namespace) -> dict:
         "permission_leakage_rate": {"target": 0, "passed": final["permission_leakage_rate"] == 0},
         "latency_p95_ms": {"target": 1500, "passed": final["latency_p95_ms"] <= 1500},
     }
+    if "generation" in report:
+        report["thresholds"].update({
+            "citation_accuracy": {
+                "target": 0.95,
+                "passed": report["generation"]["citation_accuracy"] >= 0.95,
+            },
+            "no_answer_refusal_rate": {
+                "target": 0.95,
+                "passed": report["generation"]["no_answer_refusal_rate"] >= 0.95,
+            },
+        })
+    report["passed"] = all(item["passed"] for item in report["thresholds"].values())
     return report
 
 
@@ -149,10 +190,13 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument("--output", type=Path, default=ROOT / "output/rag-evaluation-local-qwen.json")
     value.add_argument("--collection", default="shopify_rag_eval_v1")
     value.add_argument("--include-generation", action="store_true")
+    value.add_argument("--generation-concurrency", type=int, default=3)
     return value
 
 
 def main() -> None:
+    logger.remove()
+    logger.add(sys.stderr, level="WARNING")
     args = parser().parse_args()
     report = asyncio.run(run(args))
     args.output.parent.mkdir(parents=True, exist_ok=True)

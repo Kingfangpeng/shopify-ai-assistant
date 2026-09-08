@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 from threading import Lock
 
 from langchain_core.documents import Document
@@ -45,12 +46,31 @@ class RerankerService:
                 for index, document in enumerate(documents)
             ]
             ranked = self._load().rerank(RerankRequest(query=query, passages=passages))
+            # 商品型号、SKU、订单号等精确标识通常由 RRF 首位命中。只有查询标识
+            # 确实出现在首条文档时才保留锚点，普通语义查询仍完全按 FlashRank 排序。
+            exact_ids = {
+                value.casefold() for value in re.findall(r"(?iu)\b(?=[a-z0-9-]*\d)[a-z0-9]+(?:-[a-z0-9]+)+|\b[a-z]+\d+[a-z0-9-]*\b", query)
+            }
+            first_text = " ".join((
+                documents[0].page_content,
+                *(str(value) for value in documents[0].metadata.values()),
+            )).casefold()
+            should_anchor = bool(exact_ids and any(value in first_text for value in exact_ids))
+            anchored = ([item for item in ranked if int(item["id"]) == 0] if should_anchor else [])
+            anchored.extend(
+                item for item in ranked
+                if not should_anchor or int(item["id"]) != 0
+            )
             output: list[Document] = []
-            for position, item in enumerate(ranked[:top_n], 1):
+            for position, item in enumerate(anchored[:top_n], 1):
                 source = documents[int(item["id"])]
                 metadata = dict(source.metadata)
                 metadata.update({
                     "retrieval_rank": position,
+                    "reranker_rank": next(
+                        rank for rank, ranked_item in enumerate(ranked, 1)
+                        if int(ranked_item["id"]) == int(item["id"])
+                    ),
                     "reranker_score": float(item.get("score") or 0),
                     "retrieval_strategy": "rrf+flashrank",
                     "reranker_status": "ready",

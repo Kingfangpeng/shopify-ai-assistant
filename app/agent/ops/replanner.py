@@ -33,6 +33,10 @@ class Act(BaseModel):
     )
 
 
+prompt_registry.register_output_schema("ops_replanner", Act.model_json_schema())
+prompt_registry.register_output_schema("ops_report", Response.model_json_schema())
+
+
 replanner_prompt = ChatPromptTemplate.from_messages(
     [("system", prompt_registry.get("ops_replanner").content), ("placeholder", "{messages}")]
 )

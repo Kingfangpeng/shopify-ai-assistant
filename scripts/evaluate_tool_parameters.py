@@ -5,8 +5,11 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import sys
 import time
 from pathlib import Path
+
+from loguru import logger
 
 from app.agent.semantic_planner import semantic_tool_planner
 from app.agent.tool_registry import TOOL_SPEC_REGISTRY
@@ -81,6 +84,8 @@ async def run(cases: list[dict], model: str, concurrency: int = 3) -> dict:
 
 
 def main() -> None:
+    logger.remove()
+    logger.add(sys.stderr, level="WARNING")
     parser = argparse.ArgumentParser()
     parser.add_argument("--cases", type=Path, default=ROOT / "tests/fixtures/tool_parameter_cases.jsonl")
     parser.add_argument("--output", type=Path, default=ROOT / "output/tool-parameter-evaluation-local-qwen.json")

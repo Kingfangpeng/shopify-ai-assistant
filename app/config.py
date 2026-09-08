@@ -52,7 +52,7 @@ class Settings(BaseSettings):
     reranker_enabled: bool = True
     reranker_model: str = "ms-marco-MultiBERT-L-12"
     reranker_cache_dir: str = "./volumes/models/flashrank"
-    reranker_max_length: int = 512
+    reranker_max_length: int = 192
     chunk_max_size: int = 800
     chunk_overlap: int = 100
 

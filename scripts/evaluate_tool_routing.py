@@ -28,6 +28,7 @@ from app.agent.dispatcher import LOCAL_TOOL_REGISTRY  # noqa: E402
 from app.config import config  # noqa: E402
 from app.services.chat.agent_service import chat_agent_service  # noqa: E402
 from app.services.model_catalog_service import model_catalog_service  # noqa: E402
+from app.prompts import prompt_registry  # noqa: E402
 
 
 DEFAULT_CASES = ROOT / "tests" / "fixtures" / "tool_routing_cases.json"
@@ -335,6 +336,15 @@ async def run(args: argparse.Namespace) -> int:
         args.output.write_text(
             json.dumps(
                 {"model": model, "repeat": args.repeat,
+                 "evaluator": {
+                     "provider": "local_ollama" if config.local_llm_only else "openai_compatible",
+                     "model": model,
+                 },
+                 "prompt_bundle": prompt_registry.bundle("routing"),
+                 "note": (
+                     "本报告为本地 Qwen 评估；历史 DeepSeek 报告仅作为旧基线。"
+                     if config.local_llm_only else "本报告使用当前 OpenAI 兼容服务。"
+                 ),
                  "timestamp": datetime.now(timezone.utc).isoformat(),
                  "source": source,
                  "planner_sha256": hashlib.sha256((ROOT / "app/agent/semantic_planner.py").read_bytes()).hexdigest(),

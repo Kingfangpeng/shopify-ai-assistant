@@ -32,6 +32,9 @@ class PromptRegistry:
             content = (PROMPT_DIR / item["file"]).read_text(encoding="utf-8").strip()
             digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
             self._entries[prompt_id] = PromptEntry(prompt_id, item["version"], item["file"], content, digest)
+        self._output_schemas: dict[str, dict[str, Any]] = {
+            prompt_id: {"type": "string"} for prompt_id in self._entries
+        }
 
     def get(self, prompt_id: str) -> PromptEntry:
         try:
@@ -42,6 +45,11 @@ class PromptRegistry:
     def render(self, prompt_id: str, **values: Any) -> str:
         return self.get(prompt_id).content.format(**values)
 
+    def register_output_schema(self, prompt_id: str, schema: dict[str, Any]) -> None:
+        """绑定运行时实际使用的结构，供聊天记录、SSE 和评估报告生成指纹。"""
+        self.get(prompt_id)
+        self._output_schemas[prompt_id] = schema
+
     def fingerprint(
         self,
         prompt_id: str,
@@ -49,7 +57,13 @@ class PromptRegistry:
         output_schema: dict[str, Any] | None = None,
     ) -> dict[str, str]:
         entry = self.get(prompt_id)
-        schema_raw = json.dumps(output_schema or {}, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        effective_schema = self._output_schemas[prompt_id] if output_schema is None else output_schema
+        schema_raw = json.dumps(
+            effective_schema,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
         schema_hash = hashlib.sha256(schema_raw.encode("utf-8")).hexdigest()
         payload = f"{entry.prompt_id}@{entry.version}:{entry.content_hash}:{tool_catalog_hash()}:{schema_hash}"
         return {

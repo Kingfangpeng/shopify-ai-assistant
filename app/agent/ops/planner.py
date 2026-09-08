@@ -25,6 +25,9 @@ class Plan(BaseModel):
     )
 
 
+prompt_registry.register_output_schema("ops_planner", Plan.model_json_schema())
+
+
 planner_prompt = ChatPromptTemplate.from_messages(
     [
         (

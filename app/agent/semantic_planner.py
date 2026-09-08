@@ -34,8 +34,8 @@ class RoutingDecision(BaseModel):
     tools: list[str] = Field(default_factory=list, max_length=4, description="旧模型兼容字段；新输出使用 tool_calls")
     tool_calls: list[ToolCallCandidate] = Field(default_factory=list, max_length=4)
     requires_analysis: bool
-    reason: str = Field(max_length=300)
-    message: str = Field(max_length=500)
+    reason: str = Field(default="", max_length=300)
+    message: str = Field(default="", max_length=500)
 
     @model_validator(mode="after")
     def check_route(self) -> "RoutingDecision":
@@ -51,6 +51,9 @@ class RoutingDecision(BaseModel):
         if self.route in {"clarify", "unsupported"} and not self.message.strip():
             raise ValueError("澄清或能力不足必须给出说明")
         return self
+
+
+prompt_registry.register_output_schema("routing", RoutingDecision.model_json_schema())
 
 
 @dataclass(frozen=True)
@@ -93,8 +96,11 @@ class SemanticToolPlanner:
             },
         }
         options = {}
-        # 仅对官方 DeepSeek V4 的规划请求关闭思考，避免小型分类消耗长推理。
-        if urlparse(config.llm_api_base).hostname == "api.deepseek.com" and model.startswith("deepseek-v4-"):
+        # 路由是严格结构化任务。对本地 Qwen 关闭思考可降低延迟，参数仍由 Schema 把关。
+        host = (urlparse(config.llm_api_base).hostname or "").lower()
+        if host in {"127.0.0.1", "localhost", "::1"} and model.startswith("qwen3.5"):
+            options["extra_body"] = {"think": False}
+        elif host == "api.deepseek.com" and model.startswith("deepseek-v4-"):
             options["extra_body"] = {"thinking": {"type": "disabled"}}
         try:
             client = llm_factory.create_chat_model(model=model, temperature=0, streaming=False)
@@ -126,7 +132,17 @@ class SemanticToolPlanner:
                 "只修正工具名、候选参数类型或取值范围，仍需返回完整结构。"
             ))]
             response = await asyncio.wait_for(client.ainvoke(repair_messages), self.timeout_seconds)
-            return self._from_json_content(getattr(response, "content", ""), allowed)
+            repaired = self._from_json_content(getattr(response, "content", ""), allowed)
+            if repaired is not None:
+                return repaired
+            return SemanticToolPlan(
+                (),
+                False,
+                "结构化候选参数在一次修复后仍未通过校验",
+                "semantic_validation",
+                "clarify",
+                "请求参数未能通过安全校验，请补充明确的状态、数量或商品 ID 后重试。",
+            )
         except Exception as exc:
             logger.warning("语义规划失败: {}", type(exc).__name__)
             return None

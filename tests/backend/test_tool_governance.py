@@ -55,8 +55,6 @@ def test_semantic_plan_accepts_structured_candidates_and_server_fields_are_forbi
         "tools": [],
         "tool_calls": [{"name": "get_order_list", "arguments": {"status": "open", "limit": 12}}],
         "requires_analysis": False,
-        "reason": "列出订单",
-        "message": "",
     }, allowed, "test")
     assert plan is not None
     assert plan.tools == ("get_order_list",)

@@ -55,6 +55,10 @@ class SummaryResult(BaseModel):
     summary: str = Field(min_length=1, max_length=2000)
 
 
+prompt_registry.register_output_schema("memory_extract", MemoryExtraction.model_json_schema())
+prompt_registry.register_output_schema("conversation_summary", SummaryResult.model_json_schema())
+
+
 class MemoryService:
     def list(self, db: Session, user_id: str, status: str, limit: int = 100, offset: int = 0) -> dict:
         if status not in ALLOWED_STATUSES:
