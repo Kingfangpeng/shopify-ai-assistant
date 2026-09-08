@@ -38,7 +38,13 @@ ops_graph = _build_ops_graph()
 class OpsAgentService:
     timeout_seconds = 300
 
-    async def diagnose(self, request: OpsRequest, *, history=None) -> AsyncGenerator[Dict[str, Any], None]:
+    async def diagnose(
+        self,
+        request: OpsRequest,
+        *,
+        history=None,
+        user_id: str | None = None,
+    ) -> AsyncGenerator[Dict[str, Any], None]:
         model = request.model or config.rag_model
         yield {"type": "status", "stage": "starting", "message": "正在解析日期并准备深度分析…", "model": model}
         try:
@@ -53,6 +59,7 @@ class OpsAgentService:
                         "date_from": period.date_from, "date_to": period.date_to,
                         "timezone": period.timezone, "period_label": period.label,
                         "session_id": request.session_id, "model": model,
+                        "user_id": user_id,
                         "history": history or [],
                     },
                     "replan_count": 0, "step_status": "",

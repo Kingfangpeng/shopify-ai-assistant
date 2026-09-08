@@ -13,6 +13,7 @@ from app.services.chat.service import chat_service
 from app.services.ops_agent_service import ops_agent_service
 from app.services.output_safety import sanitize_model_output
 from app.services.memory import memory_service
+from app.prompts import prompt_registry
 
 
 @dataclass
@@ -30,7 +31,14 @@ class ChatOpsService:
                        else chat_service.create_session(db, user_id))
             recent = chat_service.recent_context(db, user_id, session.id)
             history = memory_service.context_history(db, user_id, session.id, recent)
-            metadata = {"mode": "deep", "model": model, "trace": []}
+            metadata = {
+                "mode": "deep",
+                "model": model,
+                "trace": [],
+                "prompt_bundle": prompt_registry.bundle(
+                    "ops_planner", "ops_executor", "ops_replanner", "ops_report",
+                ),
+            }
             chat_service.add_message(db, session, "user", request.question, metadata=metadata)
             message = chat_service.add_message(db, session, "assistant", "正在准备深度分析…", "running", metadata)
             return AnalysisRun(request.model_copy(update={"session_id": session.id, "model": model}), user_id, message.id, history)
@@ -52,7 +60,14 @@ class ChatOpsService:
         return output
 
     async def stream(self, run: AnalysisRun):
-        metadata = {"mode": "deep", "model": run.request.model, "trace": []}
+        metadata = {
+            "mode": "deep",
+            "model": run.request.model,
+            "trace": [],
+            "prompt_bundle": prompt_registry.bundle(
+                "ops_planner", "ops_executor", "ops_replanner", "ops_report",
+            ),
+        }
         content = "正在准备深度分析…"
         terminal = False
 
@@ -62,7 +77,9 @@ class ChatOpsService:
                                              content, status, metadata)
 
         try:
-            async with aclosing(ops_agent_service.diagnose(run.request, history=run.history)) as events:
+            async with aclosing(ops_agent_service.diagnose(
+                run.request, history=run.history, user_id=run.user_id,
+            )) as events:
                 async for raw in events:
                     event = self.clean_event(raw)
                     kind = event["type"]
@@ -78,7 +95,8 @@ class ChatOpsService:
                             raise AppError("empty_report", "分析未生成可用报告，请重试", 503)
                         content = report
                         event.update(response=content, source="ops", session_id=run.request.session_id,
-                                     model=run.request.model, message_id=run.message_id)
+                                     model=run.request.model, message_id=run.message_id,
+                                     prompt_bundle=metadata["prompt_bundle"])
                         save("complete")
                         event["memory_candidates"] = await memory_service.capture_candidates(
                             run.user_id,

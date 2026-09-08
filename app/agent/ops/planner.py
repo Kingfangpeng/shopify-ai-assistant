@@ -10,6 +10,8 @@ from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
+from app.core.agent_context import current_agent_user_id
+from app.prompts import prompt_registry
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from app.tools.knowledge_tool import retrieve_knowledge
 from .state import PlanExecuteState
@@ -27,30 +29,7 @@ planner_prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            dedent("""
-                你是一位专业的 Shopify 独立站运营分析师，擅长欧美市场电商运营。
-
-                可用工具列表（制定计划时参考）：
-                {tools_description}
-
-                注意：你的职责是制定计划，实际工具调用由 Executor 负责执行。
-
-                **分析框架（按优先级）：**
-                1. 先查知识库，获取行业基准和最佳实践
-                2. 获取 Shopify 订单/转化/库存数据
-                3. 对 Shopify 数据进行交叉验证与归因分析
-                4. 输出可执行的优化建议
-
-                **常见问题分析路径：**
-                - 转化率低 → 流量质量 → 落地页体验 → 产品定价 → 结账流程
-                - 库存积压 → 销量趋势 → 广告推力 → 折扣策略 → 清仓方案
-
-                **计划要求：**
-                - 步骤数量：3~6步，不要过度分析
-                - 每步描述须明确：要查什么、用哪个工具、期望得到什么
-                - 步骤之间有清晰的依赖关系
-                - 优先使用具体数据，避免模糊表述
-            """).strip(),
+            prompt_registry.get("ops_planner").content,
         ),
         ("placeholder", "{messages}"),
     ]
@@ -69,7 +48,11 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
         logger.info("查询知识库，寻找相关运营经验...")
         experience_docs = ""
         try:
-            context_str = await retrieve_knowledge.ainvoke({"query": input_text})
+            token = current_agent_user_id.set((state.get("context") or {}).get("user_id"))
+            try:
+                context_str = await retrieve_knowledge.ainvoke({"query": input_text})
+            finally:
+                current_agent_user_id.reset(token)
             if context_str and context_str.strip():
                 experience_docs = context_str
                 logger.info(f"找到相关经验文档，长度: {len(experience_docs)}")

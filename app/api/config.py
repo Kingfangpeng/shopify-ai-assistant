@@ -9,6 +9,9 @@ from app.core.milvus_client import milvus_manager
 from app.integrations.shopify.client import ShopifyError
 from app.integrations.shopify.service import shopify_service
 from app.services.model_catalog_service import model_catalog_service
+from app.agent.tool_provider import get_tool_provider
+from app.prompts import prompt_registry
+from pathlib import Path
 
 router = APIRouter()
 
@@ -31,6 +34,7 @@ async def get_config():
     # PyMilvus 是同步客户端。向量库离线时连接超时不能阻塞 FastAPI 事件循环，
     # 否则同一进程内的登出、聊天和健康检查都会被设置页拖住。
     milvus_connected = await asyncio.to_thread(milvus_manager.health_check)
+    tool_transport = await get_tool_provider().health()
     return {
         "app_name": config.app_name,
         "app_version": config.app_version,
@@ -45,6 +49,15 @@ async def get_config():
         "shopify_demo_mode": config.shopify_demo_mode,
         "milvus_status": "connected" if milvus_connected else "disconnected",
         "rag_top_k": config.rag_top_k,
+        "rag_retrieval": {
+            "dense_top_k": config.rag_dense_top_k,
+            "sparse_top_k": config.rag_sparse_top_k,
+            "fusion_top_k": config.rag_fusion_top_k,
+            "reranker": config.reranker_model,
+            "reranker_cached": (Path(config.reranker_cache_dir) / config.reranker_model).is_dir(),
+        },
+        "tool_transport": tool_transport,
+        "prompt_bundle": prompt_registry.bundle("routing", "rag_answer"),
     }
 
 

@@ -19,6 +19,7 @@ from app.core.errors import AppError
 from app.core.llm_factory import llm_factory
 from app.db.engine import db_session
 from app.db.models import ChatMessage, ChatSession, MemoryFact, utcnow
+from app.prompts import prompt_registry
 
 
 MemoryKind = Literal["preference", "business_rule", "shop_context", "goal"]
@@ -294,11 +295,7 @@ class MemoryService:
         if not config.memory_enabled or not EXTRACTION_HINT_RE.search(question):
             return []
         messages = [
-            SystemMessage(content=(
-                "从当前对话提取最多3条未来对话仍有价值的用户偏好、店铺事实、业务规则或目标。"
-                "不要保存一次性任务、模型回答、推测、手机号、邮箱、地址、密码、Token、API Key、"
-                "支付或银行卡信息。memory_key 使用小写英文 snake_case；没有合适内容就返回空数组。"
-            )),
+            SystemMessage(content=prompt_registry.get("memory_extract").content),
             HumanMessage(content=f"用户：{question[:3000]}\n助手：{answer[:3000]}"),
         ]
         try:
@@ -353,8 +350,8 @@ class MemoryService:
             transcript = "\n".join(f"{row.role}: {row.content[:1500]}" for row in rows)[-10_000:]
         messages = [
             SystemMessage(content=(
-                "压缩会话事实与未完成事项，不添加推测，不保存凭据。"
-                f"摘要不得超过{config.conversation_summary_max_chars}个字符。"
+                prompt_registry.get("conversation_summary").content
+                + f"\n摘要不得超过{config.conversation_summary_max_chars}个字符。"
             )),
             HumanMessage(content=f"已有摘要：{previous or '无'}\n新增消息：\n{transcript}"),
         ]
@@ -376,7 +373,7 @@ class MemoryService:
             session.summary = summary.summary[:config.conversation_summary_max_chars]
             session.summary_version += 1
             session.summary_through_sequence = through
-            session.summary_prompt_version = "conversation_summary@1"
+            session.summary_prompt_version = prompt_registry.fingerprint("conversation_summary")["prompt"]
             session.summary_updated_at = utcnow()
 
     def _get(self, db: Session, user_id: str, memory_id: str) -> MemoryFact:

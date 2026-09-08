@@ -67,6 +67,7 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
             history=history,
             model=selected_model,
             plan=plan,
+            user_id=context.user.id,
         )
     except AppError:
         raise
@@ -75,7 +76,18 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
         raise AppError("chat_failed", "生成回答失败，请稍后重试", 503) from exc
     with db_session() as db:
         session = chat_service.get_session(db, context.user.id, request.session_id)
-        assistant_message = chat_service.add_message(db, session, "assistant", result.answer)
+        assistant_message = chat_service.add_message(
+            db,
+            session,
+            "assistant",
+            result.answer,
+            metadata={
+                "prompt_bundle": result.prompt_bundle,
+                "planner": result.planner,
+                "route": result.route,
+                "tools": list(result.tools),
+            },
+        )
         message_id = assistant_message.id
     candidates = await memory_service.capture_candidates(
         context.user.id,
@@ -98,6 +110,8 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
         "planner": result.planner,
         "route": result.route,
         "memory_candidates": candidates,
+        "citations": list(result.citations),
+        "prompt_bundle": result.prompt_bundle,
     }
 
 
@@ -120,6 +134,7 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
             history=history,
             model=selected_model,
             plan=plan,
+            user_id=context.user.id,
         ):
             if chunk.get("type") == "content":
                 full_answer += str(chunk.get("data") or "")
@@ -133,12 +148,19 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
             if chunk.get("type") in {"complete", "error"} and full_answer and not stored:
                 with db_session() as db:
                     session = chat_service.get_session(db, context.user.id, request.session_id)
+                    complete_data = chunk.get("data") if isinstance(chunk.get("data"), dict) else {}
                     assistant_message = chat_service.add_message(
                         db,
                         session,
                         "assistant",
                         full_answer,
                         "failed" if failed else "complete",
+                        metadata={
+                            "prompt_bundle": complete_data.get("prompt_bundle"),
+                            "planner": complete_data.get("planner"),
+                            "route": complete_data.get("route"),
+                            "tools": complete_data.get("tools") or [],
+                        },
                     )
                     message_id = assistant_message.id
                 stored = True

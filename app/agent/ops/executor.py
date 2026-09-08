@@ -11,6 +11,8 @@ from loguru import logger
 from app.config import config
 from app.agent.dispatcher import read_only_tool_dispatcher
 from app.core.llm_factory import llm_factory
+from app.core.agent_context import current_agent_user_id
+from app.prompts import prompt_registry
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from .state import PlanExecuteState
 from .utils import create_ops_model
@@ -33,13 +35,17 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
         context = state.get("context") or {}
         deterministic_plan = read_only_tool_dispatcher.plan_all(task)
         if deterministic_plan.tools:
-            executions = await read_only_tool_dispatcher.execute(
-                deterministic_plan,
-                task,
-                date_from=str(context.get("date_from") or ""),
-                date_to=str(context.get("date_to") or ""),
-                timezone=str(context.get("timezone") or "UTC"),
-            )
+            token = current_agent_user_id.set(context.get("user_id"))
+            try:
+                executions = await read_only_tool_dispatcher.execute(
+                    deterministic_plan,
+                    task,
+                    date_from=str(context.get("date_from") or ""),
+                    date_to=str(context.get("date_to") or ""),
+                    timezone=str(context.get("timezone") or "UTC"),
+                )
+            finally:
+                current_agent_user_id.reset(token)
             result = json.dumps(
                 {item.name: item.result for item in executions},
                 ensure_ascii=False,
@@ -60,23 +66,7 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
         tool_node = ToolNode(all_tools)
 
         messages = [
-            SystemMessage(content="""你是 Shopify 独立站运营数据执行引擎。
-
-你的职责是执行具体的分析步骤，获取真实数据。对于每个步骤：
-1. 理解步骤目标
-2. 选择最合适的工具并调用（优先使用步骤中指定的工具）
-3. 从返回数据中提取关键指标（数字、趋势、异常值）
-4. 用 2~3 句话总结发现，聚焦于运营决策价值
-
-**数字表述规范：**
-                - 金额必须沿用工具返回的店铺币种，保留两位小数
-- 百分比变化标注方向（↑12% / ↓8%）
-- 时间范围必须明确（如"过去 7 天"）
-
-注意：
-- 不要编造数据，只返回工具实际获取的信息
-- 如果工具调用失败，说明失败原因并给出推断
-- 专注于当前步骤，不要考虑其他任务"""),
+            SystemMessage(content=prompt_registry.get("ops_executor").content),
             HumanMessage(content=(
                 f"请执行以下运营分析步骤: {task}\n"
                 f"用户请求上下文: {state.get('context') or {}}\n"
@@ -92,7 +82,11 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
         if hasattr(llm_response, "tool_calls") and llm_response.tool_calls:
             logger.info(f"检测到 {len(llm_response.tool_calls)} 个工具调用")
             messages.append(llm_response)
-            tool_messages = await tool_node.ainvoke({"messages": messages})
+            token = current_agent_user_id.set(context.get("user_id"))
+            try:
+                tool_messages = await tool_node.ainvoke({"messages": messages})
+            finally:
+                current_agent_user_id.reset(token)
             messages.extend(tool_messages["messages"])
             final_response = await llm_with_tools.ainvoke(messages)
             result = final_response.content if hasattr(final_response, 'content') else str(final_response)
