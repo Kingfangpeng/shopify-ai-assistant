@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArchiveRestore, FileText, Layers3, RefreshCw, Trash2, UploadCloud, X } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { knowledgeApi } from '../api/client.js'
 
 export default function Knowledge() {
+  const [searchParams] = useSearchParams()
+  const targetDocument = searchParams.get('document')
+  const targetChunk = searchParams.get('chunk')
   const [tab, setTab] = useState('active')
   const [documents, setDocuments] = useState([])
   const [selected, setSelected] = useState(null)
@@ -19,6 +23,11 @@ export default function Knowledge() {
     finally { setBusy('') }
   }
   useEffect(() => { setSelected(null); setChunks([]); load(tab) }, [tab]) // eslint-disable-line
+  useEffect(() => {
+    if (!targetDocument || selected || !documents.length) return
+    const document = documents.find(item => item.id === targetDocument)
+    if (document) showChunks(document)
+  }, [documents, targetDocument, selected]) // eslint-disable-line
 
   const upload = async event => {
     const file = event.target.files?.[0]; if (!file) return
@@ -68,7 +77,11 @@ export default function Knowledge() {
         </div>)}
       </section>
       <section className="panel chunk-panel"><div className="panel-heading"><span>{selected ? selected.name : '文档分片'}</span><small>{chunks.length ? `${chunks.length} 条` : ''}</small></div>
-        {!selected ? <div className="empty-panel"><Layers3 size={30} /><p>选择一份文档查看实际入库内容</p></div> : busy === 'chunks' ? <SkeletonList /> : chunks.map(chunk => <article className="chunk-card" key={chunk.id}><div><Layers3 size={15} /><b>{[chunk.h1, chunk.h2].filter(Boolean).join(' / ') || '文本片段'}</b><small>{chunk.char_count} 字符</small></div><p>{chunk.content}</p></article>)}
+        {!selected ? <div className="empty-panel"><Layers3 size={30} /><p>选择一份文档查看实际入库内容</p></div> : busy === 'chunks' ? <SkeletonList /> : chunks.map(chunk => <article
+          className={`chunk-card ${chunk.chunk_id === targetChunk ? 'citation-target' : ''}`}
+          key={chunk.id}
+          ref={node => { if (node && chunk.chunk_id === targetChunk) node.scrollIntoView({ block: 'center' }) }}
+        ><div><Layers3 size={15} /><b>{[chunk.h1, chunk.h2].filter(Boolean).join(' / ') || '文本片段'}</b><small>{chunk.char_count} 字符</small></div><p>{chunk.content}</p></article>)}
       </section>
     </div>
   </div>

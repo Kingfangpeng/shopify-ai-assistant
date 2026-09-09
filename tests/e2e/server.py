@@ -4,8 +4,11 @@ from __future__ import annotations
 
 from app.main import app
 from app.agent.semantic_planner import SemanticToolPlan, semantic_tool_planner
+from app.core.milvus_client import milvus_manager
 from app.services.model_catalog_service import model_catalog_service
 from app.services.rag_agent_service import rag_agent_service
+from app.services.retrieval.models import RetrievalOutcome
+from app.services.retrieval.pipeline import retrieval_pipeline
 from app.services.vector_store_manager import vector_store_manager
 
 stored_documents = []
@@ -29,6 +32,7 @@ def list_chunks(document_id, limit=50, offset=0):
     rows = [doc for doc in stored_documents if doc.metadata.get("document_id") == document_id]
     items = [{
         "id": f"e2e-{index}",
+        "chunk_id": doc.metadata.get("chunk_id", f"{document_id}:v1:c{index}"),
         "document_id": document_id,
         "file_name": doc.metadata.get("file_name"),
         "content": doc.page_content,
@@ -40,11 +44,43 @@ def list_chunks(document_id, limit=50, offset=0):
     return {"items": items, "limit": limit, "offset": offset, "has_more": False}
 
 
-async def query_stream(question, history, model=None, use_knowledge=True, user_id=None):
+async def query_stream(question, history, model=None, use_knowledge=True, user_id=None, knowledge_mode=None):
+    trace = [{
+        "type": "activity", "stage": "retrieval_started", "status": "running",
+        "operation": "retriever", "message": "正在检索当前用户的本地知识库",
+    }]
+    yield trace[-1]
     yield {"type": "status", "data": "正在检索知识库…"}
-    answer = f"已结合本地产品资料回答：{question}。当前会话包含 {len(history)} 条历史消息。"
+    document = stored_documents[0] if stored_documents else None
+    metadata = document.metadata if document else {}
+    citation = {
+        "document_id": metadata.get("document_id", "e2e-doc"),
+        "file_name": metadata.get("file_name", "product.md"),
+        "version": metadata.get("version", 1),
+        "chunk_id": metadata.get("chunk_id", "e2e-doc:v1:c0"),
+        "title": metadata.get("h1", "产品资料"),
+        "rank": 1,
+        "score": 0.99,
+        "snippet": document.page_content[:160] if document else "本地产品资料",
+        "cited": True,
+    }
+    completed = {
+        "type": "activity", "stage": "retrieval_completed", "status": "complete",
+        "operation": "retriever", "message": "知识库检索完成，从 1 个候选中采用 1 个证据",
+        "strategy": "rrf+flashrank", "candidates": 1, "selected": 1, "duration_ms": 8,
+        "files": [citation["file_name"]],
+    }
+    trace.append(completed)
+    yield completed
+    answer = (
+        f"已结合本地产品资料回答：{question}。当前会话包含 {len(history)} 条历史消息。"
+        f"【{citation['file_name']} v{citation['version']} {citation['chunk_id']}】"
+    )
     yield {"type": "content", "data": answer}
-    yield {"type": "complete", "data": {"answer": answer, "source": "knowledge_and_model", "model": model}}
+    yield {"type": "complete", "data": {
+        "answer": answer, "source": "knowledge_and_model", "model": model,
+        "trace": trace, "citations": [citation],
+    }}
 
 
 async def list_models(force=False):
@@ -58,11 +94,27 @@ async def list_models(force=False):
     }
 
 
+async def retrieve_for_e2e(query, user_id, mode):
+    return RetrievalOutcome(
+        query=query,
+        mode=mode,
+        status="no_match",
+        strategy="rrf+flashrank",
+        reranker_status="ready",
+        candidates=0,
+        duration_ms=2,
+        accepted=False,
+        decision="E2E 隔离检索没有匹配证据",
+    )
+
+
 vector_store_manager.add_documents = add_documents
 vector_store_manager.delete_document_version = delete_document_version
 vector_store_manager.list_chunks = list_chunks
 vector_store_manager.similarity_search = lambda _query, k=3, user_id=None: stored_documents[:k]
 rag_agent_service.query_stream = query_stream
+retrieval_pipeline.retrieve = retrieve_for_e2e
+milvus_manager.health_check = lambda: True
 model_catalog_service.list_models = list_models
 
 

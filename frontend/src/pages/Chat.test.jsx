@@ -101,3 +101,30 @@ it('停止后忽略迟到事件，切换会话取消旧流', async () => {
   view.rerender(<Chat session={{ id: 'session-2', title: '新的会话', messages: [] }} />)
   expect(screen.queryByText('测试停止')).not.toBeInTheDocument()
 })
+
+it('普通问答展示知识检索过程并保留引用文件', async () => {
+  const trace = [
+    { type: 'activity', stage: 'route_completed', operation: 'agent', status: 'complete', message: '已选择 knowledge 路由' },
+    { type: 'activity', stage: 'retrieval_completed', operation: 'retriever', status: 'complete', message: '知识库检索完成，从 12 个候选中采用 2 个证据' },
+    { type: 'activity', stage: 'citation_checked', operation: 'guardrail', status: 'complete', message: '引用校验完成：1/1' },
+  ]
+  vi.spyOn(globalThis, 'fetch').mockImplementation(async url => url === '/api/models' ? catalogResponse() : new Response([
+    ...trace.map(event => `data: ${JSON.stringify(event)}\n\n`),
+    'data: {"type":"content","data":"容量为 3840Wh"}\n\n',
+    `data: ${JSON.stringify({ type: 'complete', data: {
+      answer: '容量为 3840Wh', source: 'knowledge_and_model', model: 'pro', route: 'knowledge', trace,
+      citations: [{ document_id: 'doc-1', file_name: 'XRK-3600-manual.md', version: 1, chunk_id: 'doc-1:v1:c14', title: 'Product Specifications', score: 0.99, snippet: 'Capacity 3840Wh', cited: true }],
+    } })}\n\n`,
+  ].join('')))
+  const user = userEvent.setup()
+  render(<Chat session={session} />)
+  await user.type(await screen.findByLabelText('输入问题'), 'XRK-3600 的参数是什么')
+  await user.click(screen.getByRole('button', { name: '发送', exact: true }))
+
+  expect(await screen.findByText('容量为 3840Wh')).toBeInTheDocument()
+  expect(screen.getByText('执行过程')).toBeInTheDocument()
+  expect(screen.getAllByText('知识库检索').length).toBeGreaterThan(0)
+  await user.click(screen.getByText('查看来源'))
+  expect(screen.getByText('XRK-3600-manual.md')).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: '查看引用 XRK-3600-manual.md' })).toHaveAttribute('href', expect.stringContaining('doc-1'))
+})

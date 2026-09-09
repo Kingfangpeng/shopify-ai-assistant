@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { fetchModels, streamChat, streamOps } from '../api/client.js'
 import AnalysisTrace from '../components/chat/AnalysisTrace.jsx'
+import AgentActivity from '../components/chat/AgentActivity.jsx'
+import CitationList from '../components/chat/CitationList.jsx'
 
 const prompts = ['今天出了几单', '总结最近上传的产品资料', '设计一份低库存处理清单']
 const MODEL_KEY = 'shopify_ai_selected_model'
@@ -51,7 +53,8 @@ export default function Chat({ session, onComplete }) {
   const bottomRef = useRef(null)
   useEffect(() => { setMessages(session?.messages || []) }, [session])
   useEffect(() => {
-    setAnswerSource(session?.messages?.findLast(item => item.role === 'assistant')?.metadata?.mode === 'deep' ? 'ops' : 'knowledge_and_model')
+    const lastAnswer = session?.messages?.findLast(item => item.role === 'assistant')
+    setAnswerSource(lastAnswer?.metadata?.source || (lastAnswer?.metadata?.mode === 'deep' ? 'ops' : 'knowledge_and_model'))
     setAnswerWarning(''); setToolActivity([]); setRunning(false); setStatus('')
   }, [session?.id])
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages, status])
@@ -86,7 +89,7 @@ export default function Chat({ session, onComplete }) {
     const sessionId = session.id
     const token = ++runRef.current
     const current = () => runRef.current === token
-    const metadata = { mode: requestMode, model: requestModel, trace: [] }
+    const metadata = { mode: requestMode, model: requestModel, trace: [], citations: [] }
     const updateAnswer = fn => { if (current()) setMessages(items => items.map((item, index) => index === items.length - 1 ? fn(item) : item)) }
     setInput(''); setRunning(true); setStatus(requestMode === 'deep' ? '正在准备深度分析…' : '正在判断数据来源…'); setAnswerWarning(''); setToolActivity([])
     setMessages(items => [...items, { role: 'user', content: question, metadata }, { role: 'assistant', content: '', streaming: true, status: 'running', metadata }])
@@ -111,7 +114,21 @@ export default function Chat({ session, onComplete }) {
       onChunk: chunk => updateAnswer(item => ({ ...item, content: item.content + chunk })),
       onDone: async data => {
         if (!current()) return
-        updateAnswer(item => ({ ...item, streaming: false, status: 'complete', content: data?.response || data?.answer || item.content }))
+        updateAnswer(item => ({
+          ...item,
+          streaming: false,
+          status: 'complete',
+          content: data?.response || data?.answer || item.content,
+          metadata: {
+            ...item.metadata,
+            model: data?.model || item.metadata?.model,
+            route: data?.route || item.metadata?.route,
+            source: data?.source || item.metadata?.source,
+            tools: data?.tools || item.metadata?.tools || [],
+            citations: data?.citations || item.metadata?.citations || [],
+            trace: data?.trace || item.metadata?.trace || [],
+          },
+        }))
         const warning = data?.warnings?.[0]
         if (warning) setAnswerWarning(warning)
         setRunning(false); setStatus(''); setAnswerSource(data?.source || 'knowledge_and_model')
@@ -151,9 +168,11 @@ export default function Chat({ session, onComplete }) {
           {answerSource === 'shopify_analytics_and_knowledge' && 'Shopify Analytics + 本地知识库'}
           {answerSource === 'demo' && '演示数据'}
           {answerSource === 'knowledge_and_model' && '本地知识库 + 模型'}
+          {answerSource === 'knowledge_no_match' && '知识库已查 · 无相关证据'}
           {answerSource === 'model_only' && '仅模型 · 知识库离线'}
           {answerSource === 'model' && '模型理解 · 未查询业务数据'}
           {answerSource === 'ops' && '只读深度分析'}
+          {answerSource === 'ops_and_knowledge' && '深度分析 + 本地知识库'}
         </span>
       </div>
     </header>
@@ -169,8 +188,11 @@ export default function Chat({ session, onComplete }) {
       {messages.map((message, index) => <article className={`message ${message.role}`} key={message.id || index}>
         <div className="avatar">{message.role === 'user' ? <User size={16} /> : <Bot size={16} />}</div>
         <div className="message-content"><p className="message-label">{message.role === 'user' ? '你' : '运营助手'}</p>
-          {message.role === 'assistant' && message.metadata?.mode === 'deep' && <AnalysisTrace metadata={message.metadata} status={message.status} streaming={message.streaming} />}
+          {message.role === 'assistant' && (message.metadata?.trace || []).some(event => event.type === 'activity')
+            ? <AgentActivity metadata={message.metadata} status={message.status} streaming={message.streaming} />
+            : message.role === 'assistant' && message.metadata?.mode === 'deep' && <AnalysisTrace metadata={message.metadata} status={message.status} streaming={message.streaming} />}
           <div className="markdown-body"><ReactMarkdown remarkPlugins={[remarkGfm]}>{message.role === 'assistant' ? cleanAssistantContent(message.content) || (message.streaming ? ' ' : '') : message.content}</ReactMarkdown>{message.streaming && <span className="typing-caret" />}</div>
+          {message.role === 'assistant' && <CitationList citations={message.metadata?.citations || []} />}
           {(message.failed || ['failed', 'interrupted'].includes(message.status)) && <button className="retry-link" disabled={running} onClick={() => send(messages.slice(0, index).findLast(item => item.role === 'user')?.content || '', message.metadata || {})}><RotateCcw size={13} />重试</button>}
         </div>
       </article>)}
