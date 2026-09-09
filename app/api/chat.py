@@ -86,6 +86,9 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
                 "planner": result.planner,
                 "route": result.route,
                 "tools": list(result.tools),
+                "source": result.source,
+                "citations": list(result.citations),
+                "trace": list(result.trace),
             },
         )
         message_id = assistant_message.id
@@ -111,6 +114,7 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
         "route": result.route,
         "memory_candidates": candidates,
         "citations": list(result.citations),
+        "trace": list(result.trace),
         "prompt_bundle": result.prompt_bundle,
     }
 
@@ -129,6 +133,7 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
         full_answer = ""
         failed = False
         stored = False
+        trace = []
         async for chunk in chat_agent_service.query_stream(
             request.question,
             history=history,
@@ -138,6 +143,8 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
         ):
             if chunk.get("type") == "content":
                 full_answer += str(chunk.get("data") or "")
+            if chunk.get("type") == "activity" and isinstance(chunk, dict):
+                trace = (trace + [chunk])[-80:]
             if chunk.get("type") == "error":
                 failed = True
                 data = chunk.get("data")
@@ -149,6 +156,7 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
                 with db_session() as db:
                     session = chat_service.get_session(db, context.user.id, request.session_id)
                     complete_data = chunk.get("data") if isinstance(chunk.get("data"), dict) else {}
+                    complete_trace = complete_data.get("trace") if isinstance(complete_data.get("trace"), list) else trace
                     assistant_message = chat_service.add_message(
                         db,
                         session,
@@ -160,6 +168,9 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
                             "planner": complete_data.get("planner"),
                             "route": complete_data.get("route"),
                             "tools": complete_data.get("tools") or [],
+                            "source": complete_data.get("source") or "model",
+                            "citations": complete_data.get("citations") or [],
+                            "trace": complete_trace[-80:],
                         },
                     )
                     message_id = assistant_message.id

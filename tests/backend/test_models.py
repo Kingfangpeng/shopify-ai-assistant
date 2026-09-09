@@ -42,7 +42,7 @@ async def test_knowledge_dependency_error_degrades_safely_without_leaking_detail
 
     monkeypatch.setattr(
         vector_store_manager,
-        "similarity_search",
+        "search",
         lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("127.0.0.1:19530 secret path")),
     )
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeModel())

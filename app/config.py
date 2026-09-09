@@ -53,6 +53,11 @@ class Settings(BaseSettings):
     reranker_model: str = "ms-marco-MultiBERT-L-12"
     reranker_cache_dir: str = "./volumes/models/flashrank"
     reranker_max_length: int = 192
+    reranker_intra_op_threads: int = 4
+    rag_probe_min_score: float = 0.70
+    rag_required_min_score: float = 0.20
+    rag_selected_document_min_score: float = 0.08
+    rag_identifier_document_min_score: float = 0.05
     chunk_max_size: int = 800
     chunk_overlap: int = 100
 

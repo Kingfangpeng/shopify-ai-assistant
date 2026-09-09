@@ -50,6 +50,85 @@ tests/
 
 ## 验收门槛
 
+### 2026-09-09：RAG 路由修复、可观察过程与可追溯引用（king 已确认）
+
+本轮以 `E:\cursor code\Claude\Shopify_ai` 为改造目标，`E:\Trae_code\chatbot` 只作为交互与实现对照，不直接复制其 Chroma 检索层。模型、Embedding 与验收继续只使用本地 Ollama，不调用 DeepSeek API。
+
+#### 已复现问题与根因
+
+- Ark3600 文档在 SQLite 中为 `active`，版本 1，共 19 个分片；同一句“Ark3600的参数是什么”直接检索时能够返回 5 条结果，产品规格分片位于前 2 名。
+- 本地 `qwen3.5:27b` 的语义规划把该问题判为 `route=chat`，因此聊天编排没有调用知识库。强制 `route=knowledge` 后可以生成包含容量、输入、输出、尺寸、重量等参数及 chunk 引用的回答。
+- 后端普通聊天的完成事件已经包含 `citations`，但前端只保存回答正文；SSE 持久化也没有保存引用和普通聊天过程。页面刷新后更无法回看检索过程。
+- 深度分析的 Planner 在节点内部静默检索知识库，外层只能看到“制定计划完成”，无法告诉用户是否检索、命中哪些文件或是否降级。
+- 对照项目 `E:\Trae_code\chatbot` 的优点是能显示检索文件、片段和距离；但它使用 Chroma 单路稠密 Top-K、固定字符切片，并在阈值过滤为空时重新采用全部结果。调试展示还会重复检索一次，展示证据与实际回答证据可能不一致。
+
+#### 目标目录结构
+
+```text
+app/
+  services/
+    retrieval/
+      models.py               统一检索结果、证据、引用与公开过程模型
+      evidence_policy.py      型号归一化、相关性门槛、证据采用/拒绝规则
+      pipeline.py             稠密/BM25、RRF、FlashRank 与证据选择编排
+    vector_store_manager.py   保留为 Milvus 读写、索引与别名切换适配器
+    rag_agent_service.py      兼容现有调用，组装受证据约束的回答上下文
+    chat/
+      events.py               普通/深度模式共用的版本化、安全事件协议
+      agent_service.py        路由、知识探测、工具和生成的顶层编排
+      service.py              回答、引用和有界过程的 SQLite 持久化
+    ops_agent_service.py      深度分析节点与统一事件协议的桥接
+  agent/ops/planner.py        只负责生成计划，不再私下检索知识库
+  api/chat.py                 REST/SSE 使用同一结果模型和持久化字段
+
+frontend/src/
+  components/chat/
+    AgentActivity.jsx         可折叠活动时间线，显示调用目的、状态和耗时
+    CitationList.jsx          文件、版本、标题、chunk、片段和相关分数
+  api/client.js               解码统一事件，不丢弃引用和过程
+  pages/Chat.jsx              每条助手消息绑定过程与引用，刷新后可回看
+  pages/Knowledge.jsx         通过 document_id/chunk_id 定位引用分片
+
+tests/
+  backend/
+    test_rag_routing_and_trace.py
+    test_rag_citations.py
+  frontend/
+    Chat.test.jsx
+  fixtures/
+    rag_product_identifier_routing.json 产品名/型号、实时数据、写操作与通用概念边界
+```
+
+#### 模块边界与数据流
+
+1. `vector_store_manager.py` 只处理 Milvus、用户过滤、稠密/BM25 双路召回和影子集合；`retrieval/pipeline.py` 负责一次请求内的查询归一化、RRF、FlashRank、证据采用和公开统计。回答上下文、前端片段和引用必须来自同一个 `RetrievalResult`，禁止为了展示再次检索。
+2. 语义规划仍负责 Shopify 工具与写操作边界。`knowledge`/`mixed` 路由直接检索；`chat` 路由执行一次本地只读知识探测，只有证据策略通过才升级为知识回答。型号采用大小写、连字符和全半角归一化，保留 SKU/数字；相关性阈值通过固定集校准，不凭单次 Ark3600 结果硬编码。普通寒暄或无相关证据仍走通用回答。
+3. 普通与深度模式共用版本化事件：`model_call_started/completed`、`route_completed`、`retrieval_started/completed`、`rerank_completed`、`evidence_selected`、`tool_started/completed`、`generation_started/completed`、`citation_checked`。前端展示模型正在执行的外部动作、数据来源、结果摘要和耗时，不展示模型隐藏思维链、系统 Prompt 或完整原始工具输出。
+4. 深度分析在进入 LangGraph Planner 前通过统一 Pipeline 取得知识证据并写入 state；Planner 不再自行调用 `retrieve_knowledge`。这样知识检索可流式显示，普通与深度模式引用口径一致。
+5. 引用以 `document_id + version + chunk_id` 为身份，附安全截断的片段、标题、文件名、排序和分数。生成后只接受本轮证据集中的引用；引用与有界事件写入现有 `details_json`，刷新后可回看。前端链接到知识库页面对应文档和 chunk，不暴露服务器存储路径。
+
+#### 关键取舍
+
+1. **保留 Milvus 混合检索，吸收 chatbot 的可视化交互。** 当前项目已有稠密 20 + BM25 20、RRF 12、FlashRank 5、用户隔离、版本和影子别名，能力高于 chatbot 的 Chroma 单向量 Top-K。替换底座会丢失生产能力，收益只在界面层。
+2. **展示可审计活动，不展示隐藏推理文本。** 用户能看到模型何时路由、检索、精排、调用工具、生成和校验引用，以及每步结果；内部思维链不稳定且可能包含系统信息，不作为产品数据。
+3. **回答与展示共享同一次检索。** chatbot 为调试面板和回答各检索一次，可能出现两份结果。新结构将检索结果作为单一事实源，同时供 Prompt、SSE、引用卡片和历史记录使用。
+4. **对 `chat` 路由增加本地证据探测，而非只修改 Prompt。** Prompt 升级为新版本并补充产品型号示例，但证据探测负责消除一次路由误判造成的完全漏检；证据门槛负责阻止无关片段污染普通回答。
+
+#### 开源调研结论
+
+- LangGraph 的流式协议把 `messages`、`updates`、`tools`、`lifecycle` 和 `custom` 分为不同事件通道，适合采用“版本化事件信封 + 类型化载荷”，而不是让前端解析日志字符串：<https://github.com/langchain-ai/streaming-cookbook>。
+- Vercel AI SDK 将文档来源建模为独立的 `source-document` 消息部分，包含稳定 ID、标题、文件名和媒体类型；本项目沿用“正文与来源分开传输和渲染”的思路，不把文件名只拼进回答文本：<https://github.com/vercel/ai/blob/main/packages/ai/src/ui/ui-messages.ts>。
+- OpenInference 将 Agent、LLM、Retriever、Reranker、Tool 设为独立 span 类型，并为检索文档定义 ID、分数和内容属性；本项目的公开事件字段采用相同职责划分，但暂不引入外部遥测服务：<https://github.com/Arize-ai/openinference/blob/main/spec/semantic_conventions.md>。
+
+#### 验收标准
+
+- “Ark3600的参数是什么”无需出现“上传、文档、手册”等提示词，也会检索当前用户知识库，回答包含有效文件、版本和 chunk 引用；页面明确显示路由、检索、候选、精排、证据、生成和引用校验状态。
+- 无相关资料的普通问题不会采用伪相关分片；知识库离线、FlashRank 降级和零命中分别显示不同状态，不再统一表现为“没资料”。
+- 普通与深度模式都保存有界过程和引用；刷新会话后仍能回看，切换用户无法读取他人的文件名、片段、分数或 chunk。
+- 后端覆盖产品型号路由回退、证据门槛、一次检索复用、引用白名单、SSE/REST 一致性和用户隔离；前端覆盖实时过程、引用卡片、历史恢复和失败状态。
+- 使用合成型号固定集校准门槛，并以当前本机 Ark3600 文档做不提交仓库的真实端到端验证；运行后端测试、前端 Vitest、构建、RAG 固定集、相关路由回归和浏览器截图。
+- 所有真实模型验证使用 `qwen3.5:27b`，Embedding 使用 `nomic-embed-text:latest`，不访问 `api.deepseek.com`。
+
 ### 2026-09-08：P1 六项生产化优化（king 已确认）
 
 本轮在普通聊天和 LangGraph 深度分析之间复用同一套记忆、检索、工具协议和 Prompt 版本能力；模型相关开发与验收固定使用本地 Ollama qwen3.5:27b，测试禁止访问 DeepSeek API。

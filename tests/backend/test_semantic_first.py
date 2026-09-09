@@ -170,7 +170,7 @@ async def test_mixed_route_dependency_failure_is_explicit(monkeypatch):
     def unavailable(*_args, **_kwargs):
         raise RuntimeError("Milvus offline")
 
-    monkeypatch.setattr(vector_store_manager, "similarity_search", unavailable)
+    monkeypatch.setattr(vector_store_manager, "search", unavailable)
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: pytest.fail("缺少资料不推测政策"))
     plan = DispatchPlan(("get_inventory_levels",), True, "测试", "semantic_tool_call", "mixed")
     answer, used_knowledge = await chat_agent_service._answer("按手册看库存", [], "test", plan, [], "库存统计")

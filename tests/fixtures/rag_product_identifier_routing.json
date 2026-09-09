@@ -1,0 +1,86 @@
+[
+  {
+    "id": "product_model_params",
+    "category": "型号资料路由",
+    "question": "Ark3600 的参数是什么？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_model_hyphen",
+    "category": "型号资料路由",
+    "question": "XRK-3600 的充电时间和输出功率是多少？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_sku_warranty",
+    "category": "型号资料路由",
+    "question": "SKU AB-4200 的保修期多久？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_name_usage",
+    "category": "型号资料路由",
+    "question": "ABOK Ark3600 应该怎么使用？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_fullwidth_model",
+    "category": "型号资料路由",
+    "question": "Ａｒｋ３６００有哪些接口？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_comparison",
+    "category": "型号资料路由",
+    "question": "Ark3600 和 Ark2000 的规格有什么区别？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "unknown_model_still_knowledge",
+    "category": "型号资料路由",
+    "question": "ZZZ-9999 的故障码 E17 是什么意思？",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "product_live_sales",
+    "category": "型号与实时数据边界",
+    "question": "本月 Ark3600 卖了多少台？",
+    "expected_tools": ["get_product_performance"],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "product_manual_and_live_sales",
+    "category": "型号与实时数据边界",
+    "question": "结合 Ark3600 产品手册和最近 7 天销量分析它的表现。",
+    "expected_tools": ["get_product_performance"],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "product_write_request",
+    "category": "型号与写操作边界",
+    "question": "把 Ark3600 参数写进 Shopify 商品页并发布。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "generic_capacity_concept",
+    "category": "型号与通用概念边界",
+    "question": "请解释 3600Wh 代表什么，不用读取我的资料。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "generic_rag_concept",
+    "category": "型号与通用概念边界",
+    "question": "什么是 RAG 检索增强生成？",
+    "expected_tools": [],
+    "expected_route": "chat"
+  }
+]
