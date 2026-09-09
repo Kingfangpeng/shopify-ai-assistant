@@ -8,6 +8,7 @@ from app.core.errors import AppError
 from app.core.llm_factory import llm_factory
 from app.db.engine import db_session
 from app.db.models import ChatSession, MemoryFact, User, utcnow
+from app.services.chat import chat_service
 from app.services.memory import memory_service
 
 
@@ -122,3 +123,58 @@ def test_local_llm_mode_allows_ollama_loopback(monkeypatch):
     monkeypatch.setattr(config, "local_llm_only", True)
     model = llm_factory.create_chat_model(base_url="http://127.0.0.1:11434/v1", api_key="local")
     assert str(model.openai_api_base).startswith("http://127.0.0.1:11434")
+
+
+@pytest.mark.asyncio
+async def test_long_conversation_is_summarized_and_old_turns_are_not_duplicated(monkeypatch):
+    user_id = _user("summary_user")
+    session_id = _session(user_id)
+    with db_session() as db:
+        session = chat_service.get_session(db, user_id, session_id)
+        chat_service.add_message(db, session, "user", "第一条旧问题")
+        chat_service.add_message(db, session, "assistant", "第一条旧回答")
+
+    class FakeModel:
+        def with_structured_output(self, schema, *, method):
+            assert method == "function_calling"
+
+            class Chain:
+                async def ainvoke(self, _messages):
+                    return schema(summary="用户询问过第一条问题，助手已回答。")
+
+            return Chain()
+
+    monkeypatch.setattr(config, "conversation_summary_message_threshold", 2)
+    monkeypatch.setattr(config, "conversation_summary_char_threshold", 100_000)
+    monkeypatch.setattr(config, "conversation_summary_timeout_seconds", 1.0)
+    monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeModel())
+
+    await memory_service.maybe_refresh_summary(user_id, session_id, "local-test")
+
+    with db_session() as db:
+        session = chat_service.get_session(db, user_id, session_id)
+        assert session.summary_version == 1
+        assert session.summary_through_sequence == 2
+        assert chat_service.recent_context(db, user_id, session_id) == []
+        history = memory_service.context_history(db, user_id, session_id, [])
+        assert "第一条问题" in history[0]["content"]
+
+
+def test_recent_context_prioritizes_latest_unsummarized_turn():
+    user_id = _user("recent_user")
+    session_id = _session(user_id)
+    with db_session() as db:
+        session = chat_service.get_session(db, user_id, session_id)
+        chat_service.add_message(db, session, "user", "已经进入摘要的问题")
+        chat_service.add_message(db, session, "assistant", "已经进入摘要的回答")
+        session.summary = "较早对话摘要"
+        session.summary_through_sequence = 2
+        chat_service.add_message(db, session, "user", "first-new")
+        chat_service.add_message(db, session, "assistant", "latest")
+
+    with db_session() as db:
+        recent = chat_service.recent_context(db, user_id, session_id, char_limit=6)
+        assert recent == [{"role": "assistant", "content": "latest"}]
+        history = memory_service.context_history(db, user_id, session_id, recent)
+        assert "较早对话摘要" in history[0]["content"]
+        assert history[-1] == {"role": "assistant", "content": "latest"}

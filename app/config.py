@@ -64,6 +64,7 @@ class Settings(BaseSettings):
     conversation_summary_message_threshold: int = 12
     conversation_summary_char_threshold: int = 8000
     conversation_summary_max_chars: int = 2000
+    conversation_summary_timeout_seconds: float = 45.0
 
     # ── Shopify Admin API ──────────────────────────────────────────
     shopify_store_domain: str = ""

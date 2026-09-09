@@ -362,7 +362,10 @@ class MemoryService:
         try:
             llm = llm_factory.create_chat_model(model=model, temperature=0, streaming=False)
             chain = llm.with_structured_output(SummaryResult, method="function_calling")
-            result = await asyncio.wait_for(chain.ainvoke(messages), timeout=12)
+            result = await asyncio.wait_for(
+                chain.ainvoke(messages),
+                timeout=config.conversation_summary_timeout_seconds,
+            )
             summary = result if isinstance(result, SummaryResult) else SummaryResult.model_validate(result)
         except Exception as exc:
             logger.info("会话摘要刷新跳过: {}", type(exc).__name__)

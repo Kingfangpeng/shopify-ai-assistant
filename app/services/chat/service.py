@@ -66,21 +66,26 @@ class ChatService:
         session.updated_at = utcnow()
 
     def recent_context(self, db: Session, user_id: str, session_id: str, count: int = 12, char_limit: int = 8000) -> list[dict[str, str]]:
-        self.get_session(db, user_id, session_id)
+        session = self.get_session(db, user_id, session_id)
         rows = list(db.scalars(
-            select(ChatMessage).where(ChatMessage.session_id == session_id, ChatMessage.status == "complete")
+            select(ChatMessage).where(
+                ChatMessage.session_id == session_id,
+                ChatMessage.status == "complete",
+                ChatMessage.sequence > session.summary_through_sequence,
+            )
             .order_by(ChatMessage.sequence.desc()).limit(max(1, min(count, 12)))
         ))
         result: list[dict[str, str]] = []
         used = 0
-        for row in reversed(rows):
+        # 从最新消息向前分配字符预算，再恢复时间顺序，避免长会话丢掉最新一轮。
+        for row in rows:
             remaining = char_limit - used
             if remaining <= 0:
                 break
             content = row.content[-remaining:]
             result.append({"role": row.role, "content": content})
             used += len(content)
-        return result
+        return list(reversed(result))
 
     def import_sessions(self, db: Session, user_id: str, sessions: Iterable[dict]) -> dict[str, int]:
         imported = skipped = 0

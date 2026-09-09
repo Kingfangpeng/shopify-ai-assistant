@@ -16,6 +16,7 @@ from .utils import format_tools_description, create_ops_model
 from app.services.output_safety import sanitize_model_output
 from app.prompts import prompt_registry
 from app.agent.tool_registry import TOOL_SPEC_REGISTRY
+from .planner import PlanStep, render_plan_steps
 
 
 def _has_explicit_data_step(steps: list[str]) -> bool:
@@ -33,9 +34,10 @@ class Act(BaseModel):
     action: Literal["continue", "replan", "respond"] = Field(
         description="下一步行动，必须是以下三种之一：'continue'、'replan'、'respond'"
     )
-    new_steps: List[str] = Field(
+    new_steps: List[PlanStep] = Field(
         default_factory=list,
-        description="新的步骤列表（action 为 'replan' 时使用）"
+        max_length=8,
+        description="新的结构化步骤列表（action 为 'replan' 时使用）"
     )
 
 
@@ -105,12 +107,9 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
                 "tools_description": tools_description
             })
 
-            if isinstance(act, Act):
-                action = act.action
-                new_steps = act.new_steps
-            else:
-                action = act.get("action", "continue")  # type: ignore
-                new_steps = act.get("new_steps", [])  # type: ignore
+            parsed_act = act if isinstance(act, Act) else Act.model_validate(act)
+            action = parsed_act.action
+            new_steps = parsed_act.new_steps
 
             logger.info(f"Replanner 决策: {action}")
 
@@ -127,13 +126,14 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
                     logger.warning(f"超出限制，禁止 replan，强制生成报告")
                     return await _generate_response(state, llm)
 
-                if len(new_steps) > len(plan):
-                    logger.warning(f"新步骤数 {len(new_steps)} > 剩余步骤数 {len(plan)}，截断")
-                    new_steps = new_steps[:len(plan)]
+                rendered_steps = render_plan_steps(new_steps)
+                if len(rendered_steps) > len(plan):
+                    logger.warning(f"新步骤数 {len(rendered_steps)} > 剩余步骤数 {len(plan)}，截断")
+                    rendered_steps = rendered_steps[:len(plan)]
 
-                logger.info(f"决定调整计划，新步骤数量: {len(new_steps)}")
-                if new_steps:
-                    return {"plan": [str(step)[:1000] for step in new_steps], "replan_count": replan_count + 1}
+                logger.info(f"决定调整计划，新步骤数量: {len(rendered_steps)}")
+                if rendered_steps:
+                    return {"plan": rendered_steps, "replan_count": replan_count + 1}
                 else:
                     logger.warning("replan 但未提供新步骤，继续执行原计划")
                     return {}
