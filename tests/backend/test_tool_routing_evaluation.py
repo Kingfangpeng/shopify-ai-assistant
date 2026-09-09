@@ -6,6 +6,7 @@ import pytest
 from app.agent.dispatcher import DispatchPlan
 from scripts.evaluate_tool_routing import (
     EvaluationResult, calculate_metrics, chat_agent_service, evaluate_case, load_cases,
+    load_suite_manifest,
 )
 
 
@@ -46,6 +47,39 @@ def test_tool_routing_metrics_count_exact_precision_and_recall():
     assert metrics["tool_recall"] == 0.5
     assert metrics["tool_f1"] == 0.5
     assert metrics["negative_accuracy"] == 1.0
+
+
+def test_production_suite_manifest_loads_all_unique_cases():
+    path = Path(__file__).parents[1] / "fixtures" / "evaluation" / "manifest.json"
+    cases, source = load_suite_manifest(path)
+    assert len(cases) == 1500
+    assert len({case["id"] for case in cases}) == 1500
+    assert len({case["question"] for case in cases}) == 1500
+    assert source["suite_version"] == "routing-production-v1"
+    assert len(source["files"]) == 5
+
+
+def test_metrics_include_routes_percentiles_and_repeat_stability():
+    first = _result(expected=("get_orders_summary",), actual=("get_orders_summary",), exact=True)
+    same = _result(expected=("get_orders_summary",), actual=("get_orders_summary",), exact=True)
+    changed_first = _result(expected=("get_orders_summary",), actual=("get_orders_summary",), exact=True)
+    changed_second = _result(expected=("get_orders_summary",), actual=(), exact=False)
+    first = EvaluationResult(**{**first.__dict__, "case_id": "stable", "expected_route": "shopify", "route": "shopify", "elapsed_ms": 10})
+    same = EvaluationResult(**{**same.__dict__, "case_id": "stable", "expected_route": "shopify", "route": "shopify", "elapsed_ms": 20})
+    changed_first = EvaluationResult(**{**changed_first.__dict__, "case_id": "changed", "expected_route": "shopify", "route": "shopify", "elapsed_ms": 30})
+    changed_second = EvaluationResult(**{**changed_second.__dict__, "case_id": "changed", "expected_route": "shopify", "route": "chat", "elapsed_ms": 40})
+    metrics = calculate_metrics([first, same, changed_first, changed_second])
+    assert metrics["route_accuracy"] == 3 / 4
+    assert metrics["route_confusion_matrix"] == {"shopify": {"chat": 1, "shopify": 3}}
+    assert metrics["p50_latency_ms"] == 30
+    assert metrics["p95_latency_ms"] == 40
+    assert metrics["repeat_stability"] == 0.5
+
+
+def test_single_run_does_not_claim_repeat_stability():
+    metrics = calculate_metrics([_result(expected=(), actual=(), exact=True)])
+    assert metrics["repeat_stability"] is None
+    assert metrics["repeated_cases"] == 0
 
 
 @pytest.mark.asyncio

@@ -1,0 +1,4486 @@
+[
+  {
+    "id": "para_compare_order_periods_01",
+    "category": "噪声-订单对比",
+    "question": "随口问下，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_02",
+    "category": "噪声-订单对比",
+    "question": "麻烦帮我看下，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_03",
+    "category": "噪声-订单对比",
+    "question": "运营例会前查一下：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_04",
+    "category": "噪声-订单对比",
+    "question": "老板刚问，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_05",
+    "category": "噪声-订单对比",
+    "question": "只给结论，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_06",
+    "category": "噪声-订单对比",
+    "question": "不用解释概念，直接查数：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_07",
+    "category": "噪声-订单对比",
+    "question": "quick check：比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_08",
+    "category": "噪声-订单对比",
+    "question": "pls 看看 比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_09",
+    "category": "噪声-订单对比",
+    "question": "手机上随手问一句，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_10",
+    "category": "噪声-订单对比",
+    "question": "我表达可能不标准：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_11",
+    "category": "噪声-订单对比",
+    "question": "按店铺时区，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_12",
+    "category": "噪声-订单对比",
+    "question": "数据口径照后台，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_13",
+    "category": "噪声-订单对比",
+    "question": "先别分析原因，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_14",
+    "category": "噪声-订单对比",
+    "question": "给我一个简短表格，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_15",
+    "category": "噪声-订单对比",
+    "question": "急，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_16",
+    "category": "噪声-订单对比",
+    "question": "今天复盘时想知道：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_17",
+    "category": "噪声-订单对比",
+    "question": "运营同事说要查，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_18",
+    "category": "噪声-订单对比",
+    "question": "could you check：比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_19",
+    "category": "噪声-订单对比",
+    "question": "帮偶看下，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_20",
+    "category": "噪声-订单对比",
+    "question": "麻烦看哈，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_21",
+    "category": "噪声-订单对比",
+    "question": "直接走只读查询，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_22",
+    "category": "噪声-订单对比",
+    "question": "如果方便的话，比较最近 7 天和前 7 天的订单量与 GMV？",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_23",
+    "category": "噪声-订单对比",
+    "question": "我换个说法，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_compare_order_periods_24",
+    "category": "噪声-订单对比",
+    "question": "最后确认一下，比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_01",
+    "category": "噪声-订单汇总",
+    "question": "随口问下，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_02",
+    "category": "噪声-订单汇总",
+    "question": "麻烦帮我看下，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_03",
+    "category": "噪声-订单汇总",
+    "question": "运营例会前查一下：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_04",
+    "category": "噪声-订单汇总",
+    "question": "老板刚问，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_05",
+    "category": "噪声-订单汇总",
+    "question": "只给结论，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_06",
+    "category": "噪声-订单汇总",
+    "question": "不用解释概念，直接查数：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_07",
+    "category": "噪声-订单汇总",
+    "question": "quick check：查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_08",
+    "category": "噪声-订单汇总",
+    "question": "pls 看看 查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_09",
+    "category": "噪声-订单汇总",
+    "question": "手机上随手问一句，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_10",
+    "category": "噪声-订单汇总",
+    "question": "我表达可能不标准：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_11",
+    "category": "噪声-订单汇总",
+    "question": "按店铺时区，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_12",
+    "category": "噪声-订单汇总",
+    "question": "数据口径照后台，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_13",
+    "category": "噪声-订单汇总",
+    "question": "先别分析原因，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_14",
+    "category": "噪声-订单汇总",
+    "question": "给我一个简短表格，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_15",
+    "category": "噪声-订单汇总",
+    "question": "急，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_16",
+    "category": "噪声-订单汇总",
+    "question": "今天复盘时想知道：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_17",
+    "category": "噪声-订单汇总",
+    "question": "运营同事说要查，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_18",
+    "category": "噪声-订单汇总",
+    "question": "could you check：查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_19",
+    "category": "噪声-订单汇总",
+    "question": "帮偶看下，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_20",
+    "category": "噪声-订单汇总",
+    "question": "麻烦看哈，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_21",
+    "category": "噪声-订单汇总",
+    "question": "直接走只读查询，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_22",
+    "category": "噪声-订单汇总",
+    "question": "如果方便的话，查最近 7 天订单量、GMV 和客单价？",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_23",
+    "category": "噪声-订单汇总",
+    "question": "我换个说法，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_orders_summary_24",
+    "category": "噪声-订单汇总",
+    "question": "最后确认一下，查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_01",
+    "category": "噪声-弃购",
+    "question": "随口问下，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_02",
+    "category": "噪声-弃购",
+    "question": "麻烦帮我看下，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_03",
+    "category": "噪声-弃购",
+    "question": "运营例会前查一下：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_04",
+    "category": "噪声-弃购",
+    "question": "老板刚问，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_05",
+    "category": "噪声-弃购",
+    "question": "只给结论，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_06",
+    "category": "噪声-弃购",
+    "question": "不用解释概念，直接查数：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_07",
+    "category": "噪声-弃购",
+    "question": "quick check：查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_08",
+    "category": "噪声-弃购",
+    "question": "pls 看看 查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_09",
+    "category": "噪声-弃购",
+    "question": "手机上随手问一句，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_10",
+    "category": "噪声-弃购",
+    "question": "我表达可能不标准：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_11",
+    "category": "噪声-弃购",
+    "question": "按店铺时区，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_12",
+    "category": "噪声-弃购",
+    "question": "数据口径照后台，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_13",
+    "category": "噪声-弃购",
+    "question": "先别分析原因，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_14",
+    "category": "噪声-弃购",
+    "question": "给我一个简短表格，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_15",
+    "category": "噪声-弃购",
+    "question": "急，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_16",
+    "category": "噪声-弃购",
+    "question": "今天复盘时想知道：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_17",
+    "category": "噪声-弃购",
+    "question": "运营同事说要查，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_18",
+    "category": "噪声-弃购",
+    "question": "could you check：查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_19",
+    "category": "噪声-弃购",
+    "question": "帮偶看下，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_20",
+    "category": "噪声-弃购",
+    "question": "麻烦看哈，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_21",
+    "category": "噪声-弃购",
+    "question": "直接走只读查询，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_22",
+    "category": "噪声-弃购",
+    "question": "如果方便的话，查最近 7 天弃购数量和相关商品？",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_23",
+    "category": "噪声-弃购",
+    "question": "我换个说法，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_abandoned_checkouts_24",
+    "category": "噪声-弃购",
+    "question": "最后确认一下，查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_01",
+    "category": "噪声-库存",
+    "question": "随口问下，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_02",
+    "category": "噪声-库存",
+    "question": "麻烦帮我看下，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_03",
+    "category": "噪声-库存",
+    "question": "运营例会前查一下：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_04",
+    "category": "噪声-库存",
+    "question": "老板刚问，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_05",
+    "category": "噪声-库存",
+    "question": "只给结论，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_06",
+    "category": "噪声-库存",
+    "question": "不用解释概念，直接查数：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_07",
+    "category": "噪声-库存",
+    "question": "quick check：查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_08",
+    "category": "噪声-库存",
+    "question": "pls 看看 查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_09",
+    "category": "噪声-库存",
+    "question": "手机上随手问一句，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_10",
+    "category": "噪声-库存",
+    "question": "我表达可能不标准：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_11",
+    "category": "噪声-库存",
+    "question": "按店铺时区，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_12",
+    "category": "噪声-库存",
+    "question": "数据口径照后台，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_13",
+    "category": "噪声-库存",
+    "question": "先别分析原因，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_14",
+    "category": "噪声-库存",
+    "question": "给我一个简短表格，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_15",
+    "category": "噪声-库存",
+    "question": "急，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_16",
+    "category": "噪声-库存",
+    "question": "今天复盘时想知道：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_17",
+    "category": "噪声-库存",
+    "question": "运营同事说要查，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_18",
+    "category": "噪声-库存",
+    "question": "could you check：查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_19",
+    "category": "噪声-库存",
+    "question": "帮偶看下，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_20",
+    "category": "噪声-库存",
+    "question": "麻烦看哈，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_21",
+    "category": "噪声-库存",
+    "question": "直接走只读查询，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_22",
+    "category": "噪声-库存",
+    "question": "如果方便的话，查当前低库存 SKU？",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_23",
+    "category": "噪声-库存",
+    "question": "我换个说法，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_inventory_levels_24",
+    "category": "噪声-库存",
+    "question": "最后确认一下，查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_01",
+    "category": "噪声-商品表现",
+    "question": "随口问下，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_02",
+    "category": "噪声-商品表现",
+    "question": "麻烦帮我看下，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_03",
+    "category": "噪声-商品表现",
+    "question": "运营例会前查一下：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_04",
+    "category": "噪声-商品表现",
+    "question": "老板刚问，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_05",
+    "category": "噪声-商品表现",
+    "question": "只给结论，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_06",
+    "category": "噪声-商品表现",
+    "question": "不用解释概念，直接查数：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_07",
+    "category": "噪声-商品表现",
+    "question": "quick check：查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_08",
+    "category": "噪声-商品表现",
+    "question": "pls 看看 查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_09",
+    "category": "噪声-商品表现",
+    "question": "手机上随手问一句，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_10",
+    "category": "噪声-商品表现",
+    "question": "我表达可能不标准：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_11",
+    "category": "噪声-商品表现",
+    "question": "按店铺时区，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_12",
+    "category": "噪声-商品表现",
+    "question": "数据口径照后台，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_13",
+    "category": "噪声-商品表现",
+    "question": "先别分析原因，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_14",
+    "category": "噪声-商品表现",
+    "question": "给我一个简短表格，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_15",
+    "category": "噪声-商品表现",
+    "question": "急，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_16",
+    "category": "噪声-商品表现",
+    "question": "今天复盘时想知道：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_17",
+    "category": "噪声-商品表现",
+    "question": "运营同事说要查，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_18",
+    "category": "噪声-商品表现",
+    "question": "could you check：查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_19",
+    "category": "噪声-商品表现",
+    "question": "帮偶看下，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_20",
+    "category": "噪声-商品表现",
+    "question": "麻烦看哈，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_21",
+    "category": "噪声-商品表现",
+    "question": "直接走只读查询，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_22",
+    "category": "噪声-商品表现",
+    "question": "如果方便的话，查最近 7 天热销商品排行？",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_23",
+    "category": "噪声-商品表现",
+    "question": "我换个说法，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_product_performance_24",
+    "category": "噪声-商品表现",
+    "question": "最后确认一下，查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_01",
+    "category": "噪声-客户",
+    "question": "随口问下，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_02",
+    "category": "噪声-客户",
+    "question": "麻烦帮我看下，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_03",
+    "category": "噪声-客户",
+    "question": "运营例会前查一下：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_04",
+    "category": "噪声-客户",
+    "question": "老板刚问，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_05",
+    "category": "噪声-客户",
+    "question": "只给结论，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_06",
+    "category": "噪声-客户",
+    "question": "不用解释概念，直接查数：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_07",
+    "category": "噪声-客户",
+    "question": "quick check：查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_08",
+    "category": "噪声-客户",
+    "question": "pls 看看 查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_09",
+    "category": "噪声-客户",
+    "question": "手机上随手问一句，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_10",
+    "category": "噪声-客户",
+    "question": "我表达可能不标准：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_11",
+    "category": "噪声-客户",
+    "question": "按店铺时区，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_12",
+    "category": "噪声-客户",
+    "question": "数据口径照后台，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_13",
+    "category": "噪声-客户",
+    "question": "先别分析原因，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_14",
+    "category": "噪声-客户",
+    "question": "给我一个简短表格，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_15",
+    "category": "噪声-客户",
+    "question": "急，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_16",
+    "category": "噪声-客户",
+    "question": "今天复盘时想知道：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_17",
+    "category": "噪声-客户",
+    "question": "运营同事说要查，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_18",
+    "category": "噪声-客户",
+    "question": "could you check：查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_19",
+    "category": "噪声-客户",
+    "question": "帮偶看下，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_20",
+    "category": "噪声-客户",
+    "question": "麻烦看哈，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_21",
+    "category": "噪声-客户",
+    "question": "直接走只读查询，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_22",
+    "category": "噪声-客户",
+    "question": "如果方便的话，查最近 7 天新老客户分层与复购率？",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_23",
+    "category": "噪声-客户",
+    "question": "我换个说法，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_customer_segments_24",
+    "category": "噪声-客户",
+    "question": "最后确认一下，查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_01",
+    "category": "噪声-退款",
+    "question": "随口问下，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_02",
+    "category": "噪声-退款",
+    "question": "麻烦帮我看下，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_03",
+    "category": "噪声-退款",
+    "question": "运营例会前查一下：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_04",
+    "category": "噪声-退款",
+    "question": "老板刚问，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_05",
+    "category": "噪声-退款",
+    "question": "只给结论，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_06",
+    "category": "噪声-退款",
+    "question": "不用解释概念，直接查数：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_07",
+    "category": "噪声-退款",
+    "question": "quick check：查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_08",
+    "category": "噪声-退款",
+    "question": "pls 看看 查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_09",
+    "category": "噪声-退款",
+    "question": "手机上随手问一句，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_10",
+    "category": "噪声-退款",
+    "question": "我表达可能不标准：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_11",
+    "category": "噪声-退款",
+    "question": "按店铺时区，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_12",
+    "category": "噪声-退款",
+    "question": "数据口径照后台，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_13",
+    "category": "噪声-退款",
+    "question": "先别分析原因，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_14",
+    "category": "噪声-退款",
+    "question": "给我一个简短表格，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_15",
+    "category": "噪声-退款",
+    "question": "急，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_16",
+    "category": "噪声-退款",
+    "question": "今天复盘时想知道：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_17",
+    "category": "噪声-退款",
+    "question": "运营同事说要查，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_18",
+    "category": "噪声-退款",
+    "question": "could you check：查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_19",
+    "category": "噪声-退款",
+    "question": "帮偶看下，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_20",
+    "category": "噪声-退款",
+    "question": "麻烦看哈，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_21",
+    "category": "噪声-退款",
+    "question": "直接走只读查询，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_22",
+    "category": "噪声-退款",
+    "question": "如果方便的话，查最近 7 天退款笔数、金额和退款率？",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_23",
+    "category": "噪声-退款",
+    "question": "我换个说法，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_refund_stats_24",
+    "category": "噪声-退款",
+    "question": "最后确认一下，查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_01",
+    "category": "噪声-折扣",
+    "question": "随口问下，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_02",
+    "category": "噪声-折扣",
+    "question": "麻烦帮我看下，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_03",
+    "category": "噪声-折扣",
+    "question": "运营例会前查一下：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_04",
+    "category": "噪声-折扣",
+    "question": "老板刚问，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_05",
+    "category": "噪声-折扣",
+    "question": "只给结论，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_06",
+    "category": "噪声-折扣",
+    "question": "不用解释概念，直接查数：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_07",
+    "category": "噪声-折扣",
+    "question": "quick check：查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_08",
+    "category": "噪声-折扣",
+    "question": "pls 看看 查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_09",
+    "category": "噪声-折扣",
+    "question": "手机上随手问一句，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_10",
+    "category": "噪声-折扣",
+    "question": "我表达可能不标准：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_11",
+    "category": "噪声-折扣",
+    "question": "按店铺时区，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_12",
+    "category": "噪声-折扣",
+    "question": "数据口径照后台，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_13",
+    "category": "噪声-折扣",
+    "question": "先别分析原因，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_14",
+    "category": "噪声-折扣",
+    "question": "给我一个简短表格，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_15",
+    "category": "噪声-折扣",
+    "question": "急，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_16",
+    "category": "噪声-折扣",
+    "question": "今天复盘时想知道：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_17",
+    "category": "噪声-折扣",
+    "question": "运营同事说要查，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_18",
+    "category": "噪声-折扣",
+    "question": "could you check：查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_19",
+    "category": "噪声-折扣",
+    "question": "帮偶看下，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_20",
+    "category": "噪声-折扣",
+    "question": "麻烦看哈，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_21",
+    "category": "噪声-折扣",
+    "question": "直接走只读查询，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_22",
+    "category": "噪声-折扣",
+    "question": "如果方便的话，查最近 7 天优惠码使用和归因销售额？",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_23",
+    "category": "噪声-折扣",
+    "question": "我换个说法，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_discount_performance_24",
+    "category": "噪声-折扣",
+    "question": "最后确认一下，查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_01",
+    "category": "噪声-订单明细",
+    "question": "随口问下，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_02",
+    "category": "噪声-订单明细",
+    "question": "麻烦帮我看下，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_03",
+    "category": "噪声-订单明细",
+    "question": "运营例会前查一下：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_04",
+    "category": "噪声-订单明细",
+    "question": "老板刚问，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_05",
+    "category": "噪声-订单明细",
+    "question": "只给结论，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_06",
+    "category": "噪声-订单明细",
+    "question": "不用解释概念，直接查数：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_07",
+    "category": "噪声-订单明细",
+    "question": "quick check：列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_08",
+    "category": "噪声-订单明细",
+    "question": "pls 看看 列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_09",
+    "category": "噪声-订单明细",
+    "question": "手机上随手问一句，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_10",
+    "category": "噪声-订单明细",
+    "question": "我表达可能不标准：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_11",
+    "category": "噪声-订单明细",
+    "question": "按店铺时区，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_12",
+    "category": "噪声-订单明细",
+    "question": "数据口径照后台，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_13",
+    "category": "噪声-订单明细",
+    "question": "先别分析原因，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_14",
+    "category": "噪声-订单明细",
+    "question": "给我一个简短表格，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_15",
+    "category": "噪声-订单明细",
+    "question": "急，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_16",
+    "category": "噪声-订单明细",
+    "question": "今天复盘时想知道：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_17",
+    "category": "噪声-订单明细",
+    "question": "运营同事说要查，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_18",
+    "category": "噪声-订单明细",
+    "question": "could you check：列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_19",
+    "category": "噪声-订单明细",
+    "question": "帮偶看下，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_20",
+    "category": "噪声-订单明细",
+    "question": "麻烦看哈，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_21",
+    "category": "噪声-订单明细",
+    "question": "直接走只读查询，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_22",
+    "category": "噪声-订单明细",
+    "question": "如果方便的话，列出最近 7 天的订单明细？",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_23",
+    "category": "噪声-订单明细",
+    "question": "我换个说法，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_order_list_24",
+    "category": "噪声-订单明细",
+    "question": "最后确认一下，列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_01",
+    "category": "噪声-流量概览",
+    "question": "随口问下，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_02",
+    "category": "噪声-流量概览",
+    "question": "麻烦帮我看下，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_03",
+    "category": "噪声-流量概览",
+    "question": "运营例会前查一下：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_04",
+    "category": "噪声-流量概览",
+    "question": "老板刚问，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_05",
+    "category": "噪声-流量概览",
+    "question": "只给结论，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_06",
+    "category": "噪声-流量概览",
+    "question": "不用解释概念，直接查数：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_07",
+    "category": "噪声-流量概览",
+    "question": "quick check：查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_08",
+    "category": "噪声-流量概览",
+    "question": "pls 看看 查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_09",
+    "category": "噪声-流量概览",
+    "question": "手机上随手问一句，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_10",
+    "category": "噪声-流量概览",
+    "question": "我表达可能不标准：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_11",
+    "category": "噪声-流量概览",
+    "question": "按店铺时区，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_12",
+    "category": "噪声-流量概览",
+    "question": "数据口径照后台，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_13",
+    "category": "噪声-流量概览",
+    "question": "先别分析原因，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_14",
+    "category": "噪声-流量概览",
+    "question": "给我一个简短表格，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_15",
+    "category": "噪声-流量概览",
+    "question": "急，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_16",
+    "category": "噪声-流量概览",
+    "question": "今天复盘时想知道：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_17",
+    "category": "噪声-流量概览",
+    "question": "运营同事说要查，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_18",
+    "category": "噪声-流量概览",
+    "question": "could you check：查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_19",
+    "category": "噪声-流量概览",
+    "question": "帮偶看下，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_20",
+    "category": "噪声-流量概览",
+    "question": "麻烦看哈，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_21",
+    "category": "噪声-流量概览",
+    "question": "直接走只读查询，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_22",
+    "category": "噪声-流量概览",
+    "question": "如果方便的话，查最近 7 天网站会话、跳出率和转化率？",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_23",
+    "category": "噪声-流量概览",
+    "question": "我换个说法，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_overview_24",
+    "category": "噪声-流量概览",
+    "question": "最后确认一下，查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_01",
+    "category": "噪声-流量趋势",
+    "question": "随口问下，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_02",
+    "category": "噪声-流量趋势",
+    "question": "麻烦帮我看下，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_03",
+    "category": "噪声-流量趋势",
+    "question": "运营例会前查一下：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_04",
+    "category": "噪声-流量趋势",
+    "question": "老板刚问，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_05",
+    "category": "噪声-流量趋势",
+    "question": "只给结论，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_06",
+    "category": "噪声-流量趋势",
+    "question": "不用解释概念，直接查数：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_07",
+    "category": "噪声-流量趋势",
+    "question": "quick check：查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_08",
+    "category": "噪声-流量趋势",
+    "question": "pls 看看 查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_09",
+    "category": "噪声-流量趋势",
+    "question": "手机上随手问一句，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_10",
+    "category": "噪声-流量趋势",
+    "question": "我表达可能不标准：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_11",
+    "category": "噪声-流量趋势",
+    "question": "按店铺时区，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_12",
+    "category": "噪声-流量趋势",
+    "question": "数据口径照后台，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_13",
+    "category": "噪声-流量趋势",
+    "question": "先别分析原因，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_14",
+    "category": "噪声-流量趋势",
+    "question": "给我一个简短表格，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_15",
+    "category": "噪声-流量趋势",
+    "question": "急，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_16",
+    "category": "噪声-流量趋势",
+    "question": "今天复盘时想知道：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_17",
+    "category": "噪声-流量趋势",
+    "question": "运营同事说要查，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_18",
+    "category": "噪声-流量趋势",
+    "question": "could you check：查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_19",
+    "category": "噪声-流量趋势",
+    "question": "帮偶看下，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_20",
+    "category": "噪声-流量趋势",
+    "question": "麻烦看哈，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_21",
+    "category": "噪声-流量趋势",
+    "question": "直接走只读查询，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_22",
+    "category": "噪声-流量趋势",
+    "question": "如果方便的话，查最近 7 天按日流量趋势？",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_23",
+    "category": "噪声-流量趋势",
+    "question": "我换个说法，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_timeseries_24",
+    "category": "噪声-流量趋势",
+    "question": "最后确认一下，查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_01",
+    "category": "噪声-流量来源",
+    "question": "随口问下，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_02",
+    "category": "噪声-流量来源",
+    "question": "麻烦帮我看下，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_03",
+    "category": "噪声-流量来源",
+    "question": "运营例会前查一下：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_04",
+    "category": "噪声-流量来源",
+    "question": "老板刚问，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_05",
+    "category": "噪声-流量来源",
+    "question": "只给结论，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_06",
+    "category": "噪声-流量来源",
+    "question": "不用解释概念，直接查数：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_07",
+    "category": "噪声-流量来源",
+    "question": "quick check：查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_08",
+    "category": "噪声-流量来源",
+    "question": "pls 看看 查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_09",
+    "category": "噪声-流量来源",
+    "question": "手机上随手问一句，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_10",
+    "category": "噪声-流量来源",
+    "question": "我表达可能不标准：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_11",
+    "category": "噪声-流量来源",
+    "question": "按店铺时区，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_12",
+    "category": "噪声-流量来源",
+    "question": "数据口径照后台，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_13",
+    "category": "噪声-流量来源",
+    "question": "先别分析原因，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_14",
+    "category": "噪声-流量来源",
+    "question": "给我一个简短表格，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_15",
+    "category": "噪声-流量来源",
+    "question": "急，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_16",
+    "category": "噪声-流量来源",
+    "question": "今天复盘时想知道：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_17",
+    "category": "噪声-流量来源",
+    "question": "运营同事说要查，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_18",
+    "category": "噪声-流量来源",
+    "question": "could you check：查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_19",
+    "category": "噪声-流量来源",
+    "question": "帮偶看下，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_20",
+    "category": "噪声-流量来源",
+    "question": "麻烦看哈，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_21",
+    "category": "噪声-流量来源",
+    "question": "直接走只读查询，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_22",
+    "category": "噪声-流量来源",
+    "question": "如果方便的话，查最近 7 天流量来源渠道？",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_23",
+    "category": "噪声-流量来源",
+    "question": "我换个说法，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_sources_24",
+    "category": "噪声-流量来源",
+    "question": "最后确认一下，查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_01",
+    "category": "噪声-落地页",
+    "question": "随口问下，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_02",
+    "category": "噪声-落地页",
+    "question": "麻烦帮我看下，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_03",
+    "category": "噪声-落地页",
+    "question": "运营例会前查一下：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_04",
+    "category": "噪声-落地页",
+    "question": "老板刚问，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_05",
+    "category": "噪声-落地页",
+    "question": "只给结论，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_06",
+    "category": "噪声-落地页",
+    "question": "不用解释概念，直接查数：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_07",
+    "category": "噪声-落地页",
+    "question": "quick check：查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_08",
+    "category": "噪声-落地页",
+    "question": "pls 看看 查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_09",
+    "category": "噪声-落地页",
+    "question": "手机上随手问一句，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_10",
+    "category": "噪声-落地页",
+    "question": "我表达可能不标准：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_11",
+    "category": "噪声-落地页",
+    "question": "按店铺时区，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_12",
+    "category": "噪声-落地页",
+    "question": "数据口径照后台，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_13",
+    "category": "噪声-落地页",
+    "question": "先别分析原因，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_14",
+    "category": "噪声-落地页",
+    "question": "给我一个简短表格，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_15",
+    "category": "噪声-落地页",
+    "question": "急，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_16",
+    "category": "噪声-落地页",
+    "question": "今天复盘时想知道：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_17",
+    "category": "噪声-落地页",
+    "question": "运营同事说要查，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_18",
+    "category": "噪声-落地页",
+    "question": "could you check：查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_19",
+    "category": "噪声-落地页",
+    "question": "帮偶看下，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_20",
+    "category": "噪声-落地页",
+    "question": "麻烦看哈，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_21",
+    "category": "噪声-落地页",
+    "question": "直接走只读查询，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_22",
+    "category": "噪声-落地页",
+    "question": "如果方便的话，查最近 7 天落地页会话表现？",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_23",
+    "category": "噪声-落地页",
+    "question": "我换个说法，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_landing_page_performance_24",
+    "category": "噪声-落地页",
+    "question": "最后确认一下，查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_01",
+    "category": "噪声-访问设备",
+    "question": "随口问下，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_02",
+    "category": "噪声-访问设备",
+    "question": "麻烦帮我看下，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_03",
+    "category": "噪声-访问设备",
+    "question": "运营例会前查一下：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_04",
+    "category": "噪声-访问设备",
+    "question": "老板刚问，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_05",
+    "category": "噪声-访问设备",
+    "question": "只给结论，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_06",
+    "category": "噪声-访问设备",
+    "question": "不用解释概念，直接查数：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_07",
+    "category": "噪声-访问设备",
+    "question": "quick check：查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_08",
+    "category": "噪声-访问设备",
+    "question": "pls 看看 查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_09",
+    "category": "噪声-访问设备",
+    "question": "手机上随手问一句，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_10",
+    "category": "噪声-访问设备",
+    "question": "我表达可能不标准：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_11",
+    "category": "噪声-访问设备",
+    "question": "按店铺时区，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_12",
+    "category": "噪声-访问设备",
+    "question": "数据口径照后台，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_13",
+    "category": "噪声-访问设备",
+    "question": "先别分析原因，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_14",
+    "category": "噪声-访问设备",
+    "question": "给我一个简短表格，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_15",
+    "category": "噪声-访问设备",
+    "question": "急，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_16",
+    "category": "噪声-访问设备",
+    "question": "今天复盘时想知道：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_17",
+    "category": "噪声-访问设备",
+    "question": "运营同事说要查，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_18",
+    "category": "噪声-访问设备",
+    "question": "could you check：查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_19",
+    "category": "噪声-访问设备",
+    "question": "帮偶看下，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_20",
+    "category": "噪声-访问设备",
+    "question": "麻烦看哈，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_21",
+    "category": "噪声-访问设备",
+    "question": "直接走只读查询，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_22",
+    "category": "噪声-访问设备",
+    "question": "如果方便的话，查最近 7 天移动端与桌面端访问占比？",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_23",
+    "category": "噪声-访问设备",
+    "question": "我换个说法，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_device_traffic_24",
+    "category": "噪声-访问设备",
+    "question": "最后确认一下，查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_01",
+    "category": "噪声-访客地域",
+    "question": "随口问下，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_02",
+    "category": "噪声-访客地域",
+    "question": "麻烦帮我看下，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_03",
+    "category": "噪声-访客地域",
+    "question": "运营例会前查一下：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_04",
+    "category": "噪声-访客地域",
+    "question": "老板刚问，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_05",
+    "category": "噪声-访客地域",
+    "question": "只给结论，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_06",
+    "category": "噪声-访客地域",
+    "question": "不用解释概念，直接查数：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_07",
+    "category": "噪声-访客地域",
+    "question": "quick check：查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_08",
+    "category": "噪声-访客地域",
+    "question": "pls 看看 查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_09",
+    "category": "噪声-访客地域",
+    "question": "手机上随手问一句，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_10",
+    "category": "噪声-访客地域",
+    "question": "我表达可能不标准：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_11",
+    "category": "噪声-访客地域",
+    "question": "按店铺时区，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_12",
+    "category": "噪声-访客地域",
+    "question": "数据口径照后台，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_13",
+    "category": "噪声-访客地域",
+    "question": "先别分析原因，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_14",
+    "category": "噪声-访客地域",
+    "question": "给我一个简短表格，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_15",
+    "category": "噪声-访客地域",
+    "question": "急，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_16",
+    "category": "噪声-访客地域",
+    "question": "今天复盘时想知道：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_17",
+    "category": "噪声-访客地域",
+    "question": "运营同事说要查，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_18",
+    "category": "噪声-访客地域",
+    "question": "could you check：查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_19",
+    "category": "噪声-访客地域",
+    "question": "帮偶看下，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_20",
+    "category": "噪声-访客地域",
+    "question": "麻烦看哈，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_21",
+    "category": "噪声-访客地域",
+    "question": "直接走只读查询，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_22",
+    "category": "噪声-访客地域",
+    "question": "如果方便的话，查最近 7 天访客国家分布？",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_23",
+    "category": "噪声-访客地域",
+    "question": "我换个说法，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_traffic_geography_24",
+    "category": "噪声-访客地域",
+    "question": "最后确认一下，查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_01",
+    "category": "噪声-站内搜索",
+    "question": "随口问下，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_02",
+    "category": "噪声-站内搜索",
+    "question": "麻烦帮我看下，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_03",
+    "category": "噪声-站内搜索",
+    "question": "运营例会前查一下：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_04",
+    "category": "噪声-站内搜索",
+    "question": "老板刚问，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_05",
+    "category": "噪声-站内搜索",
+    "question": "只给结论，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_06",
+    "category": "噪声-站内搜索",
+    "question": "不用解释概念，直接查数：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_07",
+    "category": "噪声-站内搜索",
+    "question": "quick check：查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_08",
+    "category": "噪声-站内搜索",
+    "question": "pls 看看 查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_09",
+    "category": "噪声-站内搜索",
+    "question": "手机上随手问一句，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_10",
+    "category": "噪声-站内搜索",
+    "question": "我表达可能不标准：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_11",
+    "category": "噪声-站内搜索",
+    "question": "按店铺时区，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_12",
+    "category": "噪声-站内搜索",
+    "question": "数据口径照后台，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_13",
+    "category": "噪声-站内搜索",
+    "question": "先别分析原因，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_14",
+    "category": "噪声-站内搜索",
+    "question": "给我一个简短表格，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_15",
+    "category": "噪声-站内搜索",
+    "question": "急，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_16",
+    "category": "噪声-站内搜索",
+    "question": "今天复盘时想知道：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_17",
+    "category": "噪声-站内搜索",
+    "question": "运营同事说要查，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_18",
+    "category": "噪声-站内搜索",
+    "question": "could you check：查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_19",
+    "category": "噪声-站内搜索",
+    "question": "帮偶看下，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_20",
+    "category": "噪声-站内搜索",
+    "question": "麻烦看哈，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_21",
+    "category": "噪声-站内搜索",
+    "question": "直接走只读查询，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_22",
+    "category": "噪声-站内搜索",
+    "question": "如果方便的话，查最近 7 天站内搜索词与搜索转化？",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_23",
+    "category": "噪声-站内搜索",
+    "question": "我换个说法，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_search_performance_24",
+    "category": "噪声-站内搜索",
+    "question": "最后确认一下，查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_01",
+    "category": "噪声-网站性能",
+    "question": "随口问下，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_02",
+    "category": "噪声-网站性能",
+    "question": "麻烦帮我看下，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_03",
+    "category": "噪声-网站性能",
+    "question": "运营例会前查一下：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_04",
+    "category": "噪声-网站性能",
+    "question": "老板刚问，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_05",
+    "category": "噪声-网站性能",
+    "question": "只给结论，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_06",
+    "category": "噪声-网站性能",
+    "question": "不用解释概念，直接查数：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_07",
+    "category": "噪声-网站性能",
+    "question": "quick check：查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_08",
+    "category": "噪声-网站性能",
+    "question": "pls 看看 查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_09",
+    "category": "噪声-网站性能",
+    "question": "手机上随手问一句，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_10",
+    "category": "噪声-网站性能",
+    "question": "我表达可能不标准：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_11",
+    "category": "噪声-网站性能",
+    "question": "按店铺时区，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_12",
+    "category": "噪声-网站性能",
+    "question": "数据口径照后台，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_13",
+    "category": "噪声-网站性能",
+    "question": "先别分析原因，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_14",
+    "category": "噪声-网站性能",
+    "question": "给我一个简短表格，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_15",
+    "category": "噪声-网站性能",
+    "question": "急，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_16",
+    "category": "噪声-网站性能",
+    "question": "今天复盘时想知道：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_17",
+    "category": "噪声-网站性能",
+    "question": "运营同事说要查，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_18",
+    "category": "噪声-网站性能",
+    "question": "could you check：查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_19",
+    "category": "噪声-网站性能",
+    "question": "帮偶看下，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_20",
+    "category": "噪声-网站性能",
+    "question": "麻烦看哈，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_21",
+    "category": "噪声-网站性能",
+    "question": "直接走只读查询，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_22",
+    "category": "噪声-网站性能",
+    "question": "如果方便的话，查最近 7 天 LCP、INP 和 CLS？",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_23",
+    "category": "噪声-网站性能",
+    "question": "我换个说法，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_get_web_performance_24",
+    "category": "噪声-网站性能",
+    "question": "最后确认一下，查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_01_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_01_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单、退款和流量来源联合复盘，不用讲概念。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_02_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_02_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：热销商品与低库存风险一起看，不用讲概念。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_03_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_03_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单明细和退款统计一起查，不用讲概念。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_04_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_04_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：流量概览、渠道来源和设备占比一起分析，不用讲概念。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_05_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_05_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单表现、商品排行和客户分层一起复盘，不用讲概念。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_06_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_06_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：落地页、站内搜索和网页性能一起看，不用讲概念。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_07_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_07_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：弃购、折扣和订单经营数据联合分析，不用讲概念。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_08_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_08_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：流量趋势和访客国家分布一起查询，不用讲概念。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_09_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_09_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单环比与热销商品排行一起看，不用讲概念。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_10_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_10_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：客户复购、退款和折扣表现一起分析，不用讲概念。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_11_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把流量概览、落地页和网站速度一起诊断。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_11_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：流量概览、落地页和网站速度一起诊断，不用讲概念。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_landing_page_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_12_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单列表、库存和热销商品一起核对。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_12_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单列表、库存和热销商品一起核对，不用讲概念。",
+    "expected_tools": [
+      "get_order_list",
+      "get_inventory_levels",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_13_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把流量渠道、国家和设备分布一起看。",
+    "expected_tools": [
+      "get_traffic_sources",
+      "get_traffic_geography",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_13_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：流量渠道、国家和设备分布一起看，不用讲概念。",
+    "expected_tools": [
+      "get_traffic_sources",
+      "get_traffic_geography",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_14_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单汇总和周期对比一起出报告。",
+    "expected_tools": [
+      "get_orders_summary",
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_14_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单汇总和周期对比一起出报告，不用讲概念。",
+    "expected_tools": [
+      "get_orders_summary",
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_15_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把弃购与站内搜索表现一起分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_15_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：弃购与站内搜索表现一起分析，不用讲概念。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_search_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_16_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把退款、订单和客户复购一起排查。",
+    "expected_tools": [
+      "get_refund_stats",
+      "get_orders_summary",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_16_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：退款、订单和客户复购一起排查，不用讲概念。",
+    "expected_tools": [
+      "get_refund_stats",
+      "get_orders_summary",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_17_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把商品表现、折扣和弃购一起复盘。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_discount_performance",
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_17_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：商品表现、折扣和弃购一起复盘，不用讲概念。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_discount_performance",
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_18_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把流量趋势、渠道和转化概览一起分析。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_sources",
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_18_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：流量趋势、渠道和转化概览一起分析，不用讲概念。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_sources",
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_19_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把落地页、设备和国家访问分布一起查。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_device_traffic",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_19_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：落地页、设备和国家访问分布一起查，不用讲概念。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_device_traffic",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_20_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把订单明细和订单周期对比一起核验。",
+    "expected_tools": [
+      "get_order_list",
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_20_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：订单明细和订单周期对比一起核验，不用讲概念。",
+    "expected_tools": [
+      "get_order_list",
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_21_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把低库存、热销榜和退款表现一起看。",
+    "expected_tools": [
+      "get_inventory_levels",
+      "get_product_performance",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_21_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：低库存、热销榜和退款表现一起看，不用讲概念。",
+    "expected_tools": [
+      "get_inventory_levels",
+      "get_product_performance",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_22_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把优惠码和订单经营指标一起复盘。",
+    "expected_tools": [
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_22_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：优惠码和订单经营指标一起复盘，不用讲概念。",
+    "expected_tools": [
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_23_a",
+    "category": "噪声-多工具",
+    "question": "老板临时要，麻烦把网页性能、流量趋势和落地页表现一起诊断。",
+    "expected_tools": [
+      "get_web_performance",
+      "get_traffic_timeseries",
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_multi_23_b",
+    "category": "噪声-多工具",
+    "question": "pls 直接查数：网页性能、流量趋势和落地页表现一起诊断，不用讲概念。",
+    "expected_tools": [
+      "get_web_performance",
+      "get_traffic_timeseries",
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify"
+  },
+  {
+    "id": "para_boundary_01",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：根据刚上传的产品手册总结 Aurora 保温杯的规格，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_02",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：从退款政策文档里找出退货时限，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_03",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：读取补货 SOP 并整理执行步骤，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_04",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：根据品牌资料写一段产品介绍，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_05",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：从客服手册中提取破损包裹回复模板，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_06",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：上传的配送说明里有哪些国家限制，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_07",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：根据尺寸文档整理产品参数，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_08",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：保修条款规定了哪些免责情况，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_09",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：产品规格附件里提到哪些材质，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_10",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：把售后脚本改写得更礼貌，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_11",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：总结培训文档里的店铺运营流程，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_12",
+    "category": "噪声-knowledge",
+    "question": "口语化问一下：根据上架规范检查标题写法，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "knowledge"
+  },
+  {
+    "id": "para_boundary_13",
+    "category": "噪声-chat",
+    "question": "口语化问一下：解释什么是客单价，不需要读取店铺数据，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_14",
+    "category": "噪声-chat",
+    "question": "口语化问一下：用简单例子说明转化率，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_15",
+    "category": "噪声-chat",
+    "question": "口语化问一下：RAG 和微调有什么区别，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_16",
+    "category": "噪声-chat",
+    "question": "口语化问一下：写一封通用的节日营销邮件，不使用店铺资料，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_17",
+    "category": "噪声-chat",
+    "question": "口语化问一下：把这句话翻译成英文：感谢你的耐心等待，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_18",
+    "category": "噪声-chat",
+    "question": "口语化问一下：你好，简单介绍一下你能做什么，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_19",
+    "category": "噪声-chat",
+    "question": "口语化问一下：什么是 LCP 指标，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_20",
+    "category": "噪声-chat",
+    "question": "口语化问一下：说明 Precision 和 Recall 的区别，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_21",
+    "category": "噪声-chat",
+    "question": "口语化问一下：给我一个通用的客服道歉句式，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_22",
+    "category": "噪声-chat",
+    "question": "口语化问一下：如何理解复购率这个概念，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_23",
+    "category": "噪声-chat",
+    "question": "口语化问一下：用一句话解释 Shopify，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_24",
+    "category": "噪声-chat",
+    "question": "口语化问一下：帮我润色这句话：我们会尽快回复，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "chat"
+  },
+  {
+    "id": "para_boundary_25",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：帮我查一下那个数据，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_26",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：看看刚才说的东西，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_27",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：这个情况怎么样，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_28",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：给我一份报表，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_29",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：查一下最近的表现，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_30",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：那个指标是多少，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_31",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：帮我分析一下，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_32",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：我想看店铺里的某个数字，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_33",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：把相关数据找出来，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_34",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：看看有没有问题，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_35",
+    "category": "噪声-clarify",
+    "question": "口语化问一下：查一下它现在的情况，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "clarify"
+  },
+  {
+    "id": "para_boundary_36",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：查询昨天 Facebook 广告花费和 ROAS，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_37",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：查询 Google Ads 的点击成本，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_38",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：把库存不足 10 件的商品全部下架，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_39",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：给所有未发货订单批量退款，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_40",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：把全店商品价格降低百分之十并保存，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_41",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：创建一个八折优惠码并发布，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_42",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：删除最近 30 天没有销量的商品，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_43",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：修改客户邮箱并同步到 Shopify，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_44",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：把订单标记为已发货，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_45",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：查询 TikTok Ads 广告归因收入，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  },
+  {
+    "id": "para_boundary_46",
+    "category": "噪声-unsupported",
+    "question": "口语化问一下：直接执行任意 GraphQL 写入商品标签，就这个意思。",
+    "expected_tools": [],
+    "expected_route": "unsupported"
+  }
+]

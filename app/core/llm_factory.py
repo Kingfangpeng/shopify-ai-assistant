@@ -4,9 +4,13 @@
 支持: OpenAI / DeepSeek / Qwen（阿里云 DashScope）及其他兼容接口
 """
 
+from urllib.parse import urlparse
+
 from langchain_openai import ChatOpenAI
-from app.config import config
 from loguru import logger
+
+from app.config import config
+from app.core.errors import AppError
 
 
 class LLMFactory:
@@ -24,6 +28,15 @@ class LLMFactory:
         model = model or config.llm_model
         base_url = base_url or config.llm_api_base
         api_key = api_key or config.llm_api_key
+
+        if config.local_llm_only:
+            host = (urlparse(base_url).hostname or "").lower()
+            if host not in {"127.0.0.1", "localhost", "::1"}:
+                raise AppError(
+                    "external_llm_blocked",
+                    "本机模型模式已启用，拒绝连接外部模型服务",
+                    503,
+                )
 
         llm = ChatOpenAI(
             model=model,

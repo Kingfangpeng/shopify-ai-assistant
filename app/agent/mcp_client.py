@@ -18,7 +18,7 @@ _mcp_client: Optional[MultiServerMCPClient] = None
 async def retry_interceptor(
     request: MCPToolCallRequest,
     handler,
-    max_retries: int = 3,
+    max_retries: int = 2,
     delay: float = 1.0,
 ):
     """MCP 工具调用重试拦截器

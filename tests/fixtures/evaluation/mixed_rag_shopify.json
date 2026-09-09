@@ -1,0 +1,1850 @@
+[
+  {
+    "id": "mixed_compare_order_periods_01",
+    "category": "混合-订单对比",
+    "question": "结合已上传的补货规范，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_02",
+    "category": "混合-订单对比",
+    "question": "结合已上传的退款政策，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_03",
+    "category": "混合-订单对比",
+    "question": "结合已上传的商品卖点手册，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_04",
+    "category": "混合-订单对比",
+    "question": "结合已上传的运营周报模板，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_05",
+    "category": "混合-订单对比",
+    "question": "结合已上传的客服 SOP，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_06",
+    "category": "混合-订单对比",
+    "question": "结合已上传的促销活动说明，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_07",
+    "category": "混合-订单对比",
+    "question": "结合已上传的品牌指南，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_08",
+    "category": "混合-订单对比",
+    "question": "结合已上传的库存处理流程，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_09",
+    "category": "混合-订单对比",
+    "question": "结合已上传的网站优化清单，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_compare_order_periods_10",
+    "category": "混合-订单对比",
+    "question": "结合已上传的市场复盘文档，比较最近 7 天和前 7 天的订单量与 GMV并解释结果。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_01",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的补货规范，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_02",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的退款政策，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_03",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的商品卖点手册，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_04",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的运营周报模板，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_05",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的客服 SOP，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_06",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的促销活动说明，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_07",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的品牌指南，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_08",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的库存处理流程，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_09",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的网站优化清单，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_orders_summary_10",
+    "category": "混合-订单汇总",
+    "question": "结合已上传的市场复盘文档，查最近 7 天订单量、GMV 和客单价并解释结果。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_01",
+    "category": "混合-弃购",
+    "question": "结合已上传的补货规范，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_02",
+    "category": "混合-弃购",
+    "question": "结合已上传的退款政策，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_03",
+    "category": "混合-弃购",
+    "question": "结合已上传的商品卖点手册，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_04",
+    "category": "混合-弃购",
+    "question": "结合已上传的运营周报模板，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_05",
+    "category": "混合-弃购",
+    "question": "结合已上传的客服 SOP，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_06",
+    "category": "混合-弃购",
+    "question": "结合已上传的促销活动说明，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_07",
+    "category": "混合-弃购",
+    "question": "结合已上传的品牌指南，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_08",
+    "category": "混合-弃购",
+    "question": "结合已上传的库存处理流程，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_09",
+    "category": "混合-弃购",
+    "question": "结合已上传的网站优化清单，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_abandoned_checkouts_10",
+    "category": "混合-弃购",
+    "question": "结合已上传的市场复盘文档，查最近 7 天弃购数量和相关商品并解释结果。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_01",
+    "category": "混合-库存",
+    "question": "结合已上传的补货规范，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_02",
+    "category": "混合-库存",
+    "question": "结合已上传的退款政策，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_03",
+    "category": "混合-库存",
+    "question": "结合已上传的商品卖点手册，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_04",
+    "category": "混合-库存",
+    "question": "结合已上传的运营周报模板，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_05",
+    "category": "混合-库存",
+    "question": "结合已上传的客服 SOP，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_06",
+    "category": "混合-库存",
+    "question": "结合已上传的促销活动说明，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_07",
+    "category": "混合-库存",
+    "question": "结合已上传的品牌指南，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_08",
+    "category": "混合-库存",
+    "question": "结合已上传的库存处理流程，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_09",
+    "category": "混合-库存",
+    "question": "结合已上传的网站优化清单，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_inventory_levels_10",
+    "category": "混合-库存",
+    "question": "结合已上传的市场复盘文档，查当前低库存 SKU并解释结果。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_01",
+    "category": "混合-商品表现",
+    "question": "结合已上传的补货规范，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_02",
+    "category": "混合-商品表现",
+    "question": "结合已上传的退款政策，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_03",
+    "category": "混合-商品表现",
+    "question": "结合已上传的商品卖点手册，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_04",
+    "category": "混合-商品表现",
+    "question": "结合已上传的运营周报模板，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_05",
+    "category": "混合-商品表现",
+    "question": "结合已上传的客服 SOP，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_06",
+    "category": "混合-商品表现",
+    "question": "结合已上传的促销活动说明，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_07",
+    "category": "混合-商品表现",
+    "question": "结合已上传的品牌指南，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_08",
+    "category": "混合-商品表现",
+    "question": "结合已上传的库存处理流程，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_09",
+    "category": "混合-商品表现",
+    "question": "结合已上传的网站优化清单，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_product_performance_10",
+    "category": "混合-商品表现",
+    "question": "结合已上传的市场复盘文档，查最近 7 天热销商品排行并解释结果。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_01",
+    "category": "混合-客户",
+    "question": "结合已上传的补货规范，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_02",
+    "category": "混合-客户",
+    "question": "结合已上传的退款政策，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_03",
+    "category": "混合-客户",
+    "question": "结合已上传的商品卖点手册，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_04",
+    "category": "混合-客户",
+    "question": "结合已上传的运营周报模板，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_05",
+    "category": "混合-客户",
+    "question": "结合已上传的客服 SOP，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_06",
+    "category": "混合-客户",
+    "question": "结合已上传的促销活动说明，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_07",
+    "category": "混合-客户",
+    "question": "结合已上传的品牌指南，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_08",
+    "category": "混合-客户",
+    "question": "结合已上传的库存处理流程，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_09",
+    "category": "混合-客户",
+    "question": "结合已上传的网站优化清单，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_customer_segments_10",
+    "category": "混合-客户",
+    "question": "结合已上传的市场复盘文档，查最近 7 天新老客户分层与复购率并解释结果。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_01",
+    "category": "混合-退款",
+    "question": "结合已上传的补货规范，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_02",
+    "category": "混合-退款",
+    "question": "结合已上传的退款政策，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_03",
+    "category": "混合-退款",
+    "question": "结合已上传的商品卖点手册，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_04",
+    "category": "混合-退款",
+    "question": "结合已上传的运营周报模板，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_05",
+    "category": "混合-退款",
+    "question": "结合已上传的客服 SOP，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_06",
+    "category": "混合-退款",
+    "question": "结合已上传的促销活动说明，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_07",
+    "category": "混合-退款",
+    "question": "结合已上传的品牌指南，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_08",
+    "category": "混合-退款",
+    "question": "结合已上传的库存处理流程，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_09",
+    "category": "混合-退款",
+    "question": "结合已上传的网站优化清单，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_refund_stats_10",
+    "category": "混合-退款",
+    "question": "结合已上传的市场复盘文档，查最近 7 天退款笔数、金额和退款率并解释结果。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_01",
+    "category": "混合-折扣",
+    "question": "结合已上传的补货规范，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_02",
+    "category": "混合-折扣",
+    "question": "结合已上传的退款政策，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_03",
+    "category": "混合-折扣",
+    "question": "结合已上传的商品卖点手册，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_04",
+    "category": "混合-折扣",
+    "question": "结合已上传的运营周报模板，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_05",
+    "category": "混合-折扣",
+    "question": "结合已上传的客服 SOP，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_06",
+    "category": "混合-折扣",
+    "question": "结合已上传的促销活动说明，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_07",
+    "category": "混合-折扣",
+    "question": "结合已上传的品牌指南，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_08",
+    "category": "混合-折扣",
+    "question": "结合已上传的库存处理流程，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_09",
+    "category": "混合-折扣",
+    "question": "结合已上传的网站优化清单，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_discount_performance_10",
+    "category": "混合-折扣",
+    "question": "结合已上传的市场复盘文档，查最近 7 天优惠码使用和归因销售额并解释结果。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_01",
+    "category": "混合-订单明细",
+    "question": "结合已上传的补货规范，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_02",
+    "category": "混合-订单明细",
+    "question": "结合已上传的退款政策，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_03",
+    "category": "混合-订单明细",
+    "question": "结合已上传的商品卖点手册，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_04",
+    "category": "混合-订单明细",
+    "question": "结合已上传的运营周报模板，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_05",
+    "category": "混合-订单明细",
+    "question": "结合已上传的客服 SOP，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_06",
+    "category": "混合-订单明细",
+    "question": "结合已上传的促销活动说明，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_07",
+    "category": "混合-订单明细",
+    "question": "结合已上传的品牌指南，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_08",
+    "category": "混合-订单明细",
+    "question": "结合已上传的库存处理流程，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_09",
+    "category": "混合-订单明细",
+    "question": "结合已上传的网站优化清单，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_order_list_10",
+    "category": "混合-订单明细",
+    "question": "结合已上传的市场复盘文档，列出最近 7 天的订单明细并解释结果。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_01",
+    "category": "混合-流量概览",
+    "question": "结合已上传的补货规范，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_02",
+    "category": "混合-流量概览",
+    "question": "结合已上传的退款政策，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_03",
+    "category": "混合-流量概览",
+    "question": "结合已上传的商品卖点手册，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_04",
+    "category": "混合-流量概览",
+    "question": "结合已上传的运营周报模板，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_05",
+    "category": "混合-流量概览",
+    "question": "结合已上传的客服 SOP，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_06",
+    "category": "混合-流量概览",
+    "question": "结合已上传的促销活动说明，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_07",
+    "category": "混合-流量概览",
+    "question": "结合已上传的品牌指南，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_08",
+    "category": "混合-流量概览",
+    "question": "结合已上传的库存处理流程，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_09",
+    "category": "混合-流量概览",
+    "question": "结合已上传的网站优化清单，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_overview_10",
+    "category": "混合-流量概览",
+    "question": "结合已上传的市场复盘文档，查最近 7 天网站会话、跳出率和转化率并解释结果。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_01",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的补货规范，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_02",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的退款政策，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_03",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的商品卖点手册，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_04",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的运营周报模板，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_05",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的客服 SOP，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_06",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的促销活动说明，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_07",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的品牌指南，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_08",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的库存处理流程，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_09",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的网站优化清单，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_timeseries_10",
+    "category": "混合-流量趋势",
+    "question": "结合已上传的市场复盘文档，查最近 7 天按日流量趋势并解释结果。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_01",
+    "category": "混合-流量来源",
+    "question": "结合已上传的补货规范，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_02",
+    "category": "混合-流量来源",
+    "question": "结合已上传的退款政策，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_03",
+    "category": "混合-流量来源",
+    "question": "结合已上传的商品卖点手册，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_04",
+    "category": "混合-流量来源",
+    "question": "结合已上传的运营周报模板，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_05",
+    "category": "混合-流量来源",
+    "question": "结合已上传的客服 SOP，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_06",
+    "category": "混合-流量来源",
+    "question": "结合已上传的促销活动说明，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_07",
+    "category": "混合-流量来源",
+    "question": "结合已上传的品牌指南，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_08",
+    "category": "混合-流量来源",
+    "question": "结合已上传的库存处理流程，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_09",
+    "category": "混合-流量来源",
+    "question": "结合已上传的网站优化清单，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_sources_10",
+    "category": "混合-流量来源",
+    "question": "结合已上传的市场复盘文档，查最近 7 天流量来源渠道并解释结果。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_01",
+    "category": "混合-落地页",
+    "question": "结合已上传的补货规范，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_02",
+    "category": "混合-落地页",
+    "question": "结合已上传的退款政策，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_03",
+    "category": "混合-落地页",
+    "question": "结合已上传的商品卖点手册，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_04",
+    "category": "混合-落地页",
+    "question": "结合已上传的运营周报模板，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_05",
+    "category": "混合-落地页",
+    "question": "结合已上传的客服 SOP，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_06",
+    "category": "混合-落地页",
+    "question": "结合已上传的促销活动说明，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_07",
+    "category": "混合-落地页",
+    "question": "结合已上传的品牌指南，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_08",
+    "category": "混合-落地页",
+    "question": "结合已上传的库存处理流程，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_09",
+    "category": "混合-落地页",
+    "question": "结合已上传的网站优化清单，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_landing_page_performance_10",
+    "category": "混合-落地页",
+    "question": "结合已上传的市场复盘文档，查最近 7 天落地页会话表现并解释结果。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_01",
+    "category": "混合-访问设备",
+    "question": "结合已上传的补货规范，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_02",
+    "category": "混合-访问设备",
+    "question": "结合已上传的退款政策，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_03",
+    "category": "混合-访问设备",
+    "question": "结合已上传的商品卖点手册，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_04",
+    "category": "混合-访问设备",
+    "question": "结合已上传的运营周报模板，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_05",
+    "category": "混合-访问设备",
+    "question": "结合已上传的客服 SOP，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_06",
+    "category": "混合-访问设备",
+    "question": "结合已上传的促销活动说明，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_07",
+    "category": "混合-访问设备",
+    "question": "结合已上传的品牌指南，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_08",
+    "category": "混合-访问设备",
+    "question": "结合已上传的库存处理流程，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_09",
+    "category": "混合-访问设备",
+    "question": "结合已上传的网站优化清单，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_device_traffic_10",
+    "category": "混合-访问设备",
+    "question": "结合已上传的市场复盘文档，查最近 7 天移动端与桌面端访问占比并解释结果。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_01",
+    "category": "混合-访客地域",
+    "question": "结合已上传的补货规范，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_02",
+    "category": "混合-访客地域",
+    "question": "结合已上传的退款政策，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_03",
+    "category": "混合-访客地域",
+    "question": "结合已上传的商品卖点手册，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_04",
+    "category": "混合-访客地域",
+    "question": "结合已上传的运营周报模板，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_05",
+    "category": "混合-访客地域",
+    "question": "结合已上传的客服 SOP，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_06",
+    "category": "混合-访客地域",
+    "question": "结合已上传的促销活动说明，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_07",
+    "category": "混合-访客地域",
+    "question": "结合已上传的品牌指南，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_08",
+    "category": "混合-访客地域",
+    "question": "结合已上传的库存处理流程，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_09",
+    "category": "混合-访客地域",
+    "question": "结合已上传的网站优化清单，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_traffic_geography_10",
+    "category": "混合-访客地域",
+    "question": "结合已上传的市场复盘文档，查最近 7 天访客国家分布并解释结果。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_01",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的补货规范，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_02",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的退款政策，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_03",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的商品卖点手册，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_04",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的运营周报模板，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_05",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的客服 SOP，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_06",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的促销活动说明，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_07",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的品牌指南，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_08",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的库存处理流程，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_09",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的网站优化清单，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_search_performance_10",
+    "category": "混合-站内搜索",
+    "question": "结合已上传的市场复盘文档，查最近 7 天站内搜索词与搜索转化并解释结果。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_01",
+    "category": "混合-网站性能",
+    "question": "结合已上传的补货规范，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_02",
+    "category": "混合-网站性能",
+    "question": "结合已上传的退款政策，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_03",
+    "category": "混合-网站性能",
+    "question": "结合已上传的商品卖点手册，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_04",
+    "category": "混合-网站性能",
+    "question": "结合已上传的运营周报模板，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_05",
+    "category": "混合-网站性能",
+    "question": "结合已上传的客服 SOP，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_06",
+    "category": "混合-网站性能",
+    "question": "结合已上传的促销活动说明，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_07",
+    "category": "混合-网站性能",
+    "question": "结合已上传的品牌指南，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_08",
+    "category": "混合-网站性能",
+    "question": "结合已上传的库存处理流程，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_09",
+    "category": "混合-网站性能",
+    "question": "结合已上传的网站优化清单，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_get_web_performance_10",
+    "category": "混合-网站性能",
+    "question": "结合已上传的市场复盘文档，查最近 7 天 LCP、INP 和 CLS并解释结果。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_01_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_01_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_01_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_02_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_02_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_02_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_03_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_03_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_03_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_04_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_04_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_04_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_05_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_05_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_05_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_06_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_06_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_06_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_07_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_07_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_07_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_08_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_08_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_08_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_09_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_09_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_09_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_10_1",
+    "category": "混合-多工具",
+    "question": "参考已上传的补货规范，再把客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_10_2",
+    "category": "混合-多工具",
+    "question": "参考已上传的退款政策，再把客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  },
+  {
+    "id": "mixed_multi_10_3",
+    "category": "混合-多工具",
+    "question": "参考已上传的商品卖点手册，再把客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "mixed"
+  }
+]

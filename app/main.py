@@ -14,7 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from loguru import logger
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api import auth, chat, config as config_api, file, health, ops, snapshot
+from app.api import auth, chat, config as config_api, file, health, memory, ops, snapshot
 from app.auth.dependencies import get_current_user
 from app.auth.middleware import RequestSecurityMiddleware
 from app.config import config
@@ -92,6 +92,7 @@ app.include_router(health.router, tags=["健康检查"])
 app.include_router(auth.router, prefix="/api", tags=["认证"])
 app.include_router(chat.router, prefix="/api", tags=["知识库问答"], dependencies=auth_required)
 app.include_router(file.router, prefix="/api", tags=["知识库"], dependencies=auth_required)
+app.include_router(memory.router, prefix="/api", tags=["长期记忆"], dependencies=auth_required)
 app.include_router(ops.router, prefix="/api", tags=["运营 Agent"], dependencies=auth_required)
 app.include_router(snapshot.router, prefix="/api", tags=["Shopify 数据"], dependencies=auth_required)
 app.include_router(config_api.router, prefix="/api", tags=["配置信息"], dependencies=auth_required)

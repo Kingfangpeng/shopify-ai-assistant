@@ -253,7 +253,11 @@ async def test_all_real_nodes_construct_the_requested_model(monkeypatch):
             assert method == "function_calling"
             async def response(_input):
                 if schema.__name__ == "Plan":
-                    return schema(steps=["独立测试步骤"])
+                    return schema(steps=[{
+                        "task": "独立测试步骤",
+                        "tools": [],
+                        "expected_evidence": "测试证据",
+                    }])
                 if schema.__name__ == "Act":
                     return schema(action="respond")
                 return schema(response="测试报告")
@@ -304,7 +308,8 @@ def test_migration_chain_has_one_head_and_preserves_prior_revision():
     from alembic.config import Config
     from alembic.script import ScriptDirectory
     script = ScriptDirectory.from_config(Config("alembic.ini"))
-    assert script.get_heads() == ["20260904_0002"]
+    assert script.get_heads() == ["20260908_0003"]
+    assert script.get_revision("20260908_0003").down_revision == "20260904_0002"
     assert script.get_revision("20260904_0002").down_revision == "20260901_0002"
 
 

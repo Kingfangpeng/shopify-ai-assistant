@@ -29,6 +29,7 @@ test-results/
 uploads/
 volumes/
 logs/
+output/
 output/playwright/
 .playwright-cli/
 *.db

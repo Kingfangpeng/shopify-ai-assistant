@@ -1,0 +1,60 @@
+{
+  "suite_version": "routing-production-v1",
+  "seed": 20260905,
+  "description": "Shopify 运营助手语义规划层的生产规模合成评估套件；不包含真实用户日志。",
+  "total_cases": 1500,
+  "files": [
+    {
+      "path": "core_gold.json",
+      "cases": 300,
+      "sha256": "a2ec763e59899daf8f816b6253b1652484c4d4de518a1f096b1ece7ca1b4b96c"
+    },
+    {
+      "path": "paraphrase_noise.json",
+      "cases": 500,
+      "sha256": "e53569c3763db412c738a40c91ea18c54bd7003928ec2ace2c57e7f8c41fcac5"
+    },
+    {
+      "path": "multiturn_context.json",
+      "cases": 250,
+      "sha256": "bb40b029b88218fab35ca912dbac542bb8e35cc0c040e4c0b5719856ed2ef500"
+    },
+    {
+      "path": "mixed_rag_shopify.json",
+      "cases": 200,
+      "sha256": "5cfa78154a40977fd1455645f6bad5156582dd8557f3dee1a7138b3d1a6d1546"
+    },
+    {
+      "path": "safety_boundary.json",
+      "cases": 250,
+      "sha256": "1b2efcba97587b96eb2ea5aab655dafa917c8daf2edddcd4cc3a3c075e6f7c7f"
+    }
+  ],
+  "route_counts": {
+    "chat": 44,
+    "clarify": 63,
+    "knowledge": 44,
+    "mixed": 200,
+    "shopify": 916,
+    "unsupported": 233
+  },
+  "tool_counts": {
+    "compare_order_periods": 73,
+    "get_abandoned_checkouts": 73,
+    "get_customer_segments": 84,
+    "get_device_traffic": 73,
+    "get_discount_performance": 86,
+    "get_inventory_levels": 77,
+    "get_landing_page_performance": 79,
+    "get_order_list": 77,
+    "get_orders_summary": 101,
+    "get_product_performance": 105,
+    "get_refund_stats": 99,
+    "get_search_performance": 71,
+    "get_traffic_geography": 73,
+    "get_traffic_overview": 77,
+    "get_traffic_sources": 86,
+    "get_traffic_timeseries": 73,
+    "get_web_performance": 77
+  }
+}

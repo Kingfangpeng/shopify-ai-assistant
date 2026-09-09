@@ -1,0 +1,4736 @@
+[
+  {
+    "id": "turn_compare_order_periods_01",
+    "category": "多轮-订单对比",
+    "question": "那改成查一下：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_02",
+    "category": "多轮-订单对比",
+    "question": "先停一下，真正要看的是比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_03",
+    "category": "多轮-订单对比",
+    "question": "回到店铺数据，我还想知道比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_04",
+    "category": "多轮-订单对比",
+    "question": "刚才那个不用了，现在看比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_05",
+    "category": "多轮-订单对比",
+    "question": "继续，再补充比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_06",
+    "category": "多轮-订单对比",
+    "question": "换个维度，帮我查比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_07",
+    "category": "多轮-订单对比",
+    "question": "对了，还需要比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_08",
+    "category": "多轮-订单对比",
+    "question": "下一项请看比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_09",
+    "category": "多轮-订单对比",
+    "question": "把上一项放下，先查比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_compare_order_periods_10",
+    "category": "多轮-订单对比",
+    "question": "最后补一项：比较最近 7 天和前 7 天的订单量与 GMV。",
+    "expected_tools": [
+      "compare_order_periods"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_01",
+    "category": "多轮-订单汇总",
+    "question": "那改成查一下：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_02",
+    "category": "多轮-订单汇总",
+    "question": "先停一下，真正要看的是查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_03",
+    "category": "多轮-订单汇总",
+    "question": "回到店铺数据，我还想知道查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_04",
+    "category": "多轮-订单汇总",
+    "question": "刚才那个不用了，现在看查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_05",
+    "category": "多轮-订单汇总",
+    "question": "继续，再补充查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_06",
+    "category": "多轮-订单汇总",
+    "question": "换个维度，帮我查查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_07",
+    "category": "多轮-订单汇总",
+    "question": "对了，还需要查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_08",
+    "category": "多轮-订单汇总",
+    "question": "下一项请看查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_09",
+    "category": "多轮-订单汇总",
+    "question": "把上一项放下，先查查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_orders_summary_10",
+    "category": "多轮-订单汇总",
+    "question": "最后补一项：查最近 7 天订单量、GMV 和客单价。",
+    "expected_tools": [
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_01",
+    "category": "多轮-弃购",
+    "question": "那改成查一下：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_02",
+    "category": "多轮-弃购",
+    "question": "先停一下，真正要看的是查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_03",
+    "category": "多轮-弃购",
+    "question": "回到店铺数据，我还想知道查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_04",
+    "category": "多轮-弃购",
+    "question": "刚才那个不用了，现在看查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_05",
+    "category": "多轮-弃购",
+    "question": "继续，再补充查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_06",
+    "category": "多轮-弃购",
+    "question": "换个维度，帮我查查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_07",
+    "category": "多轮-弃购",
+    "question": "对了，还需要查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_08",
+    "category": "多轮-弃购",
+    "question": "下一项请看查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_09",
+    "category": "多轮-弃购",
+    "question": "把上一项放下，先查查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_abandoned_checkouts_10",
+    "category": "多轮-弃购",
+    "question": "最后补一项：查最近 7 天弃购数量和相关商品。",
+    "expected_tools": [
+      "get_abandoned_checkouts"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_01",
+    "category": "多轮-库存",
+    "question": "那改成查一下：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_02",
+    "category": "多轮-库存",
+    "question": "先停一下，真正要看的是查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_03",
+    "category": "多轮-库存",
+    "question": "回到店铺数据，我还想知道查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_04",
+    "category": "多轮-库存",
+    "question": "刚才那个不用了，现在看查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_05",
+    "category": "多轮-库存",
+    "question": "继续，再补充查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_06",
+    "category": "多轮-库存",
+    "question": "换个维度，帮我查查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_07",
+    "category": "多轮-库存",
+    "question": "对了，还需要查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_08",
+    "category": "多轮-库存",
+    "question": "下一项请看查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_09",
+    "category": "多轮-库存",
+    "question": "把上一项放下，先查查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_inventory_levels_10",
+    "category": "多轮-库存",
+    "question": "最后补一项：查当前低库存 SKU。",
+    "expected_tools": [
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_01",
+    "category": "多轮-商品表现",
+    "question": "那改成查一下：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_02",
+    "category": "多轮-商品表现",
+    "question": "先停一下，真正要看的是查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_03",
+    "category": "多轮-商品表现",
+    "question": "回到店铺数据，我还想知道查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_04",
+    "category": "多轮-商品表现",
+    "question": "刚才那个不用了，现在看查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_05",
+    "category": "多轮-商品表现",
+    "question": "继续，再补充查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_06",
+    "category": "多轮-商品表现",
+    "question": "换个维度，帮我查查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_07",
+    "category": "多轮-商品表现",
+    "question": "对了，还需要查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_08",
+    "category": "多轮-商品表现",
+    "question": "下一项请看查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_09",
+    "category": "多轮-商品表现",
+    "question": "把上一项放下，先查查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_product_performance_10",
+    "category": "多轮-商品表现",
+    "question": "最后补一项：查最近 7 天热销商品排行。",
+    "expected_tools": [
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_01",
+    "category": "多轮-客户",
+    "question": "那改成查一下：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_02",
+    "category": "多轮-客户",
+    "question": "先停一下，真正要看的是查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_03",
+    "category": "多轮-客户",
+    "question": "回到店铺数据，我还想知道查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_04",
+    "category": "多轮-客户",
+    "question": "刚才那个不用了，现在看查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_05",
+    "category": "多轮-客户",
+    "question": "继续，再补充查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_06",
+    "category": "多轮-客户",
+    "question": "换个维度，帮我查查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_07",
+    "category": "多轮-客户",
+    "question": "对了，还需要查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_08",
+    "category": "多轮-客户",
+    "question": "下一项请看查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_09",
+    "category": "多轮-客户",
+    "question": "把上一项放下，先查查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_customer_segments_10",
+    "category": "多轮-客户",
+    "question": "最后补一项：查最近 7 天新老客户分层与复购率。",
+    "expected_tools": [
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_01",
+    "category": "多轮-退款",
+    "question": "那改成查一下：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_02",
+    "category": "多轮-退款",
+    "question": "先停一下，真正要看的是查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_03",
+    "category": "多轮-退款",
+    "question": "回到店铺数据，我还想知道查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_04",
+    "category": "多轮-退款",
+    "question": "刚才那个不用了，现在看查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_05",
+    "category": "多轮-退款",
+    "question": "继续，再补充查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_06",
+    "category": "多轮-退款",
+    "question": "换个维度，帮我查查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_07",
+    "category": "多轮-退款",
+    "question": "对了，还需要查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_08",
+    "category": "多轮-退款",
+    "question": "下一项请看查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_09",
+    "category": "多轮-退款",
+    "question": "把上一项放下，先查查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_refund_stats_10",
+    "category": "多轮-退款",
+    "question": "最后补一项：查最近 7 天退款笔数、金额和退款率。",
+    "expected_tools": [
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_01",
+    "category": "多轮-折扣",
+    "question": "那改成查一下：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_02",
+    "category": "多轮-折扣",
+    "question": "先停一下，真正要看的是查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_03",
+    "category": "多轮-折扣",
+    "question": "回到店铺数据，我还想知道查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_04",
+    "category": "多轮-折扣",
+    "question": "刚才那个不用了，现在看查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_05",
+    "category": "多轮-折扣",
+    "question": "继续，再补充查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_06",
+    "category": "多轮-折扣",
+    "question": "换个维度，帮我查查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_07",
+    "category": "多轮-折扣",
+    "question": "对了，还需要查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_08",
+    "category": "多轮-折扣",
+    "question": "下一项请看查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_09",
+    "category": "多轮-折扣",
+    "question": "把上一项放下，先查查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_discount_performance_10",
+    "category": "多轮-折扣",
+    "question": "最后补一项：查最近 7 天优惠码使用和归因销售额。",
+    "expected_tools": [
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_01",
+    "category": "多轮-订单明细",
+    "question": "那改成查一下：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_02",
+    "category": "多轮-订单明细",
+    "question": "先停一下，真正要看的是列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_03",
+    "category": "多轮-订单明细",
+    "question": "回到店铺数据，我还想知道列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_04",
+    "category": "多轮-订单明细",
+    "question": "刚才那个不用了，现在看列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_05",
+    "category": "多轮-订单明细",
+    "question": "继续，再补充列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_06",
+    "category": "多轮-订单明细",
+    "question": "换个维度，帮我查列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_07",
+    "category": "多轮-订单明细",
+    "question": "对了，还需要列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_08",
+    "category": "多轮-订单明细",
+    "question": "下一项请看列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_09",
+    "category": "多轮-订单明细",
+    "question": "把上一项放下，先查列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_order_list_10",
+    "category": "多轮-订单明细",
+    "question": "最后补一项：列出最近 7 天的订单明细。",
+    "expected_tools": [
+      "get_order_list"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_01",
+    "category": "多轮-流量概览",
+    "question": "那改成查一下：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_02",
+    "category": "多轮-流量概览",
+    "question": "先停一下，真正要看的是查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_03",
+    "category": "多轮-流量概览",
+    "question": "回到店铺数据，我还想知道查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_04",
+    "category": "多轮-流量概览",
+    "question": "刚才那个不用了，现在看查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_05",
+    "category": "多轮-流量概览",
+    "question": "继续，再补充查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_06",
+    "category": "多轮-流量概览",
+    "question": "换个维度，帮我查查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_07",
+    "category": "多轮-流量概览",
+    "question": "对了，还需要查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_08",
+    "category": "多轮-流量概览",
+    "question": "下一项请看查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_09",
+    "category": "多轮-流量概览",
+    "question": "把上一项放下，先查查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_overview_10",
+    "category": "多轮-流量概览",
+    "question": "最后补一项：查最近 7 天网站会话、跳出率和转化率。",
+    "expected_tools": [
+      "get_traffic_overview"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_01",
+    "category": "多轮-流量趋势",
+    "question": "那改成查一下：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_02",
+    "category": "多轮-流量趋势",
+    "question": "先停一下，真正要看的是查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_03",
+    "category": "多轮-流量趋势",
+    "question": "回到店铺数据，我还想知道查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_04",
+    "category": "多轮-流量趋势",
+    "question": "刚才那个不用了，现在看查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_05",
+    "category": "多轮-流量趋势",
+    "question": "继续，再补充查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_06",
+    "category": "多轮-流量趋势",
+    "question": "换个维度，帮我查查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_07",
+    "category": "多轮-流量趋势",
+    "question": "对了，还需要查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_08",
+    "category": "多轮-流量趋势",
+    "question": "下一项请看查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_09",
+    "category": "多轮-流量趋势",
+    "question": "把上一项放下，先查查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_timeseries_10",
+    "category": "多轮-流量趋势",
+    "question": "最后补一项：查最近 7 天按日流量趋势。",
+    "expected_tools": [
+      "get_traffic_timeseries"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_01",
+    "category": "多轮-流量来源",
+    "question": "那改成查一下：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_02",
+    "category": "多轮-流量来源",
+    "question": "先停一下，真正要看的是查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_03",
+    "category": "多轮-流量来源",
+    "question": "回到店铺数据，我还想知道查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_04",
+    "category": "多轮-流量来源",
+    "question": "刚才那个不用了，现在看查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_05",
+    "category": "多轮-流量来源",
+    "question": "继续，再补充查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_06",
+    "category": "多轮-流量来源",
+    "question": "换个维度，帮我查查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_07",
+    "category": "多轮-流量来源",
+    "question": "对了，还需要查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_08",
+    "category": "多轮-流量来源",
+    "question": "下一项请看查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_09",
+    "category": "多轮-流量来源",
+    "question": "把上一项放下，先查查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_sources_10",
+    "category": "多轮-流量来源",
+    "question": "最后补一项：查最近 7 天流量来源渠道。",
+    "expected_tools": [
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_01",
+    "category": "多轮-落地页",
+    "question": "那改成查一下：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_02",
+    "category": "多轮-落地页",
+    "question": "先停一下，真正要看的是查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_03",
+    "category": "多轮-落地页",
+    "question": "回到店铺数据，我还想知道查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_04",
+    "category": "多轮-落地页",
+    "question": "刚才那个不用了，现在看查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_05",
+    "category": "多轮-落地页",
+    "question": "继续，再补充查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_06",
+    "category": "多轮-落地页",
+    "question": "换个维度，帮我查查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_07",
+    "category": "多轮-落地页",
+    "question": "对了，还需要查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_08",
+    "category": "多轮-落地页",
+    "question": "下一项请看查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_09",
+    "category": "多轮-落地页",
+    "question": "把上一项放下，先查查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_landing_page_performance_10",
+    "category": "多轮-落地页",
+    "question": "最后补一项：查最近 7 天落地页会话表现。",
+    "expected_tools": [
+      "get_landing_page_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_01",
+    "category": "多轮-访问设备",
+    "question": "那改成查一下：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_02",
+    "category": "多轮-访问设备",
+    "question": "先停一下，真正要看的是查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_03",
+    "category": "多轮-访问设备",
+    "question": "回到店铺数据，我还想知道查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_04",
+    "category": "多轮-访问设备",
+    "question": "刚才那个不用了，现在看查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_05",
+    "category": "多轮-访问设备",
+    "question": "继续，再补充查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_06",
+    "category": "多轮-访问设备",
+    "question": "换个维度，帮我查查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_07",
+    "category": "多轮-访问设备",
+    "question": "对了，还需要查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_08",
+    "category": "多轮-访问设备",
+    "question": "下一项请看查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_09",
+    "category": "多轮-访问设备",
+    "question": "把上一项放下，先查查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_device_traffic_10",
+    "category": "多轮-访问设备",
+    "question": "最后补一项：查最近 7 天移动端与桌面端访问占比。",
+    "expected_tools": [
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_01",
+    "category": "多轮-访客地域",
+    "question": "那改成查一下：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_02",
+    "category": "多轮-访客地域",
+    "question": "先停一下，真正要看的是查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_03",
+    "category": "多轮-访客地域",
+    "question": "回到店铺数据，我还想知道查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_04",
+    "category": "多轮-访客地域",
+    "question": "刚才那个不用了，现在看查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_05",
+    "category": "多轮-访客地域",
+    "question": "继续，再补充查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_06",
+    "category": "多轮-访客地域",
+    "question": "换个维度，帮我查查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_07",
+    "category": "多轮-访客地域",
+    "question": "对了，还需要查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_08",
+    "category": "多轮-访客地域",
+    "question": "下一项请看查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_09",
+    "category": "多轮-访客地域",
+    "question": "把上一项放下，先查查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_traffic_geography_10",
+    "category": "多轮-访客地域",
+    "question": "最后补一项：查最近 7 天访客国家分布。",
+    "expected_tools": [
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_01",
+    "category": "多轮-站内搜索",
+    "question": "那改成查一下：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_02",
+    "category": "多轮-站内搜索",
+    "question": "先停一下，真正要看的是查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_03",
+    "category": "多轮-站内搜索",
+    "question": "回到店铺数据，我还想知道查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_04",
+    "category": "多轮-站内搜索",
+    "question": "刚才那个不用了，现在看查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_05",
+    "category": "多轮-站内搜索",
+    "question": "继续，再补充查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_06",
+    "category": "多轮-站内搜索",
+    "question": "换个维度，帮我查查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_07",
+    "category": "多轮-站内搜索",
+    "question": "对了，还需要查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_08",
+    "category": "多轮-站内搜索",
+    "question": "下一项请看查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_09",
+    "category": "多轮-站内搜索",
+    "question": "把上一项放下，先查查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_search_performance_10",
+    "category": "多轮-站内搜索",
+    "question": "最后补一项：查最近 7 天站内搜索词与搜索转化。",
+    "expected_tools": [
+      "get_search_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_01",
+    "category": "多轮-网站性能",
+    "question": "那改成查一下：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_02",
+    "category": "多轮-网站性能",
+    "question": "先停一下，真正要看的是查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_03",
+    "category": "多轮-网站性能",
+    "question": "回到店铺数据，我还想知道查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_04",
+    "category": "多轮-网站性能",
+    "question": "刚才那个不用了，现在看查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_05",
+    "category": "多轮-网站性能",
+    "question": "继续，再补充查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_06",
+    "category": "多轮-网站性能",
+    "question": "换个维度，帮我查查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_07",
+    "category": "多轮-网站性能",
+    "question": "对了，还需要查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_08",
+    "category": "多轮-网站性能",
+    "question": "下一项请看查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_09",
+    "category": "多轮-网站性能",
+    "question": "把上一项放下，先查查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_get_web_performance_10",
+    "category": "多轮-网站性能",
+    "question": "最后补一项：查最近 7 天 LCP、INP 和 CLS。",
+    "expected_tools": [
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_01",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：根据刚上传的产品手册总结 Aurora 保温杯的规格。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_02",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：从退款政策文档里找出退货时限。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_03",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：读取补货 SOP 并整理执行步骤。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_04",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：根据品牌资料写一段产品介绍。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_05",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：从客服手册中提取破损包裹回复模板。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_06",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：上传的配送说明里有哪些国家限制。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_07",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：根据尺寸文档整理产品参数。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_08",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：保修条款规定了哪些免责情况。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_09",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：产品规格附件里提到哪些材质。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_knowledge_10",
+    "category": "多轮-knowledge",
+    "question": "接着只根据上传资料回答：把售后脚本改写得更礼貌。",
+    "expected_tools": [],
+    "expected_route": "knowledge",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_01",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：解释什么是客单价，不需要读取店铺数据。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_02",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：用简单例子说明转化率。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_03",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：RAG 和微调有什么区别。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_04",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：写一封通用的节日营销邮件，不使用店铺资料。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_05",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：把这句话翻译成英文：感谢你的耐心等待。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_06",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：你好，简单介绍一下你能做什么。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_07",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：什么是 LCP 指标。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_08",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：说明 Precision 和 Recall 的区别。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_09",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：给我一个通用的客服道歉句式。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_chat_10",
+    "category": "多轮-chat",
+    "question": "先不查店铺，改为通用问题：如何理解复购率这个概念。",
+    "expected_tools": [],
+    "expected_route": "chat",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_01",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：帮我查一下那个数据。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_02",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：看看刚才说的东西。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_03",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：这个情况怎么样。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_04",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：给我一份报表。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_05",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：查一下最近的表现。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_06",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：那个指标是多少。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_07",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：帮我分析一下。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_08",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：我想看店铺里的某个数字。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_09",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：把相关数据找出来。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_clarify_10",
+    "category": "多轮-clarify",
+    "question": "我改主意了，但还没想清楚：看看有没有问题。",
+    "expected_tools": [],
+    "expected_route": "clarify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_01",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：查询昨天 Facebook 广告花费和 ROAS。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_02",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：查询 Google Ads 的点击成本。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_03",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：把库存不足 10 件的商品全部下架。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_04",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：给所有未发货订单批量退款。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_05",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：把全店商品价格降低百分之十并保存。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_06",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：创建一个八折优惠码并发布。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_07",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：删除最近 30 天没有销量的商品。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_08",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：修改客户邮箱并同步到 Shopify。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_09",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：把订单标记为已发货。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_switch_unsupported_10",
+    "category": "多轮-unsupported",
+    "question": "忽略上一个只读查询，现在要求：查询 TikTok Ads 广告归因收入。",
+    "expected_tools": [],
+    "expected_route": "unsupported",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_01_1",
+    "category": "多轮-多工具",
+    "question": "那再把订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_01_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_01_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_01_4",
+    "category": "多轮-多工具",
+    "question": "最后请订单、退款和流量来源联合复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_refund_stats",
+      "get_traffic_sources"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_02_1",
+    "category": "多轮-多工具",
+    "question": "那再把热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_02_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_02_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_02_4",
+    "category": "多轮-多工具",
+    "question": "最后请热销商品与低库存风险一起看。",
+    "expected_tools": [
+      "get_product_performance",
+      "get_inventory_levels"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_03_1",
+    "category": "多轮-多工具",
+    "question": "那再把订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_03_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_03_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_03_4",
+    "category": "多轮-多工具",
+    "question": "最后请订单明细和退款统计一起查。",
+    "expected_tools": [
+      "get_order_list",
+      "get_refund_stats"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_04_1",
+    "category": "多轮-多工具",
+    "question": "那再把流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "根据手册写客服回复"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_04_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_04_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_04_4",
+    "category": "多轮-多工具",
+    "question": "最后请流量概览、渠道来源和设备占比一起分析。",
+    "expected_tools": [
+      "get_traffic_overview",
+      "get_traffic_sources",
+      "get_device_traffic"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_05_1",
+    "category": "多轮-多工具",
+    "question": "那再把订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看库存"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_05_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_05_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_05_4",
+    "category": "多轮-多工具",
+    "question": "最后请订单表现、商品排行和客户分层一起复盘。",
+    "expected_tools": [
+      "get_orders_summary",
+      "get_product_performance",
+      "get_customer_segments"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_06_1",
+    "category": "多轮-多工具",
+    "question": "那再把落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "分析优惠码"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_06_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_06_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_06_4",
+    "category": "多轮-多工具",
+    "question": "最后请落地页、站内搜索和网页性能一起看。",
+    "expected_tools": [
+      "get_landing_page_performance",
+      "get_search_performance",
+      "get_web_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_07_1",
+    "category": "多轮-多工具",
+    "question": "那再把弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "列出订单"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_07_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_07_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_07_4",
+    "category": "多轮-多工具",
+    "question": "最后请弃购、折扣和订单经营数据联合分析。",
+    "expected_tools": [
+      "get_abandoned_checkouts",
+      "get_discount_performance",
+      "get_orders_summary"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_08_1",
+    "category": "多轮-多工具",
+    "question": "那再把流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "说明什么是 RAG"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_08_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_08_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_08_4",
+    "category": "多轮-多工具",
+    "question": "最后请流量趋势和访客国家分布一起查询。",
+    "expected_tools": [
+      "get_traffic_timeseries",
+      "get_traffic_geography"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_09_1",
+    "category": "多轮-多工具",
+    "question": "那再把订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "先看今天订单表现"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_09_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_09_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_09_4",
+    "category": "多轮-多工具",
+    "question": "最后请订单环比与热销商品排行一起看。",
+    "expected_tools": [
+      "compare_order_periods",
+      "get_product_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_10_1",
+    "category": "多轮-多工具",
+    "question": "那再把客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "介绍一下退款政策"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_10_2",
+    "category": "多轮-多工具",
+    "question": "继续，追加一项：客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "看看最近流量"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_10_3",
+    "category": "多轮-多工具",
+    "question": "换成联合查看：客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "解释客单价"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  },
+  {
+    "id": "turn_multi_10_4",
+    "category": "多轮-多工具",
+    "question": "最后请客户复购、退款和折扣表现一起分析。",
+    "expected_tools": [
+      "get_customer_segments",
+      "get_refund_stats",
+      "get_discount_performance"
+    ],
+    "expected_route": "shopify",
+    "history": [
+      {
+        "role": "user",
+        "content": "查热销商品"
+      },
+      {
+        "role": "assistant",
+        "content": "好的，我会按你当前的问题处理。"
+      }
+    ]
+  }
+]

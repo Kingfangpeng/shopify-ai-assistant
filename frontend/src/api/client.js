@@ -171,3 +171,18 @@ export const knowledgeApi = {
   restore: id => apiFetch(`/api/knowledge/documents/${encodeURIComponent(id)}/restore`, { method: 'POST' }),
   rebuild: () => apiFetch('/api/knowledge/rebuild', { method: 'POST' }),
 }
+
+export const memoryApi = {
+  list: (status = 'candidate') => apiFetch(`/api/memories?status=${encodeURIComponent(status)}`),
+  create: payload => apiFetch('/api/memories', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+  }),
+  approve: (id, payload = {}) => apiFetch(`/api/memories/${encodeURIComponent(id)}/approve`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+  }),
+  reject: id => apiFetch(`/api/memories/${encodeURIComponent(id)}/reject`, { method: 'POST' }),
+  edit: (id, payload) => apiFetch(`/api/memories/${encodeURIComponent(id)}/edit`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+  }),
+  remove: id => apiFetch(`/api/memories/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+}

@@ -13,6 +13,7 @@ from app.core.errors import AppError
 from app.db.engine import db_session
 from app.models.request import ChatRequest, CreateChatSessionRequest, ImportChatSessionsRequest
 from app.services.chat import chat_agent_service, chat_service
+from app.services.memory import memory_service
 from app.services.model_catalog_service import model_catalog_service
 
 router = APIRouter()
@@ -57,7 +58,8 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
     selected_model = await model_catalog_service.resolve_model(request.model)
     with db_session() as db:
         session = chat_service.get_session(db, context.user.id, request.session_id)
-        history = chat_service.recent_context(db, context.user.id, request.session_id)
+        recent = chat_service.recent_context(db, context.user.id, request.session_id)
+        history = memory_service.context_history(db, context.user.id, request.session_id, recent)
         chat_service.add_message(db, session, "user", request.question)
     try:
         result = await chat_agent_service.query(
@@ -65,6 +67,7 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
             history=history,
             model=selected_model,
             plan=plan,
+            user_id=context.user.id,
         )
     except AppError:
         raise
@@ -73,7 +76,28 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
         raise AppError("chat_failed", "生成回答失败，请稍后重试", 503) from exc
     with db_session() as db:
         session = chat_service.get_session(db, context.user.id, request.session_id)
-        chat_service.add_message(db, session, "assistant", result.answer)
+        assistant_message = chat_service.add_message(
+            db,
+            session,
+            "assistant",
+            result.answer,
+            metadata={
+                "prompt_bundle": result.prompt_bundle,
+                "planner": result.planner,
+                "route": result.route,
+                "tools": list(result.tools),
+            },
+        )
+        message_id = assistant_message.id
+    candidates = await memory_service.capture_candidates(
+        context.user.id,
+        request.session_id,
+        message_id,
+        request.question,
+        result.answer,
+        selected_model,
+    )
+    await memory_service.maybe_refresh_summary(context.user.id, request.session_id, selected_model)
     return {
         "answer": result.answer,
         "session_id": request.session_id,
@@ -85,6 +109,9 @@ async def chat(request: ChatRequest, context: AuthContext = Depends(get_auth_con
         "warnings": list(result.warnings),
         "planner": result.planner,
         "route": result.route,
+        "memory_candidates": candidates,
+        "citations": list(result.citations),
+        "prompt_bundle": result.prompt_bundle,
     }
 
 
@@ -94,7 +121,8 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
     selected_model = await model_catalog_service.resolve_model(request.model)
     with db_session() as db:
         session = chat_service.get_session(db, context.user.id, request.session_id)
-        history = chat_service.recent_context(db, context.user.id, request.session_id)
+        recent = chat_service.recent_context(db, context.user.id, request.session_id)
+        history = memory_service.context_history(db, context.user.id, request.session_id, recent)
         chat_service.add_message(db, session, "user", request.question)
 
     async def event_generator():
@@ -106,6 +134,7 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
             history=history,
             model=selected_model,
             plan=plan,
+            user_id=context.user.id,
         ):
             if chunk.get("type") == "content":
                 full_answer += str(chunk.get("data") or "")
@@ -119,8 +148,38 @@ async def chat_stream(request: ChatRequest, context: AuthContext = Depends(get_a
             if chunk.get("type") in {"complete", "error"} and full_answer and not stored:
                 with db_session() as db:
                     session = chat_service.get_session(db, context.user.id, request.session_id)
-                    chat_service.add_message(db, session, "assistant", full_answer, "failed" if failed else "complete")
+                    complete_data = chunk.get("data") if isinstance(chunk.get("data"), dict) else {}
+                    assistant_message = chat_service.add_message(
+                        db,
+                        session,
+                        "assistant",
+                        full_answer,
+                        "failed" if failed else "complete",
+                        metadata={
+                            "prompt_bundle": complete_data.get("prompt_bundle"),
+                            "planner": complete_data.get("planner"),
+                            "route": complete_data.get("route"),
+                            "tools": complete_data.get("tools") or [],
+                        },
+                    )
+                    message_id = assistant_message.id
                 stored = True
+                if chunk.get("type") == "complete" and not failed:
+                    candidates = await memory_service.capture_candidates(
+                        context.user.id,
+                        request.session_id,
+                        message_id,
+                        request.question,
+                        full_answer,
+                        selected_model,
+                    )
+                    if isinstance(chunk.get("data"), dict):
+                        chunk["data"]["memory_candidates"] = candidates
+                    await memory_service.maybe_refresh_summary(
+                        context.user.id,
+                        request.session_id,
+                        selected_model,
+                    )
             yield {"event": "message", "data": json.dumps(chunk, ensure_ascii=False)}
         if full_answer and not stored:
             with db_session() as db:

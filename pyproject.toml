@@ -31,6 +31,7 @@ dependencies = [
     "alembic>=1.14",
     "pwdlib[argon2]>=0.2",
     "tzdata>=2026.2; sys_platform == 'win32'",
+    "flashrank>=0.2.9,<0.3",
 ]
 
 [dependency-groups]

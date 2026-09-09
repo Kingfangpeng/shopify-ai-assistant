@@ -57,7 +57,10 @@ async def test_unknown_native_calls_cannot_be_executed(monkeypatch):
             ])
 
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeClient())
-    assert await SemanticToolPlanner().plan("删除商品", "local-test", [get_orders_summary]) is None
+    plan = await SemanticToolPlanner().plan("删除商品", "local-test", [get_orders_summary])
+    assert plan is not None
+    assert plan.route == "clarify"
+    assert plan.tools == ()
 
 
 @pytest.mark.asyncio
@@ -73,6 +76,32 @@ async def test_timeout_is_bounded_and_does_not_guess_tools(monkeypatch):
     planner = SemanticToolPlanner()
     planner.timeout_seconds = 0.001
     assert await planner.plan("订单", "local-test", [get_orders_summary]) is None
+
+
+@pytest.mark.asyncio
+async def test_local_qwen_structured_routing_disables_thinking(monkeypatch):
+    options = {}
+
+    class FakeClient:
+        def bind_tools(self, *_args, **kwargs):
+            options.update(kwargs)
+            return self
+
+        async def ainvoke(self, _messages):
+            return AIMessage(content="", tool_calls=[{
+                "name": "submit_read_only_plan",
+                "args": decision(),
+                "id": "safe",
+            }])
+
+    monkeypatch.setattr("app.agent.semantic_planner.config.llm_api_base", "http://127.0.0.1:11434/v1")
+    monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeClient())
+
+    plan = await SemanticToolPlanner().plan("订单", "qwen3.5:27b", [get_orders_summary])
+
+    assert plan is not None
+    assert options["extra_body"] == {"reasoning_effort": "none"}
+    assert options["tool_choice"] == "submit_read_only_plan"
 
 
 @pytest.mark.asyncio
@@ -129,9 +158,10 @@ async def test_clarify_and_unsupported_return_without_queries(monkeypatch, route
 @pytest.mark.asyncio
 async def test_plain_chat_does_not_depend_on_milvus(monkeypatch):
     monkeypatch.setattr(vector_store_manager, "similarity_search", lambda *_a, **_k: pytest.fail("普通问答不检索"))
-    messages, source, warnings = await rag_agent_service._prepare_messages("你好", [], use_knowledge=False)
+    messages, source, warnings, citations = await rag_agent_service._prepare_messages("你好", [], use_knowledge=False)
     assert source == "model"
     assert warnings == ()
+    assert citations == ()
     assert messages
 
 

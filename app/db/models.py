@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from uuid import uuid4
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Index, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .engine import Base
@@ -52,6 +52,11 @@ class ChatSession(Base):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
     title: Mapped[str] = mapped_column(String(120), default="新对话")
     legacy_id: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    summary: Mapped[str] = mapped_column(Text, default="", server_default="")
+    summary_version: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    summary_through_sequence: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    summary_prompt_version: Mapped[str] = mapped_column(String(80), default="", server_default="")
+    summary_updated_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
     messages: Mapped[list[ChatMessage]] = relationship(
@@ -93,6 +98,33 @@ class KnowledgeDocument(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
     trashed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     delete_after: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+
+class MemoryFact(Base):
+    """用户确认后才会进入模型上下文的跨会话事实或偏好。"""
+
+    __tablename__ = "memory_facts"
+    __table_args__ = (
+        Index("ix_memory_user_status_updated", "user_id", "status", "updated_at"),
+        Index("ix_memory_user_key_version", "user_id", "memory_key", "version"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_string)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    memory_key: Mapped[str] = mapped_column(String(80))
+    kind: Mapped[str] = mapped_column(String(30), default="preference")
+    value: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(String(20), default="candidate")
+    confidence: Mapped[float] = mapped_column(Float, default=0.0)
+    sensitivity: Mapped[str] = mapped_column(String(20), default="normal")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    source_session_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    source_message_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    conflicts_with_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    supersedes_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    expires_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
 
 
 class AuditEvent(Base):

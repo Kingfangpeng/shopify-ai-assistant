@@ -1,0 +1,12 @@
+{
+  "prompts": {
+    "routing": {"version": "1.1.0", "file": "routing.v1_1.md"},
+    "rag_answer": {"version": "1.0.0", "file": "rag_answer.v1.md"},
+    "ops_planner": {"version": "1.0.0", "file": "ops_planner.v1.md"},
+    "ops_executor": {"version": "1.0.0", "file": "ops_executor.v1.md"},
+    "ops_replanner": {"version": "1.0.0", "file": "ops_replanner.v1.md"},
+    "ops_report": {"version": "1.0.0", "file": "ops_report.v1.md"},
+    "memory_extract": {"version": "1.0.0", "file": "memory_extract.v1.md"},
+    "conversation_summary": {"version": "1.0.0", "file": "conversation_summary.v1.md"}
+  }
+}

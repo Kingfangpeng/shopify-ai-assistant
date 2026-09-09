@@ -1,0 +1,300 @@
+{"id": "comparison-0", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-1", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-2", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-3", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-4", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-5", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-6", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-7", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-8", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-9", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-10", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-11", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-12", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-13", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-14", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-15", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-16", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-17", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-18", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-19", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-20", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-21", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-22", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-23", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-24", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-25", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-26", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-27", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-28", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-29", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-30", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-31", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-32", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-33", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-34", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-35", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-36", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-37", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-38", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-39", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-40", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-41", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-42", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-43", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-44", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-45", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-46", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-47", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "comparison-48", "question": "最近7天订单环比上一周期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_period"}, "valid": true}
+{"id": "comparison-49", "question": "最近7天订单同比去年同期", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "previous_year"}, "valid": true}
+{"id": "orders-0", "question": "列出最近7天全部订单，最多5条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 5}, "valid": true}
+{"id": "orders-1", "question": "列出最近7天未关闭订单，最多6条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 6}, "valid": true}
+{"id": "orders-2", "question": "列出最近7天已关闭订单，最多7条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 7}, "valid": true}
+{"id": "orders-3", "question": "列出最近7天已取消订单，最多8条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 8}, "valid": true}
+{"id": "orders-4", "question": "列出最近7天全部订单，最多9条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 9}, "valid": true}
+{"id": "orders-5", "question": "列出最近7天未关闭订单，最多10条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 10}, "valid": true}
+{"id": "orders-6", "question": "列出最近7天已关闭订单，最多11条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 11}, "valid": true}
+{"id": "orders-7", "question": "列出最近7天已取消订单，最多12条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 12}, "valid": true}
+{"id": "orders-8", "question": "列出最近7天全部订单，最多13条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 13}, "valid": true}
+{"id": "orders-9", "question": "列出最近7天未关闭订单，最多14条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 14}, "valid": true}
+{"id": "orders-10", "question": "列出最近7天已关闭订单，最多15条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 15}, "valid": true}
+{"id": "orders-11", "question": "列出最近7天已取消订单，最多16条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 16}, "valid": true}
+{"id": "orders-12", "question": "列出最近7天全部订单，最多17条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 17}, "valid": true}
+{"id": "orders-13", "question": "列出最近7天未关闭订单，最多18条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 18}, "valid": true}
+{"id": "orders-14", "question": "列出最近7天已关闭订单，最多19条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 19}, "valid": true}
+{"id": "orders-15", "question": "列出最近7天已取消订单，最多20条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 20}, "valid": true}
+{"id": "orders-16", "question": "列出最近7天全部订单，最多21条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 21}, "valid": true}
+{"id": "orders-17", "question": "列出最近7天未关闭订单，最多22条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 22}, "valid": true}
+{"id": "orders-18", "question": "列出最近7天已关闭订单，最多23条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 23}, "valid": true}
+{"id": "orders-19", "question": "列出最近7天已取消订单，最多24条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 24}, "valid": true}
+{"id": "orders-20", "question": "列出最近7天全部订单，最多25条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 25}, "valid": true}
+{"id": "orders-21", "question": "列出最近7天未关闭订单，最多26条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 26}, "valid": true}
+{"id": "orders-22", "question": "列出最近7天已关闭订单，最多27条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 27}, "valid": true}
+{"id": "orders-23", "question": "列出最近7天已取消订单，最多28条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 28}, "valid": true}
+{"id": "orders-24", "question": "列出最近7天全部订单，最多29条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 29}, "valid": true}
+{"id": "orders-25", "question": "列出最近7天未关闭订单，最多30条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 30}, "valid": true}
+{"id": "orders-26", "question": "列出最近7天已关闭订单，最多31条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 31}, "valid": true}
+{"id": "orders-27", "question": "列出最近7天已取消订单，最多32条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 32}, "valid": true}
+{"id": "orders-28", "question": "列出最近7天全部订单，最多33条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 33}, "valid": true}
+{"id": "orders-29", "question": "列出最近7天未关闭订单，最多34条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 34}, "valid": true}
+{"id": "orders-30", "question": "列出最近7天已关闭订单，最多35条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 35}, "valid": true}
+{"id": "orders-31", "question": "列出最近7天已取消订单，最多36条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 36}, "valid": true}
+{"id": "orders-32", "question": "列出最近7天全部订单，最多37条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 37}, "valid": true}
+{"id": "orders-33", "question": "列出最近7天未关闭订单，最多38条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 38}, "valid": true}
+{"id": "orders-34", "question": "列出最近7天已关闭订单，最多39条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 39}, "valid": true}
+{"id": "orders-35", "question": "列出最近7天已取消订单，最多40条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 40}, "valid": true}
+{"id": "orders-36", "question": "列出最近7天全部订单，最多41条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 41}, "valid": true}
+{"id": "orders-37", "question": "列出最近7天未关闭订单，最多42条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 42}, "valid": true}
+{"id": "orders-38", "question": "列出最近7天已关闭订单，最多43条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 43}, "valid": true}
+{"id": "orders-39", "question": "列出最近7天已取消订单，最多44条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 44}, "valid": true}
+{"id": "orders-40", "question": "列出最近7天全部订单，最多45条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 45}, "valid": true}
+{"id": "orders-41", "question": "列出最近7天未关闭订单，最多46条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 46}, "valid": true}
+{"id": "orders-42", "question": "列出最近7天已关闭订单，最多47条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 47}, "valid": true}
+{"id": "orders-43", "question": "列出最近7天已取消订单，最多48条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 48}, "valid": true}
+{"id": "orders-44", "question": "列出最近7天全部订单，最多49条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 49}, "valid": true}
+{"id": "orders-45", "question": "列出最近7天未关闭订单，最多50条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 50}, "valid": true}
+{"id": "orders-46", "question": "列出最近7天已关闭订单，最多5条", "expected_tool": "get_order_list", "expected_arguments": {"status": "closed", "limit": 5}, "valid": true}
+{"id": "orders-47", "question": "列出最近7天已取消订单，最多6条", "expected_tool": "get_order_list", "expected_arguments": {"status": "cancelled", "limit": 6}, "valid": true}
+{"id": "orders-48", "question": "列出最近7天全部订单，最多7条", "expected_tool": "get_order_list", "expected_arguments": {"status": "any", "limit": 7}, "valid": true}
+{"id": "orders-49", "question": "列出最近7天未关闭订单，最多8条", "expected_tool": "get_order_list", "expected_arguments": {"status": "open", "limit": 8}, "valid": true}
+{"id": "products-0", "question": "最近30天销量最高的前1个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 1}, "valid": true}
+{"id": "products-1", "question": "最近30天销量最高的前2个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 2}, "valid": true}
+{"id": "products-2", "question": "最近30天销量最高的前3个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 3}, "valid": true}
+{"id": "products-3", "question": "最近30天销量最高的前4个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 4}, "valid": true}
+{"id": "products-4", "question": "最近30天销量最高的前5个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 5}, "valid": true}
+{"id": "products-5", "question": "最近30天销量最高的前6个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 6}, "valid": true}
+{"id": "products-6", "question": "最近30天销量最高的前7个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 7}, "valid": true}
+{"id": "products-7", "question": "最近30天销量最高的前8个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 8}, "valid": true}
+{"id": "products-8", "question": "最近30天销量最高的前9个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 9}, "valid": true}
+{"id": "products-9", "question": "最近30天销量最高的前10个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 10}, "valid": true}
+{"id": "products-10", "question": "最近30天销量最高的前11个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 11}, "valid": true}
+{"id": "products-11", "question": "最近30天销量最高的前12个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 12}, "valid": true}
+{"id": "products-12", "question": "最近30天销量最高的前13个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 13}, "valid": true}
+{"id": "products-13", "question": "最近30天销量最高的前14个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 14}, "valid": true}
+{"id": "products-14", "question": "最近30天销量最高的前15个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 15}, "valid": true}
+{"id": "products-15", "question": "最近30天销量最高的前16个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 16}, "valid": true}
+{"id": "products-16", "question": "最近30天销量最高的前17个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 17}, "valid": true}
+{"id": "products-17", "question": "最近30天销量最高的前18个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 18}, "valid": true}
+{"id": "products-18", "question": "最近30天销量最高的前19个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 19}, "valid": true}
+{"id": "products-19", "question": "最近30天销量最高的前20个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 20}, "valid": true}
+{"id": "products-20", "question": "最近30天销量最高的前21个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 21}, "valid": true}
+{"id": "products-21", "question": "最近30天销量最高的前22个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 22}, "valid": true}
+{"id": "products-22", "question": "最近30天销量最高的前23个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 23}, "valid": true}
+{"id": "products-23", "question": "最近30天销量最高的前24个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 24}, "valid": true}
+{"id": "products-24", "question": "最近30天销量最高的前25个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 25}, "valid": true}
+{"id": "products-25", "question": "最近30天销量最高的前1个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 1}, "valid": true}
+{"id": "products-26", "question": "最近30天销量最高的前2个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 2}, "valid": true}
+{"id": "products-27", "question": "最近30天销量最高的前3个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 3}, "valid": true}
+{"id": "products-28", "question": "最近30天销量最高的前4个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 4}, "valid": true}
+{"id": "products-29", "question": "最近30天销量最高的前5个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 5}, "valid": true}
+{"id": "products-30", "question": "最近30天销量最高的前6个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 6}, "valid": true}
+{"id": "products-31", "question": "最近30天销量最高的前7个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 7}, "valid": true}
+{"id": "products-32", "question": "最近30天销量最高的前8个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 8}, "valid": true}
+{"id": "products-33", "question": "最近30天销量最高的前9个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 9}, "valid": true}
+{"id": "products-34", "question": "最近30天销量最高的前10个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 10}, "valid": true}
+{"id": "products-35", "question": "最近30天销量最高的前11个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 11}, "valid": true}
+{"id": "products-36", "question": "最近30天销量最高的前12个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 12}, "valid": true}
+{"id": "products-37", "question": "最近30天销量最高的前13个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 13}, "valid": true}
+{"id": "products-38", "question": "最近30天销量最高的前14个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 14}, "valid": true}
+{"id": "products-39", "question": "最近30天销量最高的前15个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 15}, "valid": true}
+{"id": "products-40", "question": "最近30天销量最高的前16个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 16}, "valid": true}
+{"id": "products-41", "question": "最近30天销量最高的前17个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 17}, "valid": true}
+{"id": "products-42", "question": "最近30天销量最高的前18个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 18}, "valid": true}
+{"id": "products-43", "question": "最近30天销量最高的前19个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 19}, "valid": true}
+{"id": "products-44", "question": "最近30天销量最高的前20个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 20}, "valid": true}
+{"id": "products-45", "question": "最近30天销量最高的前21个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 21}, "valid": true}
+{"id": "products-46", "question": "最近30天销量最高的前22个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 22}, "valid": true}
+{"id": "products-47", "question": "最近30天销量最高的前23个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 23}, "valid": true}
+{"id": "products-48", "question": "最近30天销量最高的前24个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 24}, "valid": true}
+{"id": "products-49", "question": "最近30天销量最高的前25个商品", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": 25}, "valid": true}
+{"id": "dimension-0", "question": "查看最近7天流量来源前5项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 5}, "valid": true}
+{"id": "dimension-1", "question": "查看最近7天落地页前6项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 6}, "valid": true}
+{"id": "dimension-2", "question": "查看最近7天设备前7项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 7}, "valid": true}
+{"id": "dimension-3", "question": "查看最近7天访客国家前8项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 8}, "valid": true}
+{"id": "dimension-4", "question": "查看最近7天流量来源前9项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 9}, "valid": true}
+{"id": "dimension-5", "question": "查看最近7天落地页前10项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 10}, "valid": true}
+{"id": "dimension-6", "question": "查看最近7天设备前11项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 11}, "valid": true}
+{"id": "dimension-7", "question": "查看最近7天访客国家前12项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 12}, "valid": true}
+{"id": "dimension-8", "question": "查看最近7天流量来源前13项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 13}, "valid": true}
+{"id": "dimension-9", "question": "查看最近7天落地页前14项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 14}, "valid": true}
+{"id": "dimension-10", "question": "查看最近7天设备前15项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 15}, "valid": true}
+{"id": "dimension-11", "question": "查看最近7天访客国家前16项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 16}, "valid": true}
+{"id": "dimension-12", "question": "查看最近7天流量来源前17项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 17}, "valid": true}
+{"id": "dimension-13", "question": "查看最近7天落地页前18项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 18}, "valid": true}
+{"id": "dimension-14", "question": "查看最近7天设备前19项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 19}, "valid": true}
+{"id": "dimension-15", "question": "查看最近7天访客国家前20项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 20}, "valid": true}
+{"id": "dimension-16", "question": "查看最近7天流量来源前21项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 21}, "valid": true}
+{"id": "dimension-17", "question": "查看最近7天落地页前22项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 22}, "valid": true}
+{"id": "dimension-18", "question": "查看最近7天设备前23项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 23}, "valid": true}
+{"id": "dimension-19", "question": "查看最近7天访客国家前24项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 24}, "valid": true}
+{"id": "dimension-20", "question": "查看最近7天流量来源前25项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 25}, "valid": true}
+{"id": "dimension-21", "question": "查看最近7天落地页前26项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 26}, "valid": true}
+{"id": "dimension-22", "question": "查看最近7天设备前27项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 27}, "valid": true}
+{"id": "dimension-23", "question": "查看最近7天访客国家前28项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 28}, "valid": true}
+{"id": "dimension-24", "question": "查看最近7天流量来源前29项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 29}, "valid": true}
+{"id": "dimension-25", "question": "查看最近7天落地页前30项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 30}, "valid": true}
+{"id": "dimension-26", "question": "查看最近7天设备前31项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 31}, "valid": true}
+{"id": "dimension-27", "question": "查看最近7天访客国家前32项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 32}, "valid": true}
+{"id": "dimension-28", "question": "查看最近7天流量来源前33项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 33}, "valid": true}
+{"id": "dimension-29", "question": "查看最近7天落地页前34项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 34}, "valid": true}
+{"id": "dimension-30", "question": "查看最近7天设备前35项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 35}, "valid": true}
+{"id": "dimension-31", "question": "查看最近7天访客国家前36项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 36}, "valid": true}
+{"id": "dimension-32", "question": "查看最近7天流量来源前37项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 37}, "valid": true}
+{"id": "dimension-33", "question": "查看最近7天落地页前38项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 38}, "valid": true}
+{"id": "dimension-34", "question": "查看最近7天设备前39项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 39}, "valid": true}
+{"id": "dimension-35", "question": "查看最近7天访客国家前40项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 40}, "valid": true}
+{"id": "dimension-36", "question": "查看最近7天流量来源前5项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 5}, "valid": true}
+{"id": "dimension-37", "question": "查看最近7天落地页前6项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 6}, "valid": true}
+{"id": "dimension-38", "question": "查看最近7天设备前7项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 7}, "valid": true}
+{"id": "dimension-39", "question": "查看最近7天访客国家前8项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 8}, "valid": true}
+{"id": "dimension-40", "question": "查看最近7天流量来源前9项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 9}, "valid": true}
+{"id": "dimension-41", "question": "查看最近7天落地页前10项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 10}, "valid": true}
+{"id": "dimension-42", "question": "查看最近7天设备前11项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 11}, "valid": true}
+{"id": "dimension-43", "question": "查看最近7天访客国家前12项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 12}, "valid": true}
+{"id": "dimension-44", "question": "查看最近7天流量来源前13项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 13}, "valid": true}
+{"id": "dimension-45", "question": "查看最近7天落地页前14项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 14}, "valid": true}
+{"id": "dimension-46", "question": "查看最近7天设备前15项", "expected_tool": "get_device_traffic", "expected_arguments": {"limit": 15}, "valid": true}
+{"id": "dimension-47", "question": "查看最近7天访客国家前16项", "expected_tool": "get_traffic_geography", "expected_arguments": {"limit": 16}, "valid": true}
+{"id": "dimension-48", "question": "查看最近7天流量来源前17项", "expected_tool": "get_traffic_sources", "expected_arguments": {"limit": 17}, "valid": true}
+{"id": "dimension-49", "question": "查看最近7天落地页前18项", "expected_tool": "get_landing_page_performance", "expected_arguments": {"limit": 18}, "valid": true}
+{"id": "inventory-0", "question": "查询商品ID 8000000000 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000000"]}, "valid": true}
+{"id": "inventory-1", "question": "查询商品ID 8000000001 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000001"]}, "valid": true}
+{"id": "inventory-2", "question": "查询商品ID 8000000002 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000002"]}, "valid": true}
+{"id": "inventory-3", "question": "查询商品ID 8000000003 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000003"]}, "valid": true}
+{"id": "inventory-4", "question": "查询商品ID 8000000004 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000004"]}, "valid": true}
+{"id": "inventory-5", "question": "查询商品ID 8000000005 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000005"]}, "valid": true}
+{"id": "inventory-6", "question": "查询商品ID 8000000006 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000006"]}, "valid": true}
+{"id": "inventory-7", "question": "查询商品ID 8000000007 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000007"]}, "valid": true}
+{"id": "inventory-8", "question": "查询商品ID 8000000008 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000008"]}, "valid": true}
+{"id": "inventory-9", "question": "查询商品ID 8000000009 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000009"]}, "valid": true}
+{"id": "inventory-10", "question": "查询商品ID 8000000010 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000010"]}, "valid": true}
+{"id": "inventory-11", "question": "查询商品ID 8000000011 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000011"]}, "valid": true}
+{"id": "inventory-12", "question": "查询商品ID 8000000012 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000012"]}, "valid": true}
+{"id": "inventory-13", "question": "查询商品ID 8000000013 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000013"]}, "valid": true}
+{"id": "inventory-14", "question": "查询商品ID 8000000014 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000014"]}, "valid": true}
+{"id": "inventory-15", "question": "查询商品ID 8000000015 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000015"]}, "valid": true}
+{"id": "inventory-16", "question": "查询商品ID 8000000016 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000016"]}, "valid": true}
+{"id": "inventory-17", "question": "查询商品ID 8000000017 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000017"]}, "valid": true}
+{"id": "inventory-18", "question": "查询商品ID 8000000018 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000018"]}, "valid": true}
+{"id": "inventory-19", "question": "查询商品ID 8000000019 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000019"]}, "valid": true}
+{"id": "inventory-20", "question": "查询商品ID 8000000020 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000020"]}, "valid": true}
+{"id": "inventory-21", "question": "查询商品ID 8000000021 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000021"]}, "valid": true}
+{"id": "inventory-22", "question": "查询商品ID 8000000022 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000022"]}, "valid": true}
+{"id": "inventory-23", "question": "查询商品ID 8000000023 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000023"]}, "valid": true}
+{"id": "inventory-24", "question": "查询商品ID 8000000024 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000024"]}, "valid": true}
+{"id": "inventory-25", "question": "查询商品ID 8000000025 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000025"]}, "valid": true}
+{"id": "inventory-26", "question": "查询商品ID 8000000026 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000026"]}, "valid": true}
+{"id": "inventory-27", "question": "查询商品ID 8000000027 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000027"]}, "valid": true}
+{"id": "inventory-28", "question": "查询商品ID 8000000028 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000028"]}, "valid": true}
+{"id": "inventory-29", "question": "查询商品ID 8000000029 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000029"]}, "valid": true}
+{"id": "inventory-30", "question": "查询商品ID 8000000030 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000030"]}, "valid": true}
+{"id": "inventory-31", "question": "查询商品ID 8000000031 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000031"]}, "valid": true}
+{"id": "inventory-32", "question": "查询商品ID 8000000032 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000032"]}, "valid": true}
+{"id": "inventory-33", "question": "查询商品ID 8000000033 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000033"]}, "valid": true}
+{"id": "inventory-34", "question": "查询商品ID 8000000034 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000034"]}, "valid": true}
+{"id": "inventory-35", "question": "查询商品ID 8000000035 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000035"]}, "valid": true}
+{"id": "inventory-36", "question": "查询商品ID 8000000036 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000036"]}, "valid": true}
+{"id": "inventory-37", "question": "查询商品ID 8000000037 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000037"]}, "valid": true}
+{"id": "inventory-38", "question": "查询商品ID 8000000038 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000038"]}, "valid": true}
+{"id": "inventory-39", "question": "查询商品ID 8000000039 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000039"]}, "valid": true}
+{"id": "inventory-40", "question": "查询商品ID 8000000040 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000040"]}, "valid": true}
+{"id": "inventory-41", "question": "查询商品ID 8000000041 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000041"]}, "valid": true}
+{"id": "inventory-42", "question": "查询商品ID 8000000042 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000042"]}, "valid": true}
+{"id": "inventory-43", "question": "查询商品ID 8000000043 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000043"]}, "valid": true}
+{"id": "inventory-44", "question": "查询商品ID 8000000044 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000044"]}, "valid": true}
+{"id": "inventory-45", "question": "查询商品ID 8000000045 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000045"]}, "valid": true}
+{"id": "inventory-46", "question": "查询商品ID 8000000046 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000046"]}, "valid": true}
+{"id": "inventory-47", "question": "查询商品ID 8000000047 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000047"]}, "valid": true}
+{"id": "inventory-48", "question": "查询商品ID 8000000048 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000048"]}, "valid": true}
+{"id": "inventory-49", "question": "查询商品ID 8000000049 的库存", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["8000000049"]}, "valid": true}
+{"id": "invalid-0", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-1", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-2", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-3", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-4", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-5", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-6", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-7", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-8", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-9", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-10", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-11", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-12", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-13", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-14", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-15", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-16", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-17", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-18", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-19", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-20", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-21", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-22", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-23", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-24", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-25", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-26", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-27", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-28", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-29", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-30", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-31", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-32", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-33", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-34", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-35", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-36", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-37", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-38", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-39", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-40", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-41", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-42", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-43", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-44", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}
+{"id": "invalid-45", "question": "调用 get_order_list 并使用参数 {'limit': 9999}", "expected_tool": "get_order_list", "expected_arguments": {"limit": 9999}, "valid": false}
+{"id": "invalid-46", "question": "调用 get_product_performance 并使用参数 {'top_n': -1}", "expected_tool": "get_product_performance", "expected_arguments": {"top_n": -1}, "valid": false}
+{"id": "invalid-47", "question": "调用 get_inventory_levels 并使用参数 {'product_ids': ['gid://shopify/Product/not-a-number']}", "expected_tool": "get_inventory_levels", "expected_arguments": {"product_ids": ["gid://shopify/Product/not-a-number"]}, "valid": false}
+{"id": "invalid-48", "question": "调用 compare_order_periods 并使用参数 {'comparison': 'drop_database'}", "expected_tool": "compare_order_periods", "expected_arguments": {"comparison": "drop_database"}, "valid": false}
+{"id": "invalid-49", "question": "调用 get_orders_summary 并使用参数 {'api_key': 'should-never-pass'}", "expected_tool": "get_orders_summary", "expected_arguments": {"api_key": "should-never-pass"}, "valid": false}

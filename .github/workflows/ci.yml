@@ -12,6 +12,12 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      LLM_API_BASE: http://127.0.0.1:11434/v1
+      LLM_API_KEY: ci-fake-model
+      LLM_MODEL: ci-fake-model
+      RAG_MODEL: ci-fake-model
+      LOCAL_LLM_ONLY: "true"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

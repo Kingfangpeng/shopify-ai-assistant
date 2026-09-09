@@ -50,6 +50,60 @@ tests/
 
 ## 验收门槛
 
+### 2026-09-08：P1 六项生产化优化（king 已确认）
+
+本轮在普通聊天和 LangGraph 深度分析之间复用同一套记忆、检索、工具协议和 Prompt 版本能力；模型相关开发与验收固定使用本地 Ollama qwen3.5:27b，测试禁止访问 DeepSeek API。
+
+目录结构与模块边界：
+
+- app/services/memory：会话摘要、长期记忆候选、确认、冲突、TTL 与上下文组装。
+- app/services/retrieval：Milvus 稠密/BM25 双路召回、RRF、FlashRank 与引用。
+- app/agent/tooling：统一 ToolSpec、严格参数模型、本地/MCP Provider。
+- app/prompts：Prompt Registry、版本、锁文件和组合摘要。
+- app/api/memory.py 与 frontend/src/pages/Memory.jsx：鉴权 API 与候选审核界面。
+- tests/fixtures/quality：RAG、工具参数与记忆评估冻结数据。
+
+核心边界与取舍：
+
+1. SQLite 是会话摘要和长期记忆的事实源；只有 active 记忆进入上下文，模型自动提取的 candidate 必须由用户确认。凭据、密码、Token 与支付信息禁止保存，冲突通过新版本替代而非覆盖。
+2. 知识生命周期仍由知识库服务独占；检索服务只读取带 user_id、document_id、version、chunk_id 的有效分片。Milvus 混合集合通过影子重建、数量核验和别名切换发布。
+3. ToolSpec 是17个Shopify只读工具的唯一事实源；本地 Provider 与 MCP Provider 使用相同 Schema。MCP 默认关闭，启用后失败不静默回退。
+4. Prompt 与工具目录、输出 Schema 共同生成版本摘要；修改 Prompt 未升级版本或未通过冻结回归时禁止交付。
+
+验收标准：
+
+- 500条RAG固定用例达到 Recall@5≥95%、MRR/NDCG@10≥90%、权限泄漏为0、预热P95≤1.5秒。
+- 300条参数用例字段级准确率≥98%，非法参数执行次数为0。
+- 记忆候选未经确认不生效；冲突、过期、敏感信息和用户隔离均有自动化测试。
+- 普通与深度模式通过本地和MCP两种Provider的一致性测试；全部模型验证只使用本地Qwen。
+
+
+### 2026-09-05：生产规模语义路由评估集（king 已确认）
+
+目录与边界如下：
+
+```text
+tests/fixtures/evaluation/
+  core_gold.json             300 条核心工具与路由用例
+  paraphrase_noise.json      500 条口语、噪声与多语言变体
+  multiturn_context.json     250 条多轮、改口、否定与指代用例
+  mixed_rag_shopify.json     200 条知识库与实时数据混合用例
+  safety_boundary.json       250 条越权、写操作、注入与未接入能力用例
+  manifest.json              套件版本、数量、随机种子与文件摘要
+scripts/
+  generate_production_routing_cases.py  确定性生成并冻结数据集
+  evaluate_tool_routing.py              加载套件并输出分层指标
+tests/backend/
+  test_production_routing_dataset.py     校验结构、分布、唯一性与可复现性
+volumes/evaluations/                     Git 忽略的真实模型逐题报告
+```
+
+- 划分一：300 条核心集强调人工可读的业务语义，1200 条规模集通过受控模板组合生成；生成器只负责数据，不修改规划提示词或路由实现，避免评估集与被测逻辑耦合。
+- 划分二：五个数据集按风险类型拆分，通过清单统一加载；清单固定版本、随机种子、条数和 SHA-256，防止评估后无记录地改题。
+- 划分三：评估器只调用规划层，不执行 Shopify 工具或读取订单数据；本地完整运行真实模型，CI 只校验数据结构、标签分布和少量替身测试，避免持续产生模型费用。
+- 验收：五个文件合计 1500 条，ID 与问题均唯一，17 个 Shopify 工具和六类路由都有覆盖；测试集可确定性重建；报告包含严格准确率、工具 Precision/Recall/F1、路由混淆矩阵、分类指标、重复稳定性和 P50/P95/P99 规划耗时。
+- 简历只写实际生成并运行过的测试规模与结果；合成测试不能表述为真实生产用户日志，规划层指标不能表述为端到端回答准确率。
+
 ### 2026-09-04：聊天页接入深度分析循环（king 已确认）
 
 目录与边界沿用既有架构：

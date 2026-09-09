@@ -5,52 +5,82 @@ Planner 节点：制定运营分析执行计划
 from textwrap import dedent
 from typing import Dict, Any, List
 from langchain_core.prompts import ChatPromptTemplate
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
+from app.core.agent_context import current_agent_user_id
+from app.prompts import prompt_registry
+from app.agent.tool_registry import TOOL_SPEC_REGISTRY
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from app.tools.knowledge_tool import retrieve_knowledge
 from .state import PlanExecuteState
 from .utils import format_tools_description, create_ops_model
 
 
+class PlanStep(BaseModel):
+    """结构化计划步骤；数据步骤必须明确声明将执行的只读工具。"""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    task: str = Field(min_length=1, max_length=600, description="本步骤要完成的具体任务")
+    tools: List[str] = Field(
+        default_factory=list,
+        max_length=4,
+        description="本步骤需要执行的只读工具；纯分析或报告步骤使用空列表",
+    )
+    expected_evidence: str = Field(
+        min_length=1,
+        max_length=600,
+        description="完成本步骤后必须获得的证据或结论",
+    )
+
+    @field_validator("tools")
+    @classmethod
+    def validate_tools(cls, value: List[str]) -> List[str]:
+        if len(value) != len(set(value)):
+            raise ValueError("同一步骤不能重复声明工具")
+        unknown = [name for name in value if name not in TOOL_SPEC_REGISTRY]
+        if unknown:
+            raise ValueError(f"计划包含未知工具: {', '.join(unknown)}")
+        return value
+
+
 class Plan(BaseModel):
     """计划的输出格式"""
-    steps: List[str] = Field(
-        description="完成运营分析所需的步骤列表，按顺序执行，3~6步为宜。"
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    steps: List[PlanStep] = Field(
+        min_length=1,
+        max_length=8,
+        description="完成运营分析所需的结构化步骤列表，按顺序执行，3~6步为宜。"
     )
+
+
+def render_plan_steps(steps: List[PlanStep]) -> List[str]:
+    """仅展示需要执行的数据步骤；综合分析由独立报告阶段完成。"""
+    rendered = []
+    for step in steps:
+        if not step.tools:
+            continue
+        tool_names = "、".join(step.tools)
+        rendered.append(
+            f"{step.task}；工具：{tool_names}；预期证据：{step.expected_evidence}"
+        )
+    if not rendered:
+        raise ValueError("计划没有可执行的数据步骤")
+    return rendered
+
+
+prompt_registry.register_output_schema("ops_planner", Plan.model_json_schema())
 
 
 planner_prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            dedent("""
-                你是一位专业的 Shopify 独立站运营分析师，擅长欧美市场电商运营。
-
-                可用工具列表（制定计划时参考）：
-                {tools_description}
-
-                注意：你的职责是制定计划，实际工具调用由 Executor 负责执行。
-
-                **分析框架（按优先级）：**
-                1. 先查知识库，获取行业基准和最佳实践
-                2. 获取 Shopify 订单/转化/库存数据
-                3. 对 Shopify 数据进行交叉验证与归因分析
-                4. 输出可执行的优化建议
-
-                **常见问题分析路径：**
-                - 转化率低 → 流量质量 → 落地页体验 → 产品定价 → 结账流程
-                - 库存积压 → 销量趋势 → 广告推力 → 折扣策略 → 清仓方案
-
-                **计划要求：**
-                - 步骤数量：3~6步，不要过度分析
-                - 每步描述须明确：要查什么、用哪个工具、期望得到什么
-                - 步骤之间有清晰的依赖关系
-                - 优先使用具体数据，避免模糊表述
-            """).strip(),
+            prompt_registry.get("ops_planner").content,
         ),
         ("placeholder", "{messages}"),
     ]
@@ -69,7 +99,11 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
         logger.info("查询知识库，寻找相关运营经验...")
         experience_docs = ""
         try:
-            context_str = await retrieve_knowledge.ainvoke({"query": input_text})
+            token = current_agent_user_id.set((state.get("context") or {}).get("user_id"))
+            try:
+                context_str = await retrieve_knowledge.ainvoke({"query": input_text})
+            finally:
+                current_agent_user_id.reset(token)
             if context_str and context_str.strip():
                 experience_docs = context_str
                 logger.info(f"找到相关经验文档，长度: {len(experience_docs)}")
@@ -112,10 +146,8 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
             "tools_description": tools_description,
         })
 
-        if isinstance(plan_result, Plan):
-            plan_steps = plan_result.steps
-        else:
-            plan_steps = plan_result.get("steps", [])  # type: ignore
+        parsed_plan = plan_result if isinstance(plan_result, Plan) else Plan.model_validate(plan_result)
+        plan_steps = render_plan_steps(parsed_plan.steps)
 
         logger.info(f"计划已生成，共 {len(plan_steps)} 个步骤")
         for i, step in enumerate(plan_steps, 1):
@@ -127,8 +159,8 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
         logger.error("生成计划失败: {}", type(e).__name__)
         return {
             "plan": [
-                "使用 retrieve_knowledge 工具查询知识库，获取相关运营策略",
-                "获取请求日期范围内的 Shopify 销售、退款与库存数据",
-                "综合数据分析并生成优化建议"
+                "查询请求周期内的订单核心指标；工具：get_orders_summary；预期证据：订单量、GMV、客单价与取消退款指标",
+                "查询请求周期内的退款表现；工具：get_refund_stats；预期证据：退款数量、金额与订单占比",
+                "查询请求周期内的产品表现；工具：get_product_performance；预期证据：产品销量、营收与退款率"
             ]
         }
