@@ -104,7 +104,11 @@ class SemanticToolPlanner:
             options["extra_body"] = {"thinking": {"type": "disabled"}}
         try:
             client = llm_factory.create_chat_model(model=model, temperature=0, streaming=False)
-            bound = client.bind_tools([planning_tool], tool_choice="auto", **options)
+            bound = client.bind_tools(
+                [planning_tool],
+                tool_choice=self.planning_tool_name,
+                **options,
+            )
             response = await asyncio.wait_for(bound.ainvoke(messages), self.timeout_seconds)
             calls = getattr(response, "tool_calls", None) or []
             if calls:

@@ -9,6 +9,8 @@ from app.agent.dispatcher import (
     read_only_tool_dispatcher,
 )
 from app.agent.ops.executor import executor
+from app.agent.ops.executor import _explicit_tool_plan
+from app.agent.ops.replanner import _has_explicit_data_step
 from app.agent.semantic_planner import SemanticToolPlan, SemanticToolPlanner, semantic_tool_planner
 from app.core.llm_factory import llm_factory
 from app.integrations.shopify.dates import StoreDateRange, resolve_store_date_range
@@ -77,6 +79,20 @@ def test_order_question_routes_to_real_read_only_tool():
     assert plan.requires_analysis is False
 
 
+def test_ops_explicit_tool_marker_wins_over_evidence_words():
+    plan = _explicit_tool_plan(
+        "查询订单汇总；工具：get_orders_summary；预期证据：订单数、退款金额"
+    )
+    assert plan is not None
+    assert plan.tools == ("get_orders_summary",)
+    assert plan.planner == "ops_explicit_tool"
+
+
+def test_replanner_cannot_finish_before_explicit_data_step():
+    assert _has_explicit_data_step(["查询退款；工具：get_refund_stats；输出退款率"])
+    assert not _has_explicit_data_step(["综合前面证据并形成结论"])
+
+
 def test_colloquial_business_question_routes_to_order_summary():
     plan = read_only_tool_dispatcher.plan_shopify("今天生意怎么样？")
     assert plan.tools == ("get_orders_summary",)
@@ -127,7 +143,7 @@ async def test_semantic_planner_accepts_valid_native_plan(monkeypatch):
 
     class FakeClient:
         def bind_tools(self, _tools, tool_choice="auto"):
-            assert tool_choice == "auto"
+            assert tool_choice == "submit_read_only_plan"
             return self
 
         async def ainvoke(self, _messages):

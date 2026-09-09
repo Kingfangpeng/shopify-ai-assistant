@@ -101,6 +101,7 @@ async def test_local_qwen_structured_routing_disables_thinking(monkeypatch):
 
     assert plan is not None
     assert options["extra_body"] == {"reasoning_effort": "none"}
+    assert options["tool_choice"] == "submit_read_only_plan"
 
 
 @pytest.mark.asyncio

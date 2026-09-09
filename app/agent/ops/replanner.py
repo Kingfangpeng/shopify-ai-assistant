@@ -15,6 +15,12 @@ from .state import PlanExecuteState
 from .utils import format_tools_description, create_ops_model
 from app.services.output_safety import sanitize_model_output
 from app.prompts import prompt_registry
+from app.agent.tool_registry import TOOL_SPEC_REGISTRY
+
+
+def _has_explicit_data_step(steps: list[str]) -> bool:
+    """仍有 Planner 明确点名的数据工具时，不允许提前结束。"""
+    return any(name in step for step in steps for name in TOOL_SPEC_REGISTRY)
 
 
 class Response(BaseModel):
@@ -109,6 +115,9 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
             logger.info(f"Replanner 决策: {action}")
 
             if action == "respond":
+                if _has_explicit_data_step(plan):
+                    logger.info("剩余计划仍有明确数据工具，覆盖提前 respond 并继续执行")
+                    return {}
                 logger.info("决定生成最终报告")
                 return await _generate_response(state, llm)
 

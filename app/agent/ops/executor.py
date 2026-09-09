@@ -3,19 +3,38 @@ Executor 节点：执行单个运营分析步骤
 """
 
 import json
+import re
 from typing import Dict, Any
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.prebuilt import ToolNode
 from loguru import logger
 
 from app.config import config
-from app.agent.dispatcher import read_only_tool_dispatcher
+from app.agent.dispatcher import DispatchPlan, read_only_tool_dispatcher
+from app.agent.tool_registry import TOOL_SPEC_REGISTRY
 from app.core.llm_factory import llm_factory
 from app.core.agent_context import current_agent_user_id
 from app.prompts import prompt_registry
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from .state import PlanExecuteState
 from .utils import create_ops_model
+
+
+def _explicit_tool_plan(task: str) -> DispatchPlan | None:
+    """Planner 明确写出工具名时以该结构化标记为准，避免证据描述触发额外工具。"""
+    names = tuple(
+        name for name in TOOL_SPEC_REGISTRY
+        if re.search(rf"(?<![A-Za-z0-9_]){re.escape(name)}(?![A-Za-z0-9_])", task)
+    )[:4]
+    if not names:
+        return None
+    return DispatchPlan(
+        names,
+        len(names) > 1,
+        "执行 Planner 明确指定的只读工具",
+        planner="ops_explicit_tool",
+        route="shopify",
+    )
 
 
 async def executor(state: PlanExecuteState) -> Dict[str, Any]:
@@ -33,7 +52,7 @@ async def executor(state: PlanExecuteState) -> Dict[str, Any]:
 
     try:
         context = state.get("context") or {}
-        deterministic_plan = read_only_tool_dispatcher.plan_all(task)
+        deterministic_plan = _explicit_tool_plan(task) or read_only_tool_dispatcher.plan_all(task)
         if deterministic_plan.tools:
             token = current_agent_user_id.set(context.get("user_id"))
             try:
