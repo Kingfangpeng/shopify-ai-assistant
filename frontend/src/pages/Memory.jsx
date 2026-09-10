@@ -74,7 +74,7 @@ export default function Memory() {
       <div>
         <p className="eyebrow">CONTROLLED CONTEXT</p>
         <h1>长期记忆</h1>
-        <p>模型提取的内容先进入候选；只有你确认后，才会在新对话中使用。</p>
+        <p>保存需要跨对话复用的偏好、业务规则、店铺背景和目标。模型提取的内容先进入候选，只有你确认后才会用于后续回答。</p>
       </div>
       <button className="primary-button" onClick={create} disabled={!!busy}>
         <Plus size={16} />手动添加
@@ -96,7 +96,9 @@ export default function Memory() {
         <span>{tabs.find(([value]) => value === tab)?.[1]}</span><small>{items.length} 项</small>
       </div>
       {busy === 'loading' && <div className="skeleton-list">{[1, 2, 3].map(value => <span key={value} />)}</div>}
-      {busy !== 'loading' && !items.length && <div className="empty-panel"><p>当前没有记录</p></div>}
+      {busy !== 'loading' && !items.length && <div className="empty-panel"><p>{tab === 'candidate'
+        ? '还没有候选。明确说“记住、以后、默认、我的店铺或目标”等长期信息时，系统才会提取；也可以手动添加。'
+        : '当前没有记录'}</p></div>}
       {busy !== 'loading' && items.map(item => <article className="memory-row" key={item.id}>
         <div className="memory-row-main">
           <div><span className="status-pill">{kindLabels[item.kind] || item.kind}</span><b>{item.memory_key}</b><small>v{item.version}</small></div>

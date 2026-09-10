@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from time import perf_counter
 from typing import Any, AsyncGenerator, Literal
+from urllib.parse import urlparse
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from loguru import logger
@@ -22,7 +23,7 @@ from app.core.errors import AppError
 from app.core.llm_factory import llm_factory
 from app.prompts import prompt_registry
 from app.services.chat.events import activity_event, append_trace
-from app.services.output_safety import sanitize_model_output
+from app.services.output_safety import StreamingOutputSanitizer, sanitize_model_output
 from app.services.retrieval.models import RetrievalOutcome
 from app.services.retrieval.pipeline import retrieval_pipeline
 from app.services.vector_store_manager import vector_store_manager
@@ -89,6 +90,14 @@ class RagAgentService:
     @staticmethod
     def _mode(use_knowledge: bool, knowledge_mode: KnowledgeMode | None) -> KnowledgeMode:
         return knowledge_mode or ("required" if use_knowledge else "off")
+
+    @staticmethod
+    def _answer_extra_body(model: str) -> dict[str, str] | None:
+        """本地 Qwen 回答关闭隐藏思考，降低首 Token 延迟并保留真实流式正文。"""
+        host = (urlparse(config.llm_api_base).hostname or "").lower()
+        if host in {"127.0.0.1", "localhost", "::1"} and model.startswith("qwen3.5"):
+            return {"reasoning_effort": "none"}
+        return None
 
     async def _prepare(
         self,
@@ -243,6 +252,7 @@ class RagAgentService:
                 model=selected_model,
                 temperature=0.7,
                 streaming=False,
+                extra_body=self._answer_extra_body(selected_model),
             )
             result = await client.ainvoke(prepared.messages)
             answer = sanitize_model_output(result.content if hasattr(result, "content") else str(result))
@@ -310,13 +320,27 @@ class RagAgentService:
                 model=selected_model,
                 temperature=0.7,
                 streaming=self.streaming,
+                extra_body=self._answer_extra_body(selected_model),
             )
             raw_answer = ""
+            streamed_answer = ""
+            output_sanitizer = StreamingOutputSanitizer()
             async for chunk in client.astream(prepared.messages):
                 text = getattr(chunk, "content", "") or ""
                 if text:
-                    raw_answer += str(text)
+                    piece = str(text)[:max(0, 50_000 - len(raw_answer))]
+                    raw_answer += piece
+                    safe_piece = output_sanitizer.feed(piece)
+                    if safe_piece:
+                        streamed_answer += safe_piece
+                        yield {"type": "content", "data": safe_piece}
+            safe_tail = output_sanitizer.finish()
+            if safe_tail:
+                streamed_answer += safe_tail
+                yield {"type": "content", "data": safe_tail}
             full_answer = sanitize_model_output(raw_answer)
+            if streamed_answer != full_answer:
+                logger.warning("流式清洗结果与最终清洗结果不一致，完成事件将使用最终安全文本")
             completed = activity_event(
                 "model_call_completed", "回答模型调用完成",
                 operation="llm", phase="answer", model=selected_model,
@@ -334,9 +358,6 @@ class RagAgentService:
             )
             trace = append_trace(trace, citation_event)
             yield citation_event
-            # 先完整清理内部标记，再分块发送，避免标签被拆在两个流式分片中而泄漏到界面。
-            for index in range(0, len(full_answer), 240):
-                yield {"type": "content", "data": full_answer[index:index + 240]}
             yield {"type": "complete", "data": {
                 "answer": full_answer,
                 "source": prepared.source,

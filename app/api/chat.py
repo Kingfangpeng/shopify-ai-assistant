@@ -12,7 +12,8 @@ from app.auth.dependencies import AuthContext, get_auth_context
 from app.core.errors import AppError
 from app.db.engine import db_session
 from app.models.request import ChatRequest, CreateChatSessionRequest, ImportChatSessionsRequest
-from app.services.chat import chat_agent_service, chat_service
+from app.services.chat.agent_service import chat_agent_service
+from app.services.chat.service import chat_service
 from app.services.memory import memory_service
 from app.services.model_catalog_service import model_catalog_service
 
