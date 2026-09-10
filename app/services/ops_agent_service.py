@@ -14,6 +14,10 @@ from app.config import config
 from app.integrations.shopify.service import shopify_service
 from app.models.ops import OpsRequest
 from app.services.output_safety import sanitize_model_output
+from app.services.chat.events import activity_event
+from app.services.rag_agent_service import rag_agent_service
+from app.services.retrieval.pipeline import retrieval_pipeline
+from app.tools.knowledge_tool import format_docs
 
 
 def _should_end(state: PlanExecuteState) -> str:
@@ -52,6 +56,13 @@ class OpsAgentService:
                 period = await shopify_service.resolve_date_range(
                     request.question, date_from=request.date_from, date_to=request.date_to,
                 )
+                yield activity_event(
+                    "retrieval_started", "正在为深度分析检索本地知识库",
+                    status="running", operation="retriever",
+                )
+                knowledge = await retrieval_pipeline.retrieve(request.question, user_id, "probe")
+                for retrieval_event in rag_agent_service._retrieval_events(knowledge):
+                    yield retrieval_event
                 initial_state: PlanExecuteState = {
                     "input": request.question, "plan": [], "past_steps": [], "response": "",
                     "context": {
@@ -61,6 +72,8 @@ class OpsAgentService:
                         "session_id": request.session_id, "model": model,
                         "user_id": user_id,
                         "history": history or [],
+                        "knowledge_context": format_docs(list(knowledge.documents)) if knowledge.accepted else "",
+                        "knowledge_citations": list(knowledge.citations),
                     },
                     "replan_count": 0, "step_status": "",
                 }
@@ -70,9 +83,20 @@ class OpsAgentService:
                 sent_steps = 0
                 remaining = []
                 final_response = ""
-                stream = ops_graph.astream(initial_state, config={"recursion_limit": 2 * config.max_plan_steps + 6})
+                stream = ops_graph.astream(
+                    initial_state,
+                    config={"recursion_limit": 2 * config.max_plan_steps + 6},
+                    stream_mode=["updates", "custom"],
+                )
                 try:
-                    async for event in stream:
+                    async for raw_event in stream:
+                        if isinstance(raw_event, tuple) and len(raw_event) == 2:
+                            stream_mode, event = raw_event
+                        else:
+                            stream_mode, event = "updates", raw_event
+                        if stream_mode == "custom":
+                            yield event
+                            continue
                         for node, update in event.items():
                             # LangGraph 会把“继续原计划”的空更新表示为 None。
                             update = update or {}
@@ -112,9 +136,24 @@ class OpsAgentService:
                     await stream.aclose()
                 if not final_response:
                     raise ValueError("missing_report")
+                citations = [
+                    {
+                        **citation,
+                        "cited": bool(citation.get("chunk_id") and str(citation["chunk_id"]) in final_response),
+                    }
+                    for citation in knowledge.citations
+                ]
+                cited = sum(bool(item["cited"]) for item in citations)
+                yield activity_event(
+                    "citation_checked",
+                    f"引用校验完成：{cited}/{len(citations)} 个证据在报告中被引用",
+                    operation="guardrail", selected=len(citations), cited=cited,
+                    knowledge_used=bool(citations),
+                )
                 yield {"type": "complete", "stage": "analysis_complete", "response": final_response,
-                       "message": "深度分析完成", "model": model, "source": "ops",
-                       "session_id": request.session_id}
+                       "message": "深度分析完成", "model": model,
+                       "source": "ops_and_knowledge" if citations else "ops",
+                       "citations": citations, "session_id": request.session_id}
         except TimeoutError:
             yield {"type": "error", "code": "ops_timeout", "message": "分析超过时间上限，已停止；可查看已有步骤后缩小问题范围重试"}
         except Exception as exc:

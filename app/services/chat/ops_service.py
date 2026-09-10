@@ -14,6 +14,7 @@ from app.services.ops_agent_service import ops_agent_service
 from app.services.output_safety import sanitize_model_output
 from app.services.memory import memory_service
 from app.prompts import prompt_registry
+from app.services.chat.events import sanitize_trace_event
 
 
 @dataclass
@@ -35,6 +36,8 @@ class ChatOpsService:
                 "mode": "deep",
                 "model": model,
                 "trace": [],
+                "citations": [],
+                "source": "ops",
                 "prompt_bundle": prompt_registry.bundle(
                     "ops_planner", "ops_executor", "ops_replanner", "ops_report",
                 ),
@@ -46,6 +49,8 @@ class ChatOpsService:
     @staticmethod
     def clean_event(event: dict) -> dict:
         # 仅保存用于界面展示的结构，不保存凭据、上下文和模型隐藏推理。
+        if event.get("type") == "activity":
+            return sanitize_trace_event(event)
         output = {"type": event.get("type", "status")}
         for key in ("stage", "message", "current_step", "result_preview", "status", "model", "code", "timezone"):
             if key in event:
@@ -64,6 +69,8 @@ class ChatOpsService:
             "mode": "deep",
             "model": run.request.model,
             "trace": [],
+            "citations": [],
+            "source": "ops",
             "prompt_bundle": prompt_registry.bundle(
                 "ops_planner", "ops_executor", "ops_replanner", "ops_report",
             ),
@@ -94,7 +101,11 @@ class ChatOpsService:
                         if not report.strip():
                             raise AppError("empty_report", "分析未生成可用报告，请重试", 503)
                         content = report
-                        event.update(response=content, source="ops", session_id=run.request.session_id,
+                        citations = raw.get("citations") if isinstance(raw.get("citations"), list) else []
+                        metadata["citations"] = citations[:5]
+                        metadata["source"] = str(raw.get("source") or "ops")[:80]
+                        event.update(response=content, source=metadata["source"], citations=metadata["citations"],
+                                     trace=metadata["trace"], session_id=run.request.session_id,
                                      model=run.request.model, message_id=run.message_id,
                                      prompt_bundle=metadata["prompt_bundle"])
                         save("complete")

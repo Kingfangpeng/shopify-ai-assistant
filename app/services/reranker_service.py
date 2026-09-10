@@ -34,7 +34,34 @@ class RerankerService:
                     max_length=config.reranker_max_length,
                     log_level="WARNING",
                 )
+                self._tune_cpu_session(self._ranker, model_path)
         return self._ranker
+
+    @staticmethod
+    def _tune_cpu_session(ranker, model_path: Path) -> None:  # type: ignore[no-untyped-def]
+        """限制单请求的 ONNX 线程数，避免混合核心 CPU 上的线程协调开销。"""
+        if not hasattr(ranker, "session"):
+            return
+        model_files = sorted(model_path.glob("*.onnx"))
+        if not model_files:
+            return
+        try:
+            import onnxruntime as ort
+
+            options = ort.SessionOptions()
+            options.intra_op_num_threads = max(1, min(config.reranker_intra_op_threads, 16))
+            options.inter_op_num_threads = 1
+            options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+            options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+            options.add_session_config_entry("session.intra_op.spin_duration_us", "1000")
+            options.add_session_config_entry("session.intra_op.spin_backoff_max", "8")
+            ranker.session = ort.InferenceSession(
+                str(model_files[0]),
+                sess_options=options,
+                providers=["CPUExecutionProvider"],
+            )
+        except Exception as exc:
+            logger.warning("FlashRank CPU 会话调优失败，保留默认 ONNX 会话: {}", type(exc).__name__)
 
     def rerank(self, query: str, documents: list[Document], top_n: int) -> tuple[list[Document], str]:
         if not config.reranker_enabled or not documents:

@@ -188,7 +188,7 @@ async def test_rag_falls_back_to_model_when_knowledge_is_offline(monkeypatch):
 
     monkeypatch.setattr(
         vector_store_manager,
-        "similarity_search",
+        "search",
         lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("milvus down")),
     )
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeModel())
@@ -212,7 +212,7 @@ async def test_non_stream_rag_also_reports_model_only_fallback(monkeypatch):
 
     monkeypatch.setattr(
         vector_store_manager,
-        "similarity_search",
+        "search",
         lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("milvus down")),
     )
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeModel())

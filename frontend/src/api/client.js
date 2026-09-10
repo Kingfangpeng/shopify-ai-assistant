@@ -119,12 +119,13 @@ function streamRequest(path, payload, handlers, deep = false) {
       if (!lines.length) return
       const data = JSON.parse(lines.map(line => line.slice(5).trimStart()).join('\n'))
       if (deep) {
-        if (['plan', 'replan', 'step_start', 'step_complete', 'status'].includes(data.type)) {
+        if (['activity', 'plan', 'replan', 'step_start', 'step_complete', 'status'].includes(data.type)) {
           handlers.onTrace?.(data)
           handlers.onStatus?.(data.message || '')
         }
         if (data.type === 'report') handlers.onReport?.(data.report)
       } else {
+        if (data.type === 'activity') handlers.onTrace?.(data)
         if (data.type === 'status') handlers.onStatus?.(data.data)
         if (data.type === 'tool') handlers.onTool?.(data.data)
         if (data.type === 'warning') handlers.onWarning?.(data.data)

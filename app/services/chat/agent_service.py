@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import asyncio
 import json
 from dataclasses import dataclass
+from time import perf_counter
 from typing import Any, AsyncGenerator
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -29,8 +29,10 @@ from app.integrations.shopify.client import (
 )
 from app.integrations.shopify.service import shopify_service
 from app.services.rag_agent_service import rag_agent_service
+from app.services.chat.events import activity_event, append_trace
 from app.services.output_safety import sanitize_model_output
-from app.services.vector_store_manager import vector_store_manager
+from app.services.retrieval.models import RetrievalOutcome
+from app.services.retrieval.pipeline import retrieval_pipeline
 from app.tools.knowledge_tool import format_docs
 from app.prompts import prompt_registry
 
@@ -48,7 +50,20 @@ class ChatAgentResult:
     planner: str = "deterministic"
     route: str = "shopify"
     citations: tuple[dict[str, Any], ...] = ()
+    trace: tuple[dict[str, Any], ...] = ()
     prompt_bundle: dict[str, Any] | None = None
+
+
+@dataclass(frozen=True)
+class AnalysisAnswer:
+    answer: str
+    used_knowledge: bool
+    citations: tuple[dict[str, Any], ...] = ()
+    trace: tuple[dict[str, Any], ...] = ()
+
+    def __iter__(self):  # type: ignore[no-untyped-def]
+        yield self.answer
+        yield self.used_knowledge
 
 
 class ChatAgentService:
@@ -90,22 +105,43 @@ class ChatAgentService:
         plan: DispatchPlan | None = None,
         user_id: str | None = None,
     ) -> ChatAgentResult:
+        trace: list[dict[str, Any]] = [activity_event(
+            "model_call_started", f"正在使用 {model} 判断问题的数据来源",
+            status="running", operation="llm", phase="routing", model=model,
+        )]
+        routing_started = perf_counter()
         selected_plan = await self._resolve_plan(
-            question,
-            history,
-            model,
-            plan or self.plan(question),
+            question, history, model, plan or self.plan(question),
         )
+        trace = append_trace(trace, activity_event(
+            "model_call_completed", "意图路由模型调用完成",
+            operation="llm", phase="routing", model=model,
+            duration_ms=(perf_counter() - routing_started) * 1000,
+        ))
+        trace = append_trace(trace, activity_event(
+            "route_completed", f"已选择 {selected_plan.route} 路由",
+            operation="agent", route=selected_plan.route,
+            decision=selected_plan.reason,
+        ))
         if selected_plan.route in {"clarify", "unsupported"}:
             return ChatAgentResult(
                 sanitize_model_output(selected_plan.message), "model", (), model,
                 planner=selected_plan.planner, route=selected_plan.route,
+                trace=tuple(trace),
                 prompt_bundle=prompt_registry.bundle("routing"),
             )
         if not selected_plan.uses_shopify:
+            knowledge_mode = "required" if selected_plan.route == "knowledge" else "probe"
             result = await rag_agent_service.query(
-                question, history, model=model, use_knowledge=selected_plan.route == "knowledge", user_id=user_id,
+                question,
+                history,
+                model=model,
+                use_knowledge=selected_plan.route == "knowledge",
+                user_id=user_id,
+                knowledge_mode=knowledge_mode,
             )
+            for event in result.trace:
+                trace = append_trace(trace, event)
             return ChatAgentResult(
                 result.answer,
                 result.source,
@@ -115,10 +151,16 @@ class ChatAgentService:
                 planner=selected_plan.planner,
                 route=selected_plan.route,
                 citations=result.citations,
+                trace=tuple(trace),
                 prompt_bundle=prompt_registry.bundle("routing", "rag_answer"),
             )
 
         try:
+            for name in selected_plan.tools:
+                trace = append_trace(trace, activity_event(
+                    "tool_started", f"正在调用 {name}",
+                    status="running", operation="tool", phase=name,
+                ))
             period = await shopify_service.resolve_date_range(question)
             executions = await read_only_tool_dispatcher.execute(
                 selected_plan,
@@ -127,6 +169,11 @@ class ChatAgentService:
                 date_to=period.date_to,
                 timezone=period.timezone,
             )
+            for item in executions:
+                trace = append_trace(trace, activity_event(
+                    "tool_completed", f"{item.name} 调用完成",
+                    operation="tool", phase=item.name,
+                ))
         except ShopifyError as exc:
             raise self._shopify_error(exc) from exc
         except ValueError as exc:
@@ -136,10 +183,42 @@ class ChatAgentService:
 
         fallback = self._format_executions(executions, period.label, period.timezone)
         answer_args = (question, history, model, selected_plan, executions, fallback)
-        answer, used_knowledge = (
-            await self._answer(*answer_args, user_id=user_id)
-            if user_id else await self._answer(*answer_args)
-        )
+        knowledge_outcome = None
+        if selected_plan.route == "mixed":
+            trace = append_trace(trace, activity_event(
+                "retrieval_started", "正在检索与业务分析相关的本地知识库",
+                status="running", operation="retriever",
+            ))
+            knowledge_outcome = await retrieval_pipeline.retrieve(question, user_id, "required")
+            for event in rag_agent_service._retrieval_events(knowledge_outcome):
+                trace = append_trace(trace, event)
+        analysis_started = None
+        if selected_plan.requires_analysis:
+            analysis_started = perf_counter()
+            trace = append_trace(trace, activity_event(
+                "model_call_started", f"正在使用 {model} 综合业务数据",
+                status="running", operation="llm", phase="analysis", model=model,
+            ))
+        if knowledge_outcome is not None:
+            analysis = await self._answer(
+                *answer_args, user_id=user_id, knowledge_outcome=knowledge_outcome,
+            )
+        else:
+            analysis = (
+                await self._answer(*answer_args, user_id=user_id)
+                if user_id else await self._answer(*answer_args)
+            )
+        answer, used_knowledge = analysis
+        if analysis_started is not None:
+            trace = append_trace(trace, activity_event(
+                "model_call_completed", "业务分析模型调用完成",
+                operation="llm", phase="analysis", model=model,
+                duration_ms=(perf_counter() - analysis_started) * 1000,
+                knowledge_used=used_knowledge,
+            ))
+        for event in getattr(analysis, "trace", ()):
+            trace = append_trace(trace, event)
+        citations = tuple(getattr(analysis, "citations", ()))
         source = self._source(executions, used_knowledge)
         return ChatAgentResult(
             answer=answer,
@@ -151,6 +230,8 @@ class ChatAgentService:
             timezone=period.timezone,
             planner=selected_plan.planner,
             route=selected_plan.route,
+            citations=citations,
+            trace=tuple(trace),
             prompt_bundle=prompt_registry.bundle(*(
                 ("routing", "ops_report") if selected_plan.requires_analysis else ("routing",)
             )),
@@ -164,30 +245,69 @@ class ChatAgentService:
         plan: DispatchPlan | None = None,
         user_id: str | None = None,
     ) -> AsyncGenerator[dict[str, Any], None]:
+        trace: list[dict[str, Any]] = []
+        routing_event = activity_event(
+            "model_call_started", f"正在使用 {model} 判断问题的数据来源",
+            status="running", operation="llm", phase="routing", model=model,
+        )
+        trace = append_trace(trace, routing_event)
+        yield routing_event
         yield {"type": "status", "data": f"正在让 {model} 理解问题并规划只读查询…"}
+        routing_started = perf_counter()
         try:
             selected_plan = await self.resolve_plan(question, history, model)
         except AppError as exc:
+            failed = activity_event(
+                "model_call_failed", "意图路由模型调用失败",
+                status="failed", operation="llm", phase="routing", model=model,
+                duration_ms=(perf_counter() - routing_started) * 1000,
+            )
+            trace = append_trace(trace, failed)
+            yield failed
             yield {"type": "error", "data": {"code": exc.code, "message": exc.message}}
             return
+        completed = activity_event(
+            "model_call_completed", "意图路由模型调用完成",
+            operation="llm", phase="routing", model=model,
+            duration_ms=(perf_counter() - routing_started) * 1000,
+        )
+        trace = append_trace(trace, completed)
+        yield completed
+        route_event = activity_event(
+            "route_completed", f"已选择 {selected_plan.route} 路由",
+            operation="agent", route=selected_plan.route,
+            decision=selected_plan.reason,
+        )
+        trace = append_trace(trace, route_event)
+        yield route_event
         if selected_plan.route in {"clarify", "unsupported"}:
             answer = sanitize_model_output(selected_plan.message)
             yield {"type": "content", "data": answer}
             yield {"type": "complete", "data": {
                 "answer": answer, "source": "model", "model": model, "tools": [],
                 "planner": selected_plan.planner, "route": selected_plan.route,
+                "citations": [], "trace": trace,
                 "prompt_bundle": prompt_registry.bundle("routing"),
             }}
             return
         if not selected_plan.uses_shopify:
+            knowledge_mode = "required" if selected_plan.route == "knowledge" else "probe"
             async for event in rag_agent_service.query_stream(
-                question, history, model=model, use_knowledge=selected_plan.route == "knowledge", user_id=user_id,
+                question,
+                history,
+                model=model,
+                use_knowledge=selected_plan.route == "knowledge",
+                user_id=user_id,
+                knowledge_mode=knowledge_mode,
             ):
+                if event.get("type") == "activity":
+                    trace = append_trace(trace, event)
                 if event.get("type") == "complete":
                     event["data"].update({
                         "planner": selected_plan.planner,
                         "route": selected_plan.route,
                         "tools": [],
+                        "trace": trace,
                         "prompt_bundle": prompt_registry.bundle("routing", "rag_answer"),
                     })
                 yield event
@@ -198,6 +318,12 @@ class ChatAgentService:
             period = await shopify_service.resolve_date_range(question)
             executions: list[ToolExecution] = []
             for name in selected_plan.tools:
+                tool_started = activity_event(
+                    "tool_started", f"正在调用 {name}",
+                    status="running", operation="tool", phase=name,
+                )
+                trace = append_trace(trace, tool_started)
+                yield tool_started
                 yield {
                     "type": "tool",
                     "data": {"name": name, "status": "running", "message": f"正在调用 {name}"},
@@ -214,6 +340,12 @@ class ChatAgentService:
                     timezone=period.timezone,
                 )
                 executions.extend(result)
+                tool_completed = activity_event(
+                    "tool_completed", f"{name} 调用完成",
+                    operation="tool", phase=name,
+                )
+                trace = append_trace(trace, tool_completed)
+                yield tool_completed
                 yield {
                     "type": "tool",
                     "data": {"name": name, "status": "complete", "message": f"{name} 调用完成"},
@@ -233,10 +365,50 @@ class ChatAgentService:
         yield {"type": "status", "data": "正在整理 Shopify 实时数据…"}
         fallback = self._format_executions(executions, period.label, period.timezone)
         answer_args = (question, history, model, selected_plan, executions, fallback)
-        answer, used_knowledge = (
-            await self._answer(*answer_args, user_id=user_id)
-            if user_id else await self._answer(*answer_args)
-        )
+        knowledge_outcome = None
+        if selected_plan.route == "mixed":
+            event = activity_event(
+                "retrieval_started", "正在检索与业务分析相关的本地知识库",
+                status="running", operation="retriever",
+            )
+            trace = append_trace(trace, event)
+            yield event
+            knowledge_outcome = await retrieval_pipeline.retrieve(question, user_id, "required")
+            for event in rag_agent_service._retrieval_events(knowledge_outcome):
+                trace = append_trace(trace, event)
+                yield event
+        generation_started = None
+        if selected_plan.requires_analysis:
+            generation_started = perf_counter()
+            event = activity_event(
+                "model_call_started", f"正在使用 {model} 综合业务数据",
+                status="running", operation="llm", phase="analysis", model=model,
+            )
+            trace = append_trace(trace, event)
+            yield event
+        if knowledge_outcome is not None:
+            analysis = await self._answer(
+                *answer_args, user_id=user_id, knowledge_outcome=knowledge_outcome,
+            )
+        else:
+            analysis = (
+                await self._answer(*answer_args, user_id=user_id)
+                if user_id else await self._answer(*answer_args)
+            )
+        answer, used_knowledge = analysis
+        for answer_event in getattr(analysis, "trace", ()):
+            trace = append_trace(trace, answer_event)
+            yield answer_event
+        citations = tuple(getattr(analysis, "citations", ()))
+        if generation_started is not None:
+            event = activity_event(
+                "model_call_completed", "业务分析模型调用完成",
+                operation="llm", phase="analysis", model=model,
+                duration_ms=(perf_counter() - generation_started) * 1000,
+                knowledge_used=used_knowledge,
+            )
+            trace = append_trace(trace, event)
+            yield event
         yield {"type": "content", "data": answer}
         yield {
             "type": "complete",
@@ -250,6 +422,8 @@ class ChatAgentService:
                 "api_version": config.shopify_api_version,
                 "planner": selected_plan.planner,
                 "route": selected_plan.route,
+                "citations": list(citations),
+                "trace": trace,
                 "prompt_bundle": prompt_registry.bundle(*(
                     ("routing", "ops_report") if selected_plan.requires_analysis else ("routing",)
                 )),
@@ -265,22 +439,28 @@ class ChatAgentService:
         executions: list[ToolExecution],
         fallback: str,
         user_id: str | None = None,
-    ) -> tuple[str, bool]:
+        knowledge_outcome: RetrievalOutcome | None = None,
+    ) -> AnalysisAnswer:
         if not plan.requires_analysis:
-            return fallback, False
+            return AnalysisAnswer(fallback, False)
 
         knowledge = ""
+        citations: tuple[dict[str, Any], ...] = ()
+        trace: list[dict[str, Any]] = []
         if plan.route == "mixed":
-            try:
-                documents = await asyncio.to_thread(
-                    vector_store_manager.similarity_search, question, config.rag_top_k, user_id,
-                )
-                knowledge = format_docs(documents) if documents else ""
-            except Exception as exc:
-                logger.warning("混合分析的知识库检索不可用: {}", type(exc).__name__)
+            if knowledge_outcome is None:
+                trace.append(activity_event(
+                    "retrieval_started", "正在检索与业务分析相关的本地知识库",
+                    status="running", operation="retriever",
+                ))
+                knowledge_outcome = await retrieval_pipeline.retrieve(question, user_id, "required")
+                trace.extend(rag_agent_service._retrieval_events(knowledge_outcome))
+            if knowledge_outcome.accepted:
+                knowledge = format_docs(list(knowledge_outcome.documents))
+                citations = knowledge_outcome.citations
             if not knowledge:
                 fallback += "\n\n注意：本次未取得可用的本地资料，只展示实时查询结果；不能据此判断是否符合本地政策或 SOP。"
-                return fallback, False
+                return AnalysisAnswer(fallback, False, (), tuple(trace))
 
         payload = json.dumps(
             {item.name: item.result for item in executions},
@@ -304,10 +484,23 @@ class ChatAgentService:
             response = await client.ainvoke(messages)
             content = getattr(response, "content", "") or ""
             if isinstance(content, str) and content.strip():
-                return sanitize_model_output(content), bool(knowledge)
+                answer = sanitize_model_output(content)
+                marked = tuple({
+                    **citation,
+                    "cited": bool(citation.get("chunk_id") and str(citation["chunk_id"]) in answer),
+                } for citation in citations)
+                cited = sum(bool(item.get("cited")) for item in marked)
+                if marked:
+                    trace.append(activity_event(
+                        "citation_checked",
+                        f"引用校验完成：{cited}/{len(marked)} 个证据在正文中被引用",
+                        operation="guardrail", selected=len(marked), cited=cited,
+                        knowledge_used=True,
+                    ))
+                return AnalysisAnswer(answer, bool(knowledge), marked, tuple(trace))
         except Exception as exc:
             logger.warning("Agent 综合分析失败，返回确定性数据摘要: {}", type(exc).__name__)
-        return fallback, False
+        return AnalysisAnswer(fallback, False, (), tuple(trace))
 
     def _format_executions(self, executions: list[ToolExecution], period_label: str, timezone: str) -> str:
         sections = [self._format_execution(item) for item in executions]

@@ -23,6 +23,7 @@ from app.models.ops import OpsRequest
 from app.services.chat.service import chat_service
 from app.services.chat.ops_service import chat_ops_service
 from app.services.model_catalog_service import model_catalog_service
+from app.services.retrieval.models import RetrievalOutcome
 
 ops = importlib.import_module("app.services.ops_agent_service")
 
@@ -47,6 +48,19 @@ def logged_client(monkeypatch):
 def install_loop(monkeypatch):
     visits = []
 
+    async def retrieve(question, user_id, mode):
+        return RetrievalOutcome(
+            query=question,
+            mode=mode,
+            status="no_match",
+            strategy="rrf+flashrank",
+            reranker_status="ready",
+            candidates=0,
+            duration_ms=1,
+            accepted=False,
+            decision="单元测试没有相关知识证据",
+        )
+
     async def period(*_args, **_kwargs):
         return StoreDateRange("2026-09-01", "2026-09-03", "Asia/Shanghai", "测试周期", "2026-09-04")
 
@@ -65,6 +79,7 @@ def install_loop(monkeypatch):
         return {"response": "# 测试报告\n已完成两个只读步骤。"}
 
     monkeypatch.setattr(ops.shopify_service, "resolve_date_range", period)
+    monkeypatch.setattr(ops.retrieval_pipeline, "retrieve", retrieve)
     monkeypatch.setattr(ops, "planner", planner)
     monkeypatch.setattr(ops, "executor", executor)
     monkeypatch.setattr(ops, "replanner", replanner)
@@ -129,8 +144,21 @@ def test_normal_chat_commits_before_stream_exhaustion(monkeypatch):
     observed = []
     with logged_client(monkeypatch) as (client, headers, session_id, user_id):
         async def answer(*_args, **_kwargs):
+            trace = [{
+                "type": "activity", "stage": "retrieval_completed", "status": "complete",
+                "operation": "retriever", "message": "知识库检索完成",
+            }]
+            citations = [{
+                "document_id": "doc-1", "file_name": "Ark3600.md", "version": 1,
+                "chunk_id": "doc-1:v1:c0", "title": "参数", "rank": 1,
+                "score": 0.99, "snippet": "Ark3600 参数", "cited": True,
+            }]
+            yield trace[0]
             yield {"type": "content", "data": "普通回答"}
-            yield {"type": "complete", "data": {"answer": "普通回答"}}
+            yield {"type": "complete", "data": {
+                "answer": "普通回答", "source": "knowledge_and_model",
+                "trace": trace, "citations": citations,
+            }}
             with db_session() as db:
                 messages = chat_service.get_session(db, user_id, session_id, True).messages
                 observed.append(messages[-1].role == "assistant")
@@ -138,6 +166,11 @@ def test_normal_chat_commits_before_stream_exhaustion(monkeypatch):
         response = client.post("/api/chat_stream", headers=headers, json={"question": "测试", "session_id": session_id})
         assert response.status_code == 200
         assert observed == [True]
+        history = client.get(f"/api/chat/sessions/{session_id}").json()["messages"]
+        metadata = history[-1]["metadata"]
+        assert metadata["source"] == "knowledge_and_model"
+        assert metadata["trace"][0]["stage"] == "retrieval_completed"
+        assert metadata["citations"][0]["file_name"] == "Ark3600.md"
 
 
 def test_continue_with_empty_graph_update_executes_remaining_steps(monkeypatch):
@@ -191,6 +224,35 @@ async def test_cancellation_closes_graph_and_saves_interrupted_message(monkeypat
     assert closed == [True]
     assert saved_answer(run)["status"] == "interrupted"
     assert saved_answer(run)["metadata"]["trace"][0]["plan"] == ["读取订单"]
+
+
+@pytest.mark.asyncio
+async def test_deep_analysis_persists_activity_and_knowledge_citations(monkeypatch):
+    run = make_run()
+    citation = {
+        "document_id": "doc-1", "file_name": "Ark3600.md", "version": 1,
+        "chunk_id": "doc-1:v1:c14", "title": "参数", "rank": 1,
+        "score": 0.99, "snippet": "Ark3600 参数", "cited": True,
+    }
+
+    async def diagnose(*_args, **_kwargs):
+        yield {
+            "type": "activity", "stage": "retrieval_completed", "status": "complete",
+            "operation": "retriever", "message": "知识库检索完成",
+        }
+        yield {"type": "report", "report": "# 报告\n已引用 Ark3600 参数【Ark3600.md v1 doc-1:v1:c14】"}
+        yield {
+            "type": "complete", "response": "# 报告\n已引用 Ark3600 参数【Ark3600.md v1 doc-1:v1:c14】",
+            "source": "ops_and_knowledge", "citations": [citation],
+        }
+
+    monkeypatch.setattr(ops.ops_agent_service, "diagnose", diagnose)
+    events = [event async for event in chat_ops_service.stream(run)]
+    saved = saved_answer(run)
+    assert events[-1]["source"] == "ops_and_knowledge"
+    assert saved["metadata"]["source"] == "ops_and_knowledge"
+    assert saved["metadata"]["citations"][0]["chunk_id"] == "doc-1:v1:c14"
+    assert saved["metadata"]["trace"][0]["stage"] == "retrieval_completed"
 
 
 @pytest.mark.asyncio
@@ -274,7 +336,6 @@ async def test_all_real_nodes_construct_the_requested_model(monkeypatch):
         return FakeModel()
 
     monkeypatch.setattr(llm_factory, "create_chat_model", model)
-    monkeypatch.setattr(planner_module, "retrieve_knowledge", SimpleNamespace(ainvoke=AsyncMock(return_value="")))
     state = {"input": "测试", "context": {"model": "selected-flash"}, "plan": ["独立测试步骤"],
              "past_steps": [("之前步骤", "结果")], "replan_count": 0, "response": ""}
     await planner_module.planner(state)
@@ -324,7 +385,6 @@ async def test_provider_json_error_does_not_break_planner_error_handling(monkeyp
             return RunnableLambda(fail)
 
     monkeypatch.setattr(module, "create_ops_model", lambda _state: UnsupportedModel())
-    monkeypatch.setattr(module, "retrieve_knowledge", SimpleNamespace(ainvoke=AsyncMock(return_value="")))
     result = await module.planner({"input": "测试", "context": {}})
     assert result["plan"]
 

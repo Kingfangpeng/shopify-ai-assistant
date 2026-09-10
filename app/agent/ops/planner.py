@@ -3,6 +3,7 @@ Planner 节点：制定运营分析执行计划
 """
 
 from textwrap import dedent
+from time import perf_counter
 from typing import Dict, Any, List
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -10,11 +11,10 @@ from loguru import logger
 
 from app.config import config
 from app.core.llm_factory import llm_factory
-from app.core.agent_context import current_agent_user_id
 from app.prompts import prompt_registry
 from app.agent.tool_registry import TOOL_SPEC_REGISTRY
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
-from app.tools.knowledge_tool import retrieve_knowledge
+from app.services.chat.events import activity_event, emit_graph_activity
 from .state import PlanExecuteState
 from .utils import format_tools_description, create_ops_model
 
@@ -95,22 +95,9 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
     logger.info(f"运营问题: {input_text}")
 
     try:
-        # 步骤1: 查询知识库获取相关经验
-        logger.info("查询知识库，寻找相关运营经验...")
-        experience_docs = ""
-        try:
-            token = current_agent_user_id.set((state.get("context") or {}).get("user_id"))
-            try:
-                context_str = await retrieve_knowledge.ainvoke({"query": input_text})
-            finally:
-                current_agent_user_id.reset(token)
-            if context_str and context_str.strip():
-                experience_docs = context_str
-                logger.info(f"找到相关经验文档，长度: {len(experience_docs)}")
-            else:
-                logger.info("未找到相关经验文档")
-        except Exception as e:
-            logger.warning(f"查询知识库失败: {e}")
+        # 知识检索由外层服务统一完成，Planner 只消费同一份已审计证据。
+        context = state.get("context") or {}
+        experience_docs = str(context.get("knowledge_context") or "")
 
         # 步骤2: 获取可用工具列表
         all_tools = list(DEFAULT_LOCAL_AGENT_TOOLS)
@@ -134,6 +121,12 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
 
         # 步骤4: 创建 LLM 并生成计划
         llm = create_ops_model(state)
+        model_name = str(context.get("model") or config.rag_model)
+        started = perf_counter()
+        emit_graph_activity(activity_event(
+            "model_call_started", "正在根据问题、知识证据和工具目录制定分析计划",
+            status="running", operation="llm", phase="deep_planning", model=model_name,
+        ))
 
         planner_chain = planner_prompt | llm.with_structured_output(Plan, method="function_calling")
 
@@ -141,13 +134,18 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
             "messages": [
                 ("user", f"运营问题：{input_text}"),
                 ("user", experience_context or "知识库没有提供相关参考资料。"),
-                ("user", f"请求上下文：{state.get('context') or {}}"),
+                ("user", f"请求上下文：{_public_context(context)}"),
             ],
             "tools_description": tools_description,
         })
 
         parsed_plan = plan_result if isinstance(plan_result, Plan) else Plan.model_validate(plan_result)
         plan_steps = render_plan_steps(parsed_plan.steps)
+        emit_graph_activity(activity_event(
+            "model_call_completed", "深度分析计划模型调用完成",
+            operation="llm", phase="deep_planning", model=model_name,
+            duration_ms=(perf_counter() - started) * 1000,
+        ))
 
         logger.info(f"计划已生成，共 {len(plan_steps)} 个步骤")
         for i, step in enumerate(plan_steps, 1):
@@ -157,6 +155,10 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
 
     except Exception as e:
         logger.error("生成计划失败: {}", type(e).__name__)
+        emit_graph_activity(activity_event(
+            "model_call_failed", "计划模型调用失败，使用安全只读兜底计划",
+            status="failed", operation="llm", phase="deep_planning",
+        ))
         return {
             "plan": [
                 "查询请求周期内的订单核心指标；工具：get_orders_summary；预期证据：订单量、GMV、客单价与取消退款指标",
@@ -164,3 +166,11 @@ async def planner(state: PlanExecuteState) -> Dict[str, Any]:
                 "查询请求周期内的产品表现；工具：get_product_performance；预期证据：产品销量、营收与退款率"
             ]
         }
+
+
+def _public_context(context: dict[str, Any]) -> dict[str, Any]:
+    """模型请求上下文不重复携带整段知识原文或内部引用结构。"""
+    return {
+        key: value for key, value in context.items()
+        if key not in {"knowledge_context", "knowledge_citations"}
+    }

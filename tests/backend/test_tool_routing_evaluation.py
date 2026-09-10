@@ -35,6 +35,16 @@ def test_tool_routing_dataset_is_valid_and_has_boundary_cases():
     assert sum(not case["expected_tools"] for case in cases) >= 8
 
 
+def test_product_identifier_routing_dataset_covers_route_boundaries():
+    path = Path(__file__).parents[1] / "fixtures" / "rag_product_identifier_routing.json"
+    cases = load_cases(path)
+    assert len(cases) == 12
+    assert {case["expected_route"] for case in cases} == {
+        "knowledge", "shopify", "mixed", "unsupported", "chat",
+    }
+    assert len({case["question"] for case in cases}) == len(cases)
+
+
 def test_tool_routing_metrics_count_exact_precision_and_recall():
     results = [
         _result(expected=("get_orders_summary",), actual=("get_orders_summary",), exact=True),

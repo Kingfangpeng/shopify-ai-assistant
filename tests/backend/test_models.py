@@ -4,7 +4,7 @@ from app.config import config
 from app.core.errors import AppError
 from app.core.llm_factory import llm_factory
 from app.services.model_catalog_service import ModelCatalogService
-from app.services.output_safety import sanitize_model_output
+from app.services.output_safety import StreamingOutputSanitizer, sanitize_model_output
 from app.services.rag_agent_service import RagAgentService
 from app.services.vector_store_manager import vector_store_manager
 
@@ -42,7 +42,7 @@ async def test_knowledge_dependency_error_degrades_safely_without_leaking_detail
 
     monkeypatch.setattr(
         vector_store_manager,
-        "similarity_search",
+        "search",
         lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("127.0.0.1:19530 secret path")),
     )
     monkeypatch.setattr(llm_factory, "create_chat_model", lambda **_kwargs: FakeModel())
@@ -61,3 +61,54 @@ def test_model_output_removes_internal_tags_and_leading_meta_commentary():
     )
     assert answer == "关于订单：真实结果如下。"
     assert "knowledge" not in answer.lower()
+
+
+def test_streaming_output_sanitizer_releases_text_and_hides_split_internal_tags():
+    sanitizer = StreamingOutputSanitizer()
+    chunks = [
+        "<know",
+        "ledge> 中的内容与当前问题无关，且被标记为不可信参考资料，因此不采用。\n真正",
+        "回答正在流式生成</know",
+        "ledge>   ",
+    ]
+    emitted = [sanitizer.feed(chunk) for chunk in chunks]
+    emitted.append(sanitizer.finish())
+
+    assert "".join(emitted) == "真正回答正在流式生成"
+    assert any(part for part in emitted[:-1])
+    assert all("knowledge" not in part.lower() for part in emitted)
+
+
+@pytest.mark.asyncio
+async def test_rag_sends_content_before_model_completion(monkeypatch):
+    service = RagAgentService()
+    created = {}
+
+    class Chunk:
+        def __init__(self, content):
+            self.content = content
+
+    class FakeModel:
+        async def astream(self, _messages):
+            yield Chunk("第一段")
+            yield Chunk("，第二段")
+
+    monkeypatch.setattr(config, "llm_api_base", "http://127.0.0.1:11434/v1")
+    monkeypatch.setattr(
+        llm_factory,
+        "create_chat_model",
+        lambda **kwargs: created.update(kwargs) or FakeModel(),
+    )
+    events = [event async for event in service.query_stream(
+        "普通问题", [], model="qwen3.5:27b", use_knowledge=False,
+    )]
+    content_indexes = [index for index, event in enumerate(events) if event["type"] == "content"]
+    completed_index = next(
+        index for index, event in enumerate(events)
+        if event.get("stage") == "model_call_completed"
+    )
+
+    assert content_indexes
+    assert content_indexes[0] < completed_index
+    assert "".join(events[index]["data"] for index in content_indexes) == "第一段，第二段"
+    assert created["extra_body"] == {"reasoning_effort": "none"}

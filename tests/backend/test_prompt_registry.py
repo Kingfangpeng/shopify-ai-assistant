@@ -13,7 +13,7 @@ def test_prompt_registry_covers_every_agent_stage_and_lock_is_current():
 
 def test_prompt_fingerprint_records_all_reproducibility_hashes():
     fingerprint = prompt_registry.fingerprint("routing", output_schema={"type": "object"})
-    assert fingerprint["prompt"] == "routing@1.1.0"
+    assert fingerprint["prompt"] == "routing@1.3.0"
     assert all(len(fingerprint[key]) == 64 for key in (
         "content_hash", "tool_catalog_hash", "output_schema_hash", "bundle_hash",
     ))
